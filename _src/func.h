@@ -8,4 +8,4 @@ void conv_filter_avx_preconv(int imgHeight, int imgWidth, int imgHeightF, int im
 	short *filter, unsigned char *imgSrcExt, unsigned char *imgDst, short *imgDstConv);
 
 void conv_filter_avx_sh(int imgHeight, int imgWidth, int imgWidthF,
-	short *filter, unsigned char *imgSrcExt, unsigned char *imgDst);
+	short *filter, unsigned char *imgSrcExt, unsigned char *imgDst); 
