@@ -34,13 +34,16 @@ void main()
 	printf("Input resolution: %4dx%4d\n", imgWidth, imgHeight);
 
 	unsigned char *imgSrcExt;
-	int imgWidthF = imgWidth+FILTER_W-1;
+	int imgWidthF = imgWidth+FILTER_W-1;			// 2-es kiterjesztés minden irányból
 	int imgHeightF = imgHeight+FILTER_H-1;
-	int imgFOfssetW = (FILTER_W-1)/2;
-	int imgFOfssetH = (FILTER_H-1)/2;
+	int imgFOfssetW = (FILTER_W-1)/2;				// 2-es offszet
+	int imgFOfssetH = (FILTER_H-1)/2;				// 2-es offszet
 	imgSrcExt = (unsigned char *)(_aligned_malloc(3*imgWidthF*imgHeightF*sizeof(unsigned char), 32));
-    int row, col;
+    int row, col, rgb;
 
+
+/*	
+// kinullázza a kiterjesztett képet
 	for (row=0; row<imgHeightF; row++)
 	{
 		for (col=0; col<imgWidthF;col++)
@@ -52,6 +55,7 @@ void main()
 		}
 	}
 
+//  eredeti kép  másolása a kiterjesztett képbe
 	for (row=0; row<imgHeight; row++)
 	{
 		for (col=0; col<imgWidth;col++)
@@ -63,6 +67,25 @@ void main()
 			*(imgSrcExt + pixel_dst + 2) = (unsigned char)(*(imgData + pixel_src + 2));
 		}
 	}
+	*/
+	
+	// ========= SB =======
+	//enum class Color { RED = 0, GREEN = 1, BLUE = 2 };
+	#define SRC_PIXEL(ROW, COL) 	((((ROW)+imgFOfssetH)*imgWidthF + ((COL) +imgFOfssetW))*3)
+	#define DST_PIXEL(ROW, COL)		(((ROW)*imgWidth + (COL))*3)
+	
+	
+	for (row=0; row<imgHeightF; row++)
+		for (col=0; col<imgWidthF;col++)
+			// 0. és 1. sor 		utolsó 2 sor		0. és e1. oszlop	utolsó 2 oszlop
+			if(row < imgFOfssetH || row >= imgHeight || col < imgFOfssetW || col >= imgWidth)
+				for(rgb=0; rgb<3; rgb++)
+					*(imgSrcExt + pixel + rgb) = 0;			// keret kinullázása
+			else
+				for(rgb=0; rgb<3; rgb++)
+					*(imgSrcExt + DST_PIXEL(row, col) + rgb) = (unsigned char)(*(imgData + SRC_PIXEL(row, col) + rgb));
+		
+	
 
 	unsigned char *imgRes;
 	imgRes = (unsigned char *)(_aligned_malloc(3 * imgWidth*imgHeight * sizeof(unsigned char), 32));

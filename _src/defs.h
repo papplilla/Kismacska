@@ -8,3 +8,10 @@
 #define USE_OMP 1
 #define USE_SSE 0
 #define LOOP_UNROLL 1
+
+#define SWAP(a,b) \
+	do {  \
+		temp=b;	\
+		b=a;		\
+		a=temp;	\
+	}while(0)

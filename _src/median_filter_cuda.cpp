@@ -9,8 +9,6 @@
 #include "func.h"
 
 
-#define SWAP(a,b) temp=a;a=b;b=temp;
-
 // Shared memória adattípus: float
 // Számítás adattípusa: float
 __global__ void kernel_conv_sh_float_float(unsigned char* gInput, unsigned char* gOutput, int imgWidth, int imgWidthF)

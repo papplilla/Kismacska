@@ -9,8 +9,8 @@ typedef ap_uint<11> col_t;//11 bites unsigned int (1280 oszlop)
 #include "ap_fixed.h"
 
 #include "types.h"
+#include "defs.h"
 
-#define SWAP(a,b) temp=a;a=b;b=temp;
 #define N 25
 
 static row_t row = 0; 			//0,1,2,3,4
