@@ -22,6 +22,8 @@
     <ClCompile Include="_src\median_filter.cpp" />
     <ClCompile Include="_src\median_filter_avx.cpp" />
     <ClCompile Include="_src\main.cpp" />
+    <ClCompile Include="_src\median_filter_cuda.cpp" />
+    <ClCompile Include="_src\median_filter_hls.cpp" />
     <ClCompile Include="_src\sorter.cpp" />
   </ItemGroup>
   <ItemGroup>
