@@ -1,2 +1,9 @@
 ﻿  median_filter.cpp
-  sse_lab.vcxproj -> d:\VS_Projects\Hetero_HW_2\Win32/Debug/sse_lab.exe
+  median_filter_avx.cpp
+d:\git\hetero_hw\kismacska\hetero_hw_2\_src\median_filter_avx.cpp(101): warning C4244: '=': conversion from 'short' to 'unsigned char', possible loss of data
+  main.cpp
+  sorter.cpp
+d:\git\hetero_hw\kismacska\hetero_hw_2\_src\sorter.cpp(221): warning C4244: '=': conversion from 'float' to 'unsigned char', possible loss of data
+d:\git\hetero_hw\kismacska\hetero_hw_2\_src\sorter.cpp(231): warning C4244: '=': conversion from 'float' to 'unsigned char', possible loss of data
+  Generating Code...
+  sse_lab.vcxproj -> d:\GIT\Hetero_HW\Kismacska\Hetero_HW_2\Win32/Debug/sse_lab.exe
