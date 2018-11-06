@@ -1,0 +1,8 @@
+﻿  conv_filter.cpp
+  conv_filter_avx.cpp
+_src\conv_filter_avx.cpp(101): warning C4244: '=': conversion from 'short' to 'unsigned char', possible loss of data
+  main.cpp
+  Generating code
+  All 7 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  sse_lab.vcxproj -> D:\BME\Education\ujrakonfig_2018\gyak\gyak1_mo\x64/Release/sse_lab.exe
