@@ -1,2 +1,0 @@
-# Kismacska
-Selymes cuki kismacska
