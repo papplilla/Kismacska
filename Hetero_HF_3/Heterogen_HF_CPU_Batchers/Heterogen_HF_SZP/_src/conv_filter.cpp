@@ -1,4 +1,4 @@
-#include "omp.h"
+ï»¿#include "omp.h"
 
 #include "emmintrin.h"
 #include "nmmintrin.h"
@@ -38,6 +38,7 @@ inline void cmpswap2(int a, int b, float * tomb) {
 	tomb[b] = std::min(buf1, buf2);
 }
 
+#if 0
 void oddeven(float * tomb) {
 // 4x4
 	cmpswap(0, 1, tomb);
@@ -280,7 +281,7 @@ void oddevenSB(float * tomb) {
 	cmpswap(9, 10, tomb);//4
 	cmpswap(11, 12, tomb);//4
 	cmpswap(13, 14, tomb);//4
-// Eddig 8x8-as (16 bemenetû)
+// Eddig 8x8-as (16 bemenetÅ±)
 	
 //4x4
 	cmpswap(16, 17, tomb);
@@ -329,7 +330,7 @@ void oddevenSB(float * tomb) {
 	cmpswap(19, 20, tomb);
 	cmpswap(21, 22, tomb);
 	cmpswap(23, 24, tomb);
-//Eddig egy 8x8-as (De ez csak 9 bemenetû)
+//Eddig egy 8x8-as (De ez csak 9 bemenetÅ±)
 	
 	cmpswap(0, 16, tomb);
 	cmpswap(8, 24, tomb);
@@ -384,25 +385,228 @@ void oddevenSB(float * tomb) {
 }
 
 
+#endif
+
+void oddeven(float * tomb) {
+	// 4x4
+	cmpswap(0, 1, tomb);
+	cmpswap(2, 3, tomb);
+	cmpswap(0, 2, tomb);
+	cmpswap(1, 3, tomb);
+	cmpswap(1, 2, tomb);
+
+	cmpswap(4, 5, tomb);
+	cmpswap(6, 7, tomb);
+	cmpswap(4, 6, tomb);
+	cmpswap(5, 7, tomb);
+	cmpswap(5, 6, tomb);
+
+	cmpswap(0, 4, tomb);
+	cmpswap(1, 5, tomb); //SB
+	cmpswap(2, 6, tomb);
+	//cmpswap(2, 4, tomb);
+	//cmpswap(1, 5, tomb);
+	cmpswap(3, 7, tomb);
+
+	cmpswap(2, 4, tomb); // SB
+	cmpswap(3, 5, tomb);
+
+	cmpswap(1, 2, tomb);
+	cmpswap(3, 4, tomb);
+	cmpswap(5, 6, tomb);
+
+	// 4x4	
+	cmpswap(8, 9, tomb);
+	cmpswap(10, 11, tomb);
+	cmpswap(8, 10, tomb);
+	cmpswap(9, 11, tomb);
+	cmpswap(9, 10, tomb);
+
+	cmpswap(12, 13, tomb);
+	cmpswap(14, 15, tomb);
+	cmpswap(12, 14, tomb);
+	cmpswap(13, 15, tomb);
+	cmpswap(13, 14, tomb);
+
+	cmpswap(8, 12, tomb);
+	cmpswap(9, 13, tomb); // SB
+	cmpswap(10, 14, tomb);
+	//cmpswap(10, 12, tomb);
+	//cmpswap(9, 13, tomb);
+	cmpswap(11, 15, tomb);
+
+	cmpswap(10, 12, tomb); // SB
+	cmpswap(11, 13, tomb);
+
+	cmpswap(9, 10, tomb);
+	cmpswap(11, 12, tomb);
+	cmpswap(13, 14, tomb);
+
+
+	cmpswap(0, 8, tomb);//
+	cmpswap(1, 9, tomb);//
+	cmpswap(2, 10, tomb);//
+	cmpswap(3, 11, tomb);//
+	cmpswap(4, 12, tomb);//
+	cmpswap(5, 13, tomb);//
+	cmpswap(6, 14, tomb);//
+	cmpswap(7, 15, tomb);//
+
+
+	cmpswap(4, 8, tomb);//2
+	cmpswap(5, 9, tomb);//2
+	cmpswap(6, 10, tomb);//2
+	cmpswap(7, 11, tomb);//2
+
+	cmpswap(2, 4, tomb);//3
+	cmpswap(3, 5, tomb);//3
+	cmpswap(6, 8, tomb);//???3
+	cmpswap(7, 9, tomb);//???3
+	cmpswap(10, 12, tomb);//3
+	cmpswap(11, 13, tomb);//3
+
+	cmpswap(1, 2, tomb);//4
+	cmpswap(3, 4, tomb);//4
+	cmpswap(5, 6, tomb);//4
+	cmpswap(7, 8, tomb);//4
+	cmpswap(9, 10, tomb);//4
+	cmpswap(11, 12, tomb);//4
+	cmpswap(13, 14, tomb);//4
+
+						  // Eddig 8x8-as (16 bemenetï¿½)
+
+						  //4x4
+	cmpswap(16, 17, tomb);
+	cmpswap(18, 19, tomb);
+	cmpswap(20, 21, tomb);//SB
+	cmpswap(22, 23, tomb);//SB
+
+	cmpswap(16, 18, tomb);
+	cmpswap(20, 22, tomb);
+	cmpswap(17, 19, tomb);
+	cmpswap(21, 23, tomb);//SB
+
+	cmpswap(17, 18, tomb);
+	//cmpswap(20, 21, tomb);
+	//cmpswap(22, 23, tomb);
+	//cmpswap(20, 22, tomb);
+	//cmpswap(21, 23, tomb);
+	cmpswap(21, 22, tomb);
+
+
+	cmpswap(16, 20, tomb);
+	cmpswap(17, 21, tomb);//SB
+	cmpswap(18, 22, tomb);
+	cmpswap(19, 23, tomb);//SB
+
+	cmpswap(18, 20, tomb);
+	//cmpswap(17, 21, tomb);
+	//cmpswap(19, 23, tomb);
+	cmpswap(19, 21, tomb);
+
+	cmpswap(17, 18, tomb);
+	cmpswap(19, 20, tomb);
+	cmpswap(21, 22, tomb);
+
+
+	cmpswap(16, 24, tomb);
+
+	cmpswap(20, 24, tomb);
+
+	//??????? TODO ?????
+
+	cmpswap(18, 20, tomb);
+	cmpswap(19, 21, tomb);//SB
+	cmpswap(22, 24, tomb);
+
+	//cmpswap(19, 21, tomb);
+	cmpswap(17, 18, tomb);
+	cmpswap(19, 20, tomb);
+	cmpswap(21, 22, tomb);
+	cmpswap(23, 24, tomb);
+	//Eddig egy 8x8-as (De ez csak 9 bemenetï¿½)
+
+	// 16x16 
+	cmpswap(0, 16, tomb);
+	cmpswap(1, 17, tomb);
+	cmpswap(2, 18, tomb);
+	cmpswap(3, 19, tomb);
+	cmpswap(4, 20, tomb);
+	cmpswap(5, 21, tomb);
+	cmpswap(6, 22, tomb);
+	cmpswap(7, 23, tomb);
+	cmpswap(8, 24, tomb);
+
+
+	cmpswap(8, 16, tomb);
+	cmpswap(9, 17, tomb);
+	cmpswap(10, 18, tomb);
+	cmpswap(11, 19, tomb);
+	cmpswap(12, 20, tomb);
+	cmpswap(13, 21, tomb);
+	cmpswap(14, 22, tomb);
+	cmpswap(15, 23, tomb);
+
+
+	cmpswap(4, 8, tomb);
+	cmpswap(5, 9, tomb);
+	cmpswap(6, 10, tomb);
+	cmpswap(7, 11, tomb);
+
+	cmpswap(12, 16, tomb);
+	cmpswap(13, 17, tomb);
+	cmpswap(14, 18, tomb);
+	cmpswap(15, 19, tomb);
+
+	cmpswap(20, 21, tomb);
+
+
+	cmpswap(2, 4, tomb);
+	cmpswap(3, 5, tomb);
+	cmpswap(6, 8, tomb);
+	cmpswap(7, 9, tomb);
+	cmpswap(10, 12, tomb);
+	cmpswap(11, 13, tomb);
+	cmpswap(14, 16, tomb);
+	cmpswap(15, 17, tomb);
+	cmpswap(18, 20, tomb);
+	cmpswap(19, 21, tomb);
+	cmpswap(22, 24, tomb);
+
+
+	cmpswap(1, 2, tomb);
+	cmpswap(3, 4, tomb);
+	cmpswap(5, 6, tomb);
+	cmpswap(7, 8, tomb);
+	cmpswap(9, 10, tomb);
+	cmpswap(11, 12, tomb);
+	cmpswap(13, 14, tomb);
+	cmpswap(15, 16, tomb);
+	cmpswap(17, 18, tomb);
+	cmpswap(19, 20, tomb);
+	cmpswap(21, 22, tomb);
+	cmpswap(23, 24, tomb);
+}
+
 void med_filter(int imgHeight, int imgWidth, int imgHeightF, int imgWidthF,
 				 int imgFOffsetH, int imgFOffsetW,
 				 float *filter, float *imgFloatSrc, float *imgFloatDst)
 {
-	// írási bázis: 0. sor, 0. oszlop (a kimenet NEM kiterjesztett)
+	// Ã­rÃ¡si bÃ¡zis: 0. sor, 0. oszlop (a kimenet NEM kiterjesztett)
 	int wr_base = 0;
-	// olvasási bázis: a kiterjesztett kép bal felsõ pixele (ez az elsõ konvolúció elsõ bemeneti adata)
+	// olvasÃ¡si bÃ¡zis: a kiterjesztett kÃ©p bal felsÅ‘ pixele (ez az elsÅ‘ konvolÃºciÃ³ elsÅ‘ bemeneti adata)
 	int rd_base = 0;
 	
-	// Végiglépkedünk a kép sorain
+	// VÃ©giglÃ©pkedÃ¼nk a kÃ©p sorain
 	for (int y=0; y<imgHeight; y++)
 	{
-		// A sorokon belül végiglépkedünk egy sor pixelein
+		// A sorokon belÃ¼l vÃ©giglÃ©pkedÃ¼nk egy sor pixelein
 		for (int x=0; x<imgWidth; x++)
 		{
 			for (int rgb = 0; rgb < 4; rgb++) {
 
 			
-			// RGBA komponensek akkumulátora
+			// RGBA komponensek akkumulÃ¡tora
 				float fval[25];
 
 				for (int dy = 0; dy < 5; dy++) {
@@ -431,12 +635,12 @@ void conv_filter_sse(int imgHeight, int imgWidth, int imgHeightF, int imgWidthF,
 	__declspec(align(16)) __m128 const_0 = _mm_set_ps(0.0, 0.0, 0.0, 0.0);
     __declspec(align(16)) __m128 const_255 = _mm_set_ps(255.0, 255.0, 255.0, 255.0);
 
-	// szûrõ együtthatók négyszerezése
+	// szÅ±rÅ‘ egyÃ¼tthatÃ³k nÃ©gyszerezÃ©se
 	float filter_ext[4*FILTER_W*FILTER_H];
 	for (int i=0; i<4*FILTER_W*FILTER_H; i++)
 		filter_ext[i] = filter[i/4];
 	
-	// float -> m128 konverzió
+	// float -> m128 konverziÃ³
 	__declspec(align(16)) __m128 filter_l[FILTER_W*FILTER_H];
 	for (unsigned int i=0; i<4*FILTER_W*FILTER_H; i++)
 		filter_l[i>>2].m128_f32[i&0x3]=*(filter_ext+i);
@@ -482,7 +686,7 @@ void conv_filter_sse2(int imgHeight, int imgWidth, int imgHeightF, int imgWidthF
 					int fx = 0;
 					//for (int fx=0; fx<FILTER_W; fx++)
 					{
-						// Adott együttható-sor betöltése 5 SSE regiszterbe
+						// Adott egyÃ¼tthatÃ³-sor betÃ¶ltÃ©se 5 SSE regiszterbe
 						__m128 coeff[5];
 						coeff[0] = _mm_set_ps1(*(filter + fy * 5 + 0));
 						coeff[1] = _mm_set_ps1(*(filter + fy * 5 + 1));
@@ -492,28 +696,28 @@ void conv_filter_sse2(int imgHeight, int imgWidth, int imgHeightF, int imgWidthF
 
 						__m128 pixel, mul_res;
 
-						// 0. pixel konvolúciója a 0. együtthatóval --> 0. akkumulátor
+						// 0. pixel konvolÃºciÃ³ja a 0. egyÃ¼tthatÃ³val --> 0. akkumulÃ¡tor
 						pixel = _mm_load_ps((imgFloatSrc + addr));
 						mul_res = _mm_mul_ps(pixel, coeff[0]);
 						fval[0] = _mm_add_ps(fval[0], mul_res);
 
-						// 1. pixel töltése
+						// 1. pixel tÃ¶ltÃ©se
 						addr = addr + 4;
 						pixel = _mm_load_ps((imgFloatSrc + addr));
 						mul_res = _mm_mul_ps(pixel, coeff[1]);
-						fval[0] = _mm_add_ps(fval[0], mul_res);			// 0. akku: 1. pixel és 1. együttható
+						fval[0] = _mm_add_ps(fval[0], mul_res);			// 0. akku: 1. pixel Ã©s 1. egyÃ¼tthatÃ³
 						mul_res = _mm_mul_ps(pixel, coeff[0]);
-						fval[1] = _mm_add_ps(fval[1], mul_res);			// 1. akku: 1. pixel és 0. együttható
+						fval[1] = _mm_add_ps(fval[1], mul_res);			// 1. akku: 1. pixel Ã©s 0. egyÃ¼tthatÃ³
 
-																		// 2. pixel töltése
+																		// 2. pixel tÃ¶ltÃ©se
 						addr = addr + 4;
 						pixel = _mm_load_ps((imgFloatSrc + addr));
 						mul_res = _mm_mul_ps(pixel, coeff[2]);
-						fval[0] = _mm_add_ps(fval[0], mul_res);			// 0. akku: 2. pixel és 2. együttható
+						fval[0] = _mm_add_ps(fval[0], mul_res);			// 0. akku: 2. pixel Ã©s 2. egyÃ¼tthatÃ³
 						mul_res = _mm_mul_ps(pixel, coeff[1]);
-						fval[1] = _mm_add_ps(fval[1], mul_res);			// 1. akku: 2. pixel és 1. együttható
+						fval[1] = _mm_add_ps(fval[1], mul_res);			// 1. akku: 2. pixel Ã©s 1. egyÃ¼tthatÃ³
 						mul_res = _mm_mul_ps(pixel, coeff[0]);
-						fval[2] = _mm_add_ps(fval[2], mul_res);			// 3. akku: 2. pixel és 0. együttható
+						fval[2] = _mm_add_ps(fval[2], mul_res);			// 3. akku: 2. pixel Ã©s 0. egyÃ¼tthatÃ³
 
 						addr = addr + 4;
 						pixel = _mm_load_ps((imgFloatSrc + addr));

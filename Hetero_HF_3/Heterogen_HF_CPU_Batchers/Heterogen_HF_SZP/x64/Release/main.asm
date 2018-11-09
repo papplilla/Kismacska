@@ -143,22 +143,6 @@ $unwind$main DD	092519H
 	DD	imagerel __GSHandlerCheck
 	DD	0120H
 ; Function compile flags: /Ogtpy
-; File c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\corecrt_stdio_config.h
-;	COMDAT __local_stdio_printf_options
-_TEXT	SEGMENT
-__local_stdio_printf_options PROC			; COMDAT
-
-; 74   :     static unsigned __int64 _OptionsStorage;
-; 75   :     return &_OptionsStorage;
-
-	lea	rax, OFFSET FLAT:?_OptionsStorage@?1??__local_stdio_printf_options@@9@4_KA ; `__local_stdio_printf_options'::`2'::_OptionsStorage
-
-; 76   : }
-
-	ret	0
-__local_stdio_printf_options ENDP
-_TEXT	ENDS
-; Function compile flags: /Ogtpy
 ; File c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h
 ;	COMDAT _vfprintf_l
 _TEXT	SEGMENT
@@ -252,9 +236,9 @@ $LN6:
 printf	ENDP
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
-; File d:\d_strabi\d dokumentumai\bme\heterogén számítási rendszerek\hf\private_dev\dev\heterogen_hf_cpu_batchers\heterogen_hf_szp\_src\main.cpp
-; File d:\d_strabi\d dokumentumai\bme\heterogén számítási rendszerek\hf\private_dev\dev\heterogen_hf_cpu_batchers\heterogen_hf_szp\_src\conv_filter.cpp
-; File d:\d_strabi\d dokumentumai\bme\heterogén számítási rendszerek\hf\private_dev\dev\heterogen_hf_cpu_batchers\heterogen_hf_szp\_src\main.cpp
+; File d:\d_strabi\d dokumentumai\bme\heterogén számítási rendszerek\hf\kismacska\hetero_hf_3\heterogen_hf_cpu_batchers\heterogen_hf_szp\_src\main.cpp
+; File d:\d_strabi\d dokumentumai\bme\heterogén számítási rendszerek\hf\kismacska\hetero_hf_3\heterogen_hf_cpu_batchers\heterogen_hf_szp\_src\conv_filter.cpp
+; File d:\d_strabi\d dokumentumai\bme\heterogén számítási rendszerek\hf\kismacska\hetero_hf_3\heterogen_hf_cpu_batchers\heterogen_hf_szp\_src\main.cpp
 ;	COMDAT main
 _TEXT	SEGMENT
 imgWidth$1$ = 32
@@ -713,9 +697,9 @@ $LN9@main:
 
 	call	clock
 	mov	DWORD PTR s0$1$[rsp], eax
-; File d:\d_strabi\d dokumentumai\bme\heterogén számítási rendszerek\hf\private_dev\dev\heterogen_hf_cpu_batchers\heterogen_hf_szp\_src\conv_filter.cpp
+; File d:\d_strabi\d dokumentumai\bme\heterogén számítási rendszerek\hf\kismacska\hetero_hf_3\heterogen_hf_cpu_batchers\heterogen_hf_szp\_src\conv_filter.cpp
 
-; 397  : 	for (int y=0; y<imgHeight; y++)
+; 601  : 	for (int y=0; y<imgHeight; y++)
 
 	test	ebp, ebp
 	jle	$LN14@main
@@ -730,15 +714,15 @@ $LN9@main:
 	add	r14, 32					; 00000020H
 $LL27@main:
 
-; 398  : 	{
-; 399  : 		// A sorokon belül végiglépkedünk egy sor pixelein
-; 400  : 		for (int x=0; x<imgWidth; x++)
+; 602  : 	{
+; 603  : 		// A sorokon belÃ¼l vÃ©giglÃ©pkedÃ¼nk egy sor pixelein
+; 604  : 		for (int x=0; x<imgWidth; x++)
 
 	test	r12d, r12d
 	jle	$LN25@main
 
-; 409  : 					for (int dx = 0; dx < 5; dx++) {
-; 410  : 						fval[dy * 5 + dx] = imgFloatSrc[(y*imgWidthF + x + dy*imgWidthF + dx) * 4 + rgb];
+; 613  : 					for (int dx = 0; dx < 5; dx++) {
+; 614  : 						fval[dy * 5 + dx] = imgFloatSrc[(y*imgWidthF + x + dy*imgWidthF + dx) * 4 + rgb];
 
 	mov	r10, r14
 	mov	edi, r12d
@@ -746,18 +730,18 @@ $LL27@main:
 	npad	10
 $LL30@main:
 
-; 401  : 		{
-; 402  : 			for (int rgb = 0; rgb < 4; rgb++) {
+; 605  : 		{
+; 606  : 			for (int rgb = 0; rgb < 4; rgb++) {
 
 	mov	ebx, 4
 $LL33@main:
 
-; 403  : 
-; 404  : 			
-; 405  : 			// RGBA komponensek akkumulátora
-; 406  : 				float fval[25];
-; 407  : 
-; 408  : 				for (int dy = 0; dy < 5; dy++) {
+; 607  : 
+; 608  : 			
+; 609  : 			// RGBA komponensek akkumulÃ¡tora
+; 610  : 				float fval[25];
+; 611  : 
+; 612  : 				for (int dy = 0; dy < 5; dy++) {
 
 	lea	rcx, QWORD PTR fval$1[rsp+4]
 	mov	rdx, r10
@@ -765,8 +749,8 @@ $LL33@main:
 	npad	10
 $LL36@main:
 
-; 409  : 					for (int dx = 0; dx < 5; dx++) {
-; 410  : 						fval[dy * 5 + dx] = imgFloatSrc[(y*imgWidthF + x + dy*imgWidthF + dx) * 4 + rgb];
+; 613  : 					for (int dx = 0; dx < 5; dx++) {
+; 614  : 						fval[dy * 5 + dx] = imgFloatSrc[(y*imgWidthF + x + dy*imgWidthF + dx) * 4 + rgb];
 
 	mov	eax, DWORD PTR [rdx-32]
 	mov	DWORD PTR [rcx-4], eax
@@ -783,16 +767,16 @@ $LL36@main:
 	sub	r8, 1
 	jne	SHORT $LL36@main
 
-; 411  : 					}
-; 412  : 				}
-; 413  : 
-; 414  : 				oddeven(fval);
+; 615  : 					}
+; 616  : 				}
+; 617  : 
+; 618  : 				oddeven(fval);
 
 	lea	rcx, QWORD PTR fval$1[rsp]
 	call	?oddeven@@YAXPEAM@Z			; oddeven
 
-; 415  : 
-; 416  : 				imgFloatDst[(y*imgWidth + x) * 4 + rgb] = fval[12];
+; 619  : 
+; 620  : 				imgFloatDst[(y*imgWidth + x) * 4 + rgb] = fval[12];
 
 	vmovss	xmm0, DWORD PTR fval$1[rsp+48]
 	vmovss	DWORD PTR [r11], xmm0
@@ -801,15 +785,15 @@ $LL36@main:
 	sub	rbx, 1
 	jne	SHORT $LL33@main
 
-; 398  : 	{
-; 399  : 		// A sorokon belül végiglépkedünk egy sor pixelein
-; 400  : 		for (int x=0; x<imgWidth; x++)
+; 602  : 	{
+; 603  : 		// A sorokon belÃ¼l vÃ©giglÃ©pkedÃ¼nk egy sor pixelein
+; 604  : 		for (int x=0; x<imgWidth; x++)
 
 	sub	rdi, 1
 	jne	SHORT $LL30@main
 $LN25@main:
 
-; 397  : 	for (int y=0; y<imgHeight; y++)
+; 601  : 	for (int y=0; y<imgHeight; y++)
 
 	add	r14, r9
 	add	rbp, r13
@@ -817,7 +801,7 @@ $LN25@main:
 	jne	$LL27@main
 	mov	ebp, DWORD PTR imgHeight$1$[rsp]
 $LN14@main:
-; File d:\d_strabi\d dokumentumai\bme\heterogén számítási rendszerek\hf\private_dev\dev\heterogen_hf_cpu_batchers\heterogen_hf_szp\_src\main.cpp
+; File d:\d_strabi\d dokumentumai\bme\heterogén számítási rendszerek\hf\kismacska\hetero_hf_3\heterogen_hf_cpu_batchers\heterogen_hf_szp\_src\main.cpp
 
 ; 303  :     e0 = clock();
 

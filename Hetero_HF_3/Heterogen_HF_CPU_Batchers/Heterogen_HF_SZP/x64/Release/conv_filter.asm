@@ -34,7 +34,7 @@ pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$?oddeven@@YAXPEAM@Z DD imagerel $LN424
-	DD	imagerel $LN424+3865
+	DD	imagerel $LN424+3880
 	DD	imagerel $unwind$?oddeven@@YAXPEAM@Z
 ;	COMDAT __real@412e848000000000
 CONST	SEGMENT
@@ -46,13 +46,16 @@ __real@408f400000000000 DQ 0408f400000000000r	; 1000
 CONST	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
-$unwind$?oddeven@@YAXPEAM@Z DD 0b2e01H
-	DD	0a82eH
-	DD	019829H
-	DD	028823H
-	DD	03781dH
-	DD	046817H
-	DD	0a204H
+$unwind$?oddeven@@YAXPEAM@Z DD 0123f01H
+	DD	0d83fH
+	DD	01c83aH
+	DD	02b835H
+	DD	03a830H
+	DD	04982bH
+	DD	058826H
+	DD	067821H
+	DD	07681cH
+	DD	011010aH
 xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
@@ -82,7 +85,7 @@ $unwind$?med_filter@@YAXHHHHHHPEAM00@Z DD 042719H
 	DD	090H
 xdata	ENDS
 ; Function compile flags: /Ogtpy
-; File d:\d_strabi\d dokumentumai\bme\heterogén számítási rendszerek\hf\private_dev\dev\heterogen_hf_cpu_batchers\heterogen_hf_szp\_src\conv_filter.cpp
+; File d:\d_strabi\d dokumentumai\bme\heterogén számítási rendszerek\hf\kismacska\hetero_hf_3\heterogen_hf_cpu_batchers\heterogen_hf_szp\_src\conv_filter.cpp
 ;	COMDAT ?cmpswap@@YAXHHPEAM@Z
 _TEXT	SEGMENT
 a$ = 8
@@ -117,27 +120,31 @@ $LN2@cmpswap:
 ?cmpswap@@YAXHHPEAM@Z ENDP				; cmpswap
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
-; File d:\d_strabi\d dokumentumai\bme\heterogén számítási rendszerek\hf\private_dev\dev\heterogen_hf_cpu_batchers\heterogen_hf_szp\_src\conv_filter.cpp
+; File d:\d_strabi\d dokumentumai\bme\heterogén számítási rendszerek\hf\kismacska\hetero_hf_3\heterogen_hf_cpu_batchers\heterogen_hf_szp\_src\conv_filter.cpp
 ;	COMDAT ?oddeven@@YAXPEAM@Z
 _TEXT	SEGMENT
-tomb$ = 96
+tomb$ = 144
 ?oddeven@@YAXPEAM@Z PROC				; oddeven, COMDAT
 
-; 41   : void oddeven(float * tomb) {
+; 390  : void oddeven(float * tomb) {
 
 $LN424:
-	sub	rsp, 88					; 00000058H
+	mov	rax, rsp
+	sub	rsp, 136				; 00000088H
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
 	vmovss	xmm1, DWORD PTR [rcx]
 	vmovss	xmm0, DWORD PTR [rcx+4]
 	vcomiss	xmm1, xmm0
-	vmovaps	XMMWORD PTR [rsp+64], xmm6
-	vmovaps	XMMWORD PTR [rsp+48], xmm7
-	vmovaps	XMMWORD PTR [rsp+32], xmm8
-	vmovaps	XMMWORD PTR [rsp+16], xmm9
-	vmovaps	XMMWORD PTR [rsp], xmm10
+	vmovaps	XMMWORD PTR [rax-24], xmm6
+	vmovaps	XMMWORD PTR [rax-40], xmm7
+	vmovaps	XMMWORD PTR [rax-56], xmm8
+	vmovaps	XMMWORD PTR [rax-72], xmm9
+	vmovaps	XMMWORD PTR [rax-88], xmm10
+	vmovaps	XMMWORD PTR [rax-104], xmm11
+	vmovaps	XMMWORD PTR [rax-120], xmm12
+	vmovaps	XMMWORD PTR [rsp], xmm13
 	vmovaps	xmm2, xmm1
 	jbe	SHORT $LN4@oddeven
 
@@ -420,179 +427,179 @@ $LN58@oddeven:
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
 	vmovss	xmm2, DWORD PTR [rcx+32]
-	vmovss	xmm1, DWORD PTR [rcx+36]
-	vcomiss	xmm2, xmm1
-	vmovaps	xmm0, xmm2
+	vmovss	xmm0, DWORD PTR [rcx+36]
+	vcomiss	xmm2, xmm0
+	vmovaps	xmm1, xmm2
 	jbe	SHORT $LN61@oddeven
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+32], xmm1
-	vmovaps	xmm0, xmm1
-	vmovaps	xmm1, xmm2
+	vmovss	DWORD PTR [rcx+32], xmm0
+	vmovaps	xmm1, xmm0
+	vmovaps	xmm0, xmm2
 	vmovss	DWORD PTR [rcx+36], xmm2
 $LN61@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vmovss	xmm4, DWORD PTR [rcx+40]
-	vmovss	xmm3, DWORD PTR [rcx+44]
-	vcomiss	xmm4, xmm3
-	vmovaps	xmm2, xmm4
+	vmovss	xmm3, DWORD PTR [rcx+40]
+	vmovss	xmm4, DWORD PTR [rcx+44]
+	vcomiss	xmm3, xmm4
+	vmovaps	xmm2, xmm3
 	jbe	SHORT $LN64@oddeven
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+40], xmm3
-	vmovaps	xmm2, xmm3
-	vmovaps	xmm3, xmm4
-	vmovss	DWORD PTR [rcx+44], xmm4
+	vmovss	DWORD PTR [rcx+40], xmm4
+	vmovaps	xmm2, xmm4
+	vmovaps	xmm4, xmm3
+	vmovss	DWORD PTR [rcx+44], xmm3
 $LN64@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vcomiss	xmm0, xmm2
-	vmovaps	xmm4, xmm2
+	vcomiss	xmm1, xmm2
+	vmovaps	xmm3, xmm2
 	jbe	SHORT $LN67@oddeven
 
 ; 29   : 				tomb[b] = tomb[a];
 
-	vmovss	DWORD PTR [rcx+40], xmm0
+	vmovss	DWORD PTR [rcx+40], xmm1
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovaps	xmm4, xmm0
-	vmovaps	xmm0, xmm2
+	vmovaps	xmm3, xmm1
+	vmovaps	xmm1, xmm2
 	vmovss	DWORD PTR [rcx+32], xmm2
 $LN67@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vcomiss	xmm1, xmm3
+	vcomiss	xmm0, xmm4
 	jbe	SHORT $LN70@oddeven
 
 ; 29   : 				tomb[b] = tomb[a];
 
-	vmovss	DWORD PTR [rcx+44], xmm1
+	vmovss	DWORD PTR [rcx+44], xmm0
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovaps	xmm1, xmm3
-	vmovss	DWORD PTR [rcx+36], xmm3
+	vmovaps	xmm0, xmm4
+	vmovss	DWORD PTR [rcx+36], xmm4
 $LN70@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vcomiss	xmm1, xmm4
-	vmovaps	xmm7, xmm1
+	vcomiss	xmm0, xmm3
+	vmovaps	xmm7, xmm0
 	jbe	SHORT $LN73@oddeven
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+36], xmm4
-	vmovaps	xmm7, xmm4
-	vmovaps	xmm4, xmm1
-	vmovss	DWORD PTR [rcx+40], xmm1
+	vmovss	DWORD PTR [rcx+36], xmm3
+	vmovaps	xmm7, xmm3
+	vmovaps	xmm3, xmm0
+	vmovss	DWORD PTR [rcx+40], xmm0
 $LN73@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vmovss	xmm1, DWORD PTR [rcx+48]
-	vmovss	xmm2, DWORD PTR [rcx+52]
-	vcomiss	xmm1, xmm2
-	vmovaps	xmm3, xmm1
+	vmovss	xmm0, DWORD PTR [rcx+48]
+	vmovss	xmm4, DWORD PTR [rcx+52]
+	vcomiss	xmm0, xmm4
+	vmovaps	xmm2, xmm0
 	jbe	SHORT $LN76@oddeven
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+48], xmm2
-	vmovaps	xmm3, xmm2
-	vmovaps	xmm2, xmm1
-	vmovss	DWORD PTR [rcx+52], xmm1
+	vmovss	DWORD PTR [rcx+48], xmm4
+	vmovaps	xmm2, xmm4
+	vmovaps	xmm4, xmm0
+	vmovss	DWORD PTR [rcx+52], xmm0
 $LN76@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vmovss	xmm1, DWORD PTR [rcx+56]
+	vmovss	xmm0, DWORD PTR [rcx+56]
 	vmovss	xmm5, DWORD PTR [rcx+60]
-	vcomiss	xmm1, xmm5
-	vmovaps	xmm6, xmm1
+	vcomiss	xmm0, xmm5
+	vmovaps	xmm6, xmm0
 	jbe	SHORT $LN79@oddeven
 
 ; 30   : 				tomb[a] = buf;
 
 	vmovss	DWORD PTR [rcx+56], xmm5
 	vmovaps	xmm6, xmm5
-	vmovaps	xmm5, xmm1
-	vmovss	DWORD PTR [rcx+60], xmm1
+	vmovaps	xmm5, xmm0
+	vmovss	DWORD PTR [rcx+60], xmm0
 $LN79@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vcomiss	xmm3, xmm6
-	vmovaps	xmm1, xmm6
+	vcomiss	xmm2, xmm6
+	vmovaps	xmm0, xmm6
 	jbe	SHORT $LN82@oddeven
 
 ; 29   : 				tomb[b] = tomb[a];
 
-	vmovss	DWORD PTR [rcx+56], xmm3
+	vmovss	DWORD PTR [rcx+56], xmm2
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovaps	xmm1, xmm3
-	vmovaps	xmm3, xmm6
+	vmovaps	xmm0, xmm2
+	vmovaps	xmm2, xmm6
 	vmovss	DWORD PTR [rcx+48], xmm6
 $LN82@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vcomiss	xmm2, xmm5
-	vmovaps	xmm6, xmm2
+	vcomiss	xmm4, xmm5
+	vmovaps	xmm6, xmm4
 	jbe	SHORT $LN85@oddeven
 
 ; 30   : 				tomb[a] = buf;
 
 	vmovss	DWORD PTR [rcx+52], xmm5
 	vmovaps	xmm6, xmm5
-	vmovaps	xmm5, xmm2
-	vmovss	DWORD PTR [rcx+60], xmm2
+	vmovaps	xmm5, xmm4
+	vmovss	DWORD PTR [rcx+60], xmm4
 $LN85@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vcomiss	xmm6, xmm1
+	vcomiss	xmm6, xmm0
 	vmovaps	xmm8, xmm6
 	jbe	SHORT $LN88@oddeven
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+52], xmm1
-	vmovaps	xmm8, xmm1
-	vmovaps	xmm1, xmm6
+	vmovss	DWORD PTR [rcx+52], xmm0
+	vmovaps	xmm8, xmm0
+	vmovaps	xmm0, xmm6
 	vmovss	DWORD PTR [rcx+56], xmm6
 $LN88@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vcomiss	xmm0, xmm3
-	vmovaps	xmm2, xmm3
+	vcomiss	xmm1, xmm2
+	vmovaps	xmm4, xmm2
 	jbe	SHORT $LN91@oddeven
 
 ; 29   : 				tomb[b] = tomb[a];
 
-	vmovss	DWORD PTR [rcx+48], xmm0
+	vmovss	DWORD PTR [rcx+48], xmm1
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovaps	xmm2, xmm0
-	vmovaps	xmm0, xmm3
-	vmovss	DWORD PTR [rcx+32], xmm3
+	vmovaps	xmm4, xmm1
+	vmovaps	xmm1, xmm2
+	vmovss	DWORD PTR [rcx+32], xmm2
 $LN91@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
 	vcomiss	xmm7, xmm8
-	vmovaps	xmm3, xmm8
+	vmovaps	xmm6, xmm8
 	jbe	SHORT $LN94@oddeven
 
 ; 29   : 				tomb[b] = tomb[a];
@@ -601,311 +608,217 @@ $LN91@oddeven:
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovaps	xmm3, xmm7
+	vmovaps	xmm6, xmm7
 	vmovaps	xmm7, xmm8
 	vmovss	DWORD PTR [rcx+36], xmm8
 $LN94@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vcomiss	xmm4, xmm1
-	vmovaps	xmm6, xmm4
+	vcomiss	xmm3, xmm0
+	vmovaps	xmm8, xmm3
 	jbe	SHORT $LN97@oddeven
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+40], xmm1
-	vmovaps	xmm6, xmm1
-	vmovaps	xmm1, xmm4
-	vmovss	DWORD PTR [rcx+56], xmm4
+	vmovss	DWORD PTR [rcx+40], xmm0
+	vmovaps	xmm8, xmm0
+	vmovaps	xmm0, xmm3
+	vmovss	DWORD PTR [rcx+56], xmm3
 $LN97@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vmovss	xmm4, DWORD PTR [rcx+44]
-	vcomiss	xmm4, xmm5
+	vmovss	xmm3, DWORD PTR [rcx+44]
+	vcomiss	xmm3, xmm5
 	jbe	SHORT $LN100@oddeven
 
 ; 29   : 				tomb[b] = tomb[a];
 
-	vmovss	DWORD PTR [rcx+60], xmm4
+	vmovss	DWORD PTR [rcx+60], xmm3
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovaps	xmm4, xmm5
+	vmovaps	xmm3, xmm5
 	vmovss	DWORD PTR [rcx+44], xmm5
 $LN100@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vcomiss	xmm6, xmm2
-	vmovaps	xmm5, xmm6
+	vcomiss	xmm8, xmm4
+	vmovaps	xmm2, xmm8
 	jbe	SHORT $LN103@oddeven
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+40], xmm2
-	vmovaps	xmm5, xmm2
-	vmovaps	xmm2, xmm6
-	vmovss	DWORD PTR [rcx+48], xmm6
+	vmovss	DWORD PTR [rcx+40], xmm4
+	vmovaps	xmm2, xmm4
+	vmovaps	xmm4, xmm8
+	vmovss	DWORD PTR [rcx+48], xmm8
 $LN103@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vcomiss	xmm4, xmm3
-	vmovaps	xmm6, xmm4
+	vcomiss	xmm3, xmm6
+	vmovaps	xmm5, xmm3
 	jbe	SHORT $LN106@oddeven
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+44], xmm3
+	vmovss	DWORD PTR [rcx+44], xmm6
+	vmovaps	xmm5, xmm6
 	vmovaps	xmm6, xmm3
-	vmovaps	xmm3, xmm4
-	vmovss	DWORD PTR [rcx+52], xmm4
+	vmovss	DWORD PTR [rcx+52], xmm3
 $LN106@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vcomiss	xmm7, xmm5
+	vcomiss	xmm7, xmm2
+	vmovaps	xmm8, xmm7
 	jbe	SHORT $LN109@oddeven
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+36], xmm5
-	vmovaps	xmm5, xmm7
+	vmovss	DWORD PTR [rcx+36], xmm2
+	vmovaps	xmm8, xmm2
+	vmovaps	xmm2, xmm7
 	vmovss	DWORD PTR [rcx+40], xmm7
 $LN109@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vcomiss	xmm6, xmm2
+	vcomiss	xmm5, xmm4
+	vmovaps	xmm7, xmm5
 	jbe	SHORT $LN112@oddeven
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+44], xmm2
-	vmovaps	xmm2, xmm6
-	vmovss	DWORD PTR [rcx+48], xmm6
+	vmovss	DWORD PTR [rcx+44], xmm4
+	vmovaps	xmm7, xmm4
+	vmovaps	xmm4, xmm5
+	vmovss	DWORD PTR [rcx+48], xmm5
 $LN112@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vcomiss	xmm3, xmm1
+	vcomiss	xmm6, xmm0
+	vmovaps	xmm5, xmm6
 	jbe	SHORT $LN115@oddeven
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+52], xmm1
-	vmovaps	xmm1, xmm3
-	vmovss	DWORD PTR [rcx+56], xmm3
+	vmovss	DWORD PTR [rcx+52], xmm0
+	vmovaps	xmm5, xmm0
+	vmovaps	xmm0, xmm6
+	vmovss	DWORD PTR [rcx+56], xmm6
 $LN115@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
 	vmovss	xmm3, DWORD PTR [rcx]
-	vcomiss	xmm3, xmm0
+	vcomiss	xmm3, xmm1
 	jbe	SHORT $LN118@oddeven
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx], xmm0
-	vmovaps	xmm0, xmm3
+	vmovss	DWORD PTR [rcx], xmm1
+	vmovaps	xmm1, xmm3
 	vmovss	DWORD PTR [rcx+32], xmm3
 $LN118@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vmovss	xmm4, DWORD PTR [rcx+16]
-	vcomiss	xmm4, xmm2
-	vmovaps	xmm3, xmm4
+	vmovss	xmm3, DWORD PTR [rcx+4]
+	vcomiss	xmm3, xmm8
 	jbe	SHORT $LN121@oddeven
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+16], xmm2
-	vmovaps	xmm3, xmm2
-	vmovaps	xmm2, xmm4
-	vmovss	DWORD PTR [rcx+48], xmm4
+	vmovss	DWORD PTR [rcx+4], xmm8
+	vmovaps	xmm8, xmm3
+	vmovss	DWORD PTR [rcx+36], xmm3
 $LN121@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vcomiss	xmm3, xmm0
-	vmovaps	xmm7, xmm3
+	vmovss	xmm3, DWORD PTR [rcx+8]
+	vcomiss	xmm3, xmm2
 	jbe	SHORT $LN124@oddeven
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+16], xmm0
-	vmovaps	xmm7, xmm0
-	vmovaps	xmm0, xmm3
-	vmovss	DWORD PTR [rcx+32], xmm3
+	vmovss	DWORD PTR [rcx+8], xmm2
+	vmovaps	xmm2, xmm3
+	vmovss	DWORD PTR [rcx+40], xmm3
 $LN124@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vmovss	xmm6, DWORD PTR [rcx+8]
-	vcomiss	xmm6, xmm5
-	vmovaps	xmm4, xmm5
+	vmovss	xmm3, DWORD PTR [rcx+12]
+	vcomiss	xmm3, xmm7
 	jbe	SHORT $LN127@oddeven
-
-; 29   : 				tomb[b] = tomb[a];
-
-	vmovss	DWORD PTR [rcx+40], xmm6
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovaps	xmm4, xmm6
-	vmovaps	xmm6, xmm5
-	vmovss	DWORD PTR [rcx+8], xmm5
+	vmovss	DWORD PTR [rcx+12], xmm7
+	vmovaps	xmm7, xmm3
+	vmovss	DWORD PTR [rcx+44], xmm3
 $LN127@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vmovss	xmm3, DWORD PTR [rcx+24]
-	vcomiss	xmm3, xmm1
+	vmovss	xmm3, DWORD PTR [rcx+16]
+	vcomiss	xmm3, xmm4
 	jbe	SHORT $LN130@oddeven
 
 ; 29   : 				tomb[b] = tomb[a];
 
-	vmovss	DWORD PTR [rcx+56], xmm3
+	vmovss	DWORD PTR [rcx+48], xmm3
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovaps	xmm3, xmm1
-	vmovss	DWORD PTR [rcx+24], xmm1
+	vmovaps	xmm3, xmm4
+	vmovss	DWORD PTR [rcx+16], xmm4
 $LN130@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vcomiss	xmm3, xmm4
-	vmovaps	xmm1, xmm3
+	vmovss	xmm4, DWORD PTR [rcx+20]
+	vcomiss	xmm4, xmm5
 	jbe	SHORT $LN133@oddeven
+
+; 29   : 				tomb[b] = tomb[a];
+
+	vmovss	DWORD PTR [rcx+52], xmm4
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+24], xmm4
-	vmovaps	xmm1, xmm4
-	vmovaps	xmm4, xmm3
-	vmovss	DWORD PTR [rcx+40], xmm3
+	vmovaps	xmm4, xmm5
+	vmovss	DWORD PTR [rcx+20], xmm5
 $LN133@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vcomiss	xmm6, xmm7
+	vmovss	xmm5, DWORD PTR [rcx+24]
+	vcomiss	xmm5, xmm0
 	jbe	SHORT $LN136@oddeven
 
 ; 29   : 				tomb[b] = tomb[a];
 
-	vmovss	DWORD PTR [rcx+16], xmm6
+	vmovss	DWORD PTR [rcx+56], xmm5
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+8], xmm7
-$LN136@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vcomiss	xmm1, xmm0
-	jbe	SHORT $LN139@oddeven
-
-; 29   : 				tomb[b] = tomb[a];
-
-	vmovss	DWORD PTR [rcx+32], xmm1
-
-; 30   : 				tomb[a] = buf;
-
-	vmovss	DWORD PTR [rcx+24], xmm0
-$LN139@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vcomiss	xmm4, xmm2
-	jbe	SHORT $LN142@oddeven
-
-; 29   : 				tomb[b] = tomb[a];
-
-	vmovss	DWORD PTR [rcx+48], xmm4
-
-; 30   : 				tomb[a] = buf;
-
-	vmovss	DWORD PTR [rcx+40], xmm2
-$LN142@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vmovss	xmm7, DWORD PTR [rcx+4]
-	vmovss	xmm1, DWORD PTR [rcx+36]
-	vcomiss	xmm7, xmm1
-	jbe	SHORT $LN145@oddeven
-
-; 28   : 				buf = tomb[b];
-
-	vmovaps	xmm0, xmm1
-
-; 30   : 				tomb[a] = buf;
-
-	vmovss	DWORD PTR [rcx+4], xmm1
-	vmovaps	xmm1, xmm7
-	vmovss	DWORD PTR [rcx+36], xmm7
-	vmovaps	xmm7, xmm0
-$LN145@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vmovss	xmm2, DWORD PTR [rcx+20]
-	vmovss	xmm4, DWORD PTR [rcx+52]
-	vcomiss	xmm2, xmm4
-	vmovaps	xmm0, xmm2
-	jbe	SHORT $LN148@oddeven
-
-; 30   : 				tomb[a] = buf;
-
-	vmovss	DWORD PTR [rcx+20], xmm4
-	vmovaps	xmm0, xmm4
-	vmovaps	xmm4, xmm2
-	vmovss	DWORD PTR [rcx+52], xmm2
-$LN148@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vcomiss	xmm0, xmm1
 	vmovaps	xmm5, xmm0
-	jbe	SHORT $LN151@oddeven
-
-; 30   : 				tomb[a] = buf;
-
-	vmovss	DWORD PTR [rcx+20], xmm1
-	vmovaps	xmm5, xmm1
-	vmovaps	xmm1, xmm0
-	vmovss	DWORD PTR [rcx+36], xmm0
-$LN151@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vmovss	xmm3, DWORD PTR [rcx+12]
-	vmovss	xmm2, DWORD PTR [rcx+44]
-	vcomiss	xmm3, xmm2
-	jbe	SHORT $LN154@oddeven
-
-; 28   : 				buf = tomb[b];
-
-	vmovaps	xmm0, xmm2
-
-; 30   : 				tomb[a] = buf;
-
-	vmovss	DWORD PTR [rcx+12], xmm2
-	vmovaps	xmm2, xmm3
-	vmovss	DWORD PTR [rcx+44], xmm3
-	vmovaps	xmm3, xmm0
-$LN154@oddeven:
+	vmovss	DWORD PTR [rcx+24], xmm0
+$LN136@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
 	vmovss	xmm0, DWORD PTR [rcx+28]
 	vmovss	xmm6, DWORD PTR [rcx+60]
 	vcomiss	xmm0, xmm6
-	jbe	SHORT $LN157@oddeven
+	jbe	SHORT $LN139@oddeven
 
 ; 29   : 				tomb[b] = tomb[a];
 
@@ -915,148 +828,231 @@ $LN154@oddeven:
 
 	vmovaps	xmm0, xmm6
 	vmovss	DWORD PTR [rcx+28], xmm6
-$LN157@oddeven:
+$LN139@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vcomiss	xmm0, xmm2
-	vmovaps	xmm6, xmm0
-	jbe	SHORT $LN160@oddeven
+	vcomiss	xmm3, xmm1
+	vmovaps	xmm6, xmm3
+	jbe	SHORT $LN142@oddeven
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+28], xmm2
-	vmovaps	xmm6, xmm2
-	vmovaps	xmm2, xmm0
+	vmovss	DWORD PTR [rcx+16], xmm1
+	vmovaps	xmm6, xmm1
+	vmovaps	xmm1, xmm3
+	vmovss	DWORD PTR [rcx+32], xmm3
+$LN142@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vcomiss	xmm4, xmm8
+	vmovaps	xmm9, xmm4
+	jbe	SHORT $LN145@oddeven
+
+; 30   : 				tomb[a] = buf;
+
+	vmovss	DWORD PTR [rcx+20], xmm8
+	vmovaps	xmm9, xmm8
+	vmovaps	xmm8, xmm4
+	vmovss	DWORD PTR [rcx+36], xmm4
+$LN145@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vcomiss	xmm5, xmm2
+	vmovaps	xmm3, xmm5
+	jbe	SHORT $LN148@oddeven
+
+; 30   : 				tomb[a] = buf;
+
+	vmovss	DWORD PTR [rcx+24], xmm2
+	vmovaps	xmm3, xmm2
+	vmovaps	xmm2, xmm5
+	vmovss	DWORD PTR [rcx+40], xmm5
+$LN148@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vcomiss	xmm0, xmm7
+	vmovaps	xmm4, xmm0
+	jbe	SHORT $LN151@oddeven
+
+; 30   : 				tomb[a] = buf;
+
+	vmovss	DWORD PTR [rcx+28], xmm7
+	vmovaps	xmm4, xmm7
+	vmovaps	xmm7, xmm0
 	vmovss	DWORD PTR [rcx+44], xmm0
-$LN160@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vcomiss	xmm3, xmm5
-	vmovaps	xmm8, xmm3
-	jbe	SHORT $LN163@oddeven
-
-; 30   : 				tomb[a] = buf;
-
-	vmovss	DWORD PTR [rcx+12], xmm5
-	vmovaps	xmm8, xmm5
-	vmovaps	xmm5, xmm3
-	vmovss	DWORD PTR [rcx+20], xmm3
-$LN163@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vcomiss	xmm6, xmm1
-	vmovaps	xmm3, xmm6
-	jbe	SHORT $LN166@oddeven
-
-; 30   : 				tomb[a] = buf;
-
-	vmovss	DWORD PTR [rcx+28], xmm1
-	vmovaps	xmm3, xmm1
-	vmovaps	xmm1, xmm6
-	vmovss	DWORD PTR [rcx+36], xmm6
-$LN166@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vcomiss	xmm2, xmm4
-	vmovaps	xmm6, xmm2
-	jbe	SHORT $LN169@oddeven
-
-; 30   : 				tomb[a] = buf;
-
-	vmovss	DWORD PTR [rcx+44], xmm4
-	vmovaps	xmm6, xmm4
-	vmovaps	xmm4, xmm2
-	vmovss	DWORD PTR [rcx+52], xmm2
-$LN169@oddeven:
+$LN151@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
 	vmovss	xmm0, DWORD PTR [rcx+8]
-	vcomiss	xmm7, xmm0
-	jbe	SHORT $LN172@oddeven
-
-; 29   : 				tomb[b] = tomb[a];
-
-	vmovss	DWORD PTR [rcx+8], xmm7
+	vcomiss	xmm0, xmm6
+	vmovaps	xmm13, xmm0
+	jbe	SHORT $LN154@oddeven
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+4], xmm0
-$LN172@oddeven:
+	vmovss	DWORD PTR [rcx+8], xmm6
+	vmovaps	xmm13, xmm6
+	vmovaps	xmm6, xmm0
+	vmovss	DWORD PTR [rcx+16], xmm0
+$LN154@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vmovss	xmm0, DWORD PTR [rcx+16]
-	vcomiss	xmm8, xmm0
-	jbe	SHORT $LN175@oddeven
-
-; 29   : 				tomb[b] = tomb[a];
-
-	vmovss	DWORD PTR [rcx+16], xmm8
+	vmovss	xmm0, DWORD PTR [rcx+12]
+	vcomiss	xmm0, xmm9
+	vmovaps	xmm12, xmm0
+	jbe	SHORT $LN157@oddeven
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+12], xmm0
-$LN175@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vmovss	xmm0, DWORD PTR [rcx+24]
-	vcomiss	xmm5, xmm0
-	jbe	SHORT $LN178@oddeven
-
-; 29   : 				tomb[b] = tomb[a];
-
-	vmovss	DWORD PTR [rcx+24], xmm5
-
-; 30   : 				tomb[a] = buf;
-
+	vmovss	DWORD PTR [rcx+12], xmm9
+	vmovaps	xmm12, xmm9
+	vmovaps	xmm9, xmm0
 	vmovss	DWORD PTR [rcx+20], xmm0
-$LN178@oddeven:
+$LN157@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vmovss	xmm0, DWORD PTR [rcx+32]
-	vcomiss	xmm3, xmm0
-	jbe	SHORT $LN181@oddeven
+	vcomiss	xmm3, xmm1
+	vmovaps	xmm11, xmm3
+	jbe	SHORT $LN160@oddeven
 
-; 29   : 				tomb[b] = tomb[a];
+; 30   : 				tomb[a] = buf;
 
+	vmovss	DWORD PTR [rcx+24], xmm1
+	vmovaps	xmm11, xmm1
+	vmovaps	xmm1, xmm3
 	vmovss	DWORD PTR [rcx+32], xmm3
-
-; 30   : 				tomb[a] = buf;
-
-	vmovss	DWORD PTR [rcx+28], xmm0
-$LN181@oddeven:
+$LN160@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vmovss	xmm0, DWORD PTR [rcx+40]
-	vcomiss	xmm1, xmm0
-	jbe	SHORT $LN184@oddeven
-
-; 29   : 				tomb[b] = tomb[a];
-
-	vmovss	DWORD PTR [rcx+40], xmm1
+	vcomiss	xmm4, xmm8
+	vmovaps	xmm10, xmm4
+	jbe	SHORT $LN163@oddeven
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+36], xmm0
-$LN184@oddeven:
+	vmovss	DWORD PTR [rcx+28], xmm8
+	vmovaps	xmm10, xmm8
+	vmovaps	xmm8, xmm4
+	vmovss	DWORD PTR [rcx+36], xmm4
+$LN163@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
 	vmovss	xmm0, DWORD PTR [rcx+48]
-	vcomiss	xmm6, xmm0
+	vcomiss	xmm2, xmm0
+	vmovaps	xmm4, xmm2
+	jbe	SHORT $LN166@oddeven
+
+; 30   : 				tomb[a] = buf;
+
+	vmovss	DWORD PTR [rcx+40], xmm0
+	vmovaps	xmm4, xmm0
+	vmovaps	xmm0, xmm2
+	vmovss	DWORD PTR [rcx+48], xmm2
+$LN166@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vmovss	xmm2, DWORD PTR [rcx+52]
+	vcomiss	xmm7, xmm2
+	vmovaps	xmm3, xmm7
+	jbe	SHORT $LN169@oddeven
+
+; 30   : 				tomb[a] = buf;
+
+	vmovss	DWORD PTR [rcx+44], xmm2
+	vmovaps	xmm3, xmm2
+	vmovaps	xmm2, xmm7
+	vmovss	DWORD PTR [rcx+52], xmm7
+$LN169@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vmovss	xmm5, DWORD PTR [rcx+4]
+	vcomiss	xmm5, xmm13
+	jbe	SHORT $LN172@oddeven
+
+; 29   : 				tomb[b] = tomb[a];
+
+	vmovss	DWORD PTR [rcx+8], xmm5
+
+; 30   : 				tomb[a] = buf;
+
+	vmovss	DWORD PTR [rcx+4], xmm13
+$LN172@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vcomiss	xmm12, xmm6
+	jbe	SHORT $LN175@oddeven
+
+; 29   : 				tomb[b] = tomb[a];
+
+	vmovss	DWORD PTR [rcx+16], xmm12
+
+; 30   : 				tomb[a] = buf;
+
+	vmovss	DWORD PTR [rcx+12], xmm6
+$LN175@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vcomiss	xmm9, xmm11
+	jbe	SHORT $LN178@oddeven
+
+; 29   : 				tomb[b] = tomb[a];
+
+	vmovss	DWORD PTR [rcx+24], xmm9
+
+; 30   : 				tomb[a] = buf;
+
+	vmovss	DWORD PTR [rcx+20], xmm11
+$LN178@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vcomiss	xmm10, xmm1
+	jbe	SHORT $LN181@oddeven
+
+; 29   : 				tomb[b] = tomb[a];
+
+	vmovss	DWORD PTR [rcx+32], xmm10
+
+; 30   : 				tomb[a] = buf;
+
+	vmovss	DWORD PTR [rcx+28], xmm1
+$LN181@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vcomiss	xmm8, xmm4
+	jbe	SHORT $LN184@oddeven
+
+; 29   : 				tomb[b] = tomb[a];
+
+	vmovss	DWORD PTR [rcx+40], xmm8
+
+; 30   : 				tomb[a] = buf;
+
+	vmovss	DWORD PTR [rcx+36], xmm4
+$LN184@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vcomiss	xmm3, xmm0
 	jbe	SHORT $LN187@oddeven
 
 ; 29   : 				tomb[b] = tomb[a];
 
-	vmovss	DWORD PTR [rcx+48], xmm6
+	vmovss	DWORD PTR [rcx+48], xmm3
 
 ; 30   : 				tomb[a] = buf;
 
@@ -1066,12 +1062,12 @@ $LN187@oddeven:
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
 	vmovss	xmm0, DWORD PTR [rcx+56]
-	vcomiss	xmm4, xmm0
+	vcomiss	xmm2, xmm0
 	jbe	SHORT $LN190@oddeven
 
 ; 29   : 				tomb[b] = tomb[a];
 
-	vmovss	DWORD PTR [rcx+56], xmm4
+	vmovss	DWORD PTR [rcx+56], xmm2
 
 ; 30   : 				tomb[a] = buf;
 
@@ -1081,56 +1077,602 @@ $LN190@oddeven:
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
 	vmovss	xmm0, DWORD PTR [rcx+64]
-	vmovss	xmm3, DWORD PTR [rcx+68]
-	vcomiss	xmm0, xmm3
-	vmovaps	xmm7, xmm0
+	vmovss	xmm1, DWORD PTR [rcx+68]
+	vcomiss	xmm0, xmm1
+	vmovaps	xmm10, xmm0
 	jbe	SHORT $LN193@oddeven
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+64], xmm3
-	vmovaps	xmm7, xmm3
-	vmovaps	xmm3, xmm0
+	vmovss	DWORD PTR [rcx+64], xmm1
+	vmovaps	xmm10, xmm1
+	vmovaps	xmm1, xmm0
 	vmovss	DWORD PTR [rcx+68], xmm0
 $LN193@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vmovss	xmm2, DWORD PTR [rcx+72]
-	vmovss	xmm1, DWORD PTR [rcx+76]
-	vcomiss	xmm2, xmm1
-	vmovaps	xmm0, xmm2
+	vmovss	xmm0, DWORD PTR [rcx+72]
+	vmovss	xmm3, DWORD PTR [rcx+76]
+	vcomiss	xmm0, xmm3
+	vmovaps	xmm2, xmm0
 	jbe	SHORT $LN196@oddeven
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+72], xmm1
-	vmovaps	xmm0, xmm1
-	vmovaps	xmm1, xmm2
-	vmovss	DWORD PTR [rcx+76], xmm2
+	vmovss	DWORD PTR [rcx+72], xmm3
+	vmovaps	xmm2, xmm3
+	vmovaps	xmm3, xmm0
+	vmovss	DWORD PTR [rcx+76], xmm0
 $LN196@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vcomiss	xmm7, xmm0
-	vmovaps	xmm2, xmm0
+	vmovss	xmm0, DWORD PTR [rcx+80]
+	vmovss	xmm6, DWORD PTR [rcx+84]
+	vcomiss	xmm0, xmm6
+	vmovaps	xmm5, xmm0
 	jbe	SHORT $LN199@oddeven
-
-; 29   : 				tomb[b] = tomb[a];
-
-	vmovss	DWORD PTR [rcx+72], xmm7
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovaps	xmm2, xmm7
-	vmovaps	xmm7, xmm0
-	vmovss	DWORD PTR [rcx+64], xmm0
+	vmovss	DWORD PTR [rcx+80], xmm6
+	vmovaps	xmm5, xmm6
+	vmovaps	xmm6, xmm0
+	vmovss	DWORD PTR [rcx+84], xmm0
 $LN199@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vcomiss	xmm3, xmm1
+	vmovss	xmm4, DWORD PTR [rcx+88]
+	vmovss	xmm9, DWORD PTR [rcx+92]
+	vcomiss	xmm4, xmm9
+	vmovaps	xmm0, xmm4
 	jbe	SHORT $LN202@oddeven
+
+; 28   : 				buf = tomb[b];
+
+	vmovaps	xmm0, xmm9
+
+; 30   : 				tomb[a] = buf;
+
+	vmovss	DWORD PTR [rcx+88], xmm0
+	vmovss	DWORD PTR [rcx+92], xmm4
+	vmovaps	xmm9, xmm4
+$LN202@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vcomiss	xmm10, xmm2
+	vmovaps	xmm7, xmm2
+	jbe	SHORT $LN205@oddeven
+
+; 29   : 				tomb[b] = tomb[a];
+
+	vmovss	DWORD PTR [rcx+72], xmm10
+
+; 30   : 				tomb[a] = buf;
+
+	vmovaps	xmm7, xmm10
+	vmovaps	xmm10, xmm2
+	vmovss	DWORD PTR [rcx+64], xmm2
+$LN205@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vcomiss	xmm5, xmm0
+	vmovaps	xmm8, xmm0
+	jbe	SHORT $LN208@oddeven
+
+; 29   : 				tomb[b] = tomb[a];
+
+	vmovss	DWORD PTR [rcx+88], xmm5
+
+; 30   : 				tomb[a] = buf;
+
+	vmovaps	xmm8, xmm5
+	vmovaps	xmm5, xmm0
+	vmovss	DWORD PTR [rcx+80], xmm0
+$LN208@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vcomiss	xmm1, xmm3
+	vmovaps	xmm0, xmm1
+	jbe	SHORT $LN211@oddeven
+
+; 30   : 				tomb[a] = buf;
+
+	vmovss	DWORD PTR [rcx+68], xmm3
+	vmovaps	xmm0, xmm3
+	vmovaps	xmm3, xmm1
+	vmovss	DWORD PTR [rcx+76], xmm1
+$LN211@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vcomiss	xmm6, xmm9
+	vmovaps	xmm1, xmm6
+	jbe	SHORT $LN214@oddeven
+
+; 30   : 				tomb[a] = buf;
+
+	vmovss	DWORD PTR [rcx+84], xmm9
+	vmovaps	xmm1, xmm9
+	vmovaps	xmm9, xmm6
+	vmovss	DWORD PTR [rcx+92], xmm6
+$LN214@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vcomiss	xmm0, xmm7
+	vmovaps	xmm6, xmm0
+	jbe	SHORT $LN217@oddeven
+
+; 30   : 				tomb[a] = buf;
+
+	vmovss	DWORD PTR [rcx+68], xmm7
+	vmovaps	xmm6, xmm7
+	vmovaps	xmm7, xmm0
+	vmovss	DWORD PTR [rcx+72], xmm0
+$LN217@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vcomiss	xmm1, xmm8
+	vmovaps	xmm0, xmm1
+	jbe	SHORT $LN220@oddeven
+
+; 30   : 				tomb[a] = buf;
+
+	vmovss	DWORD PTR [rcx+84], xmm8
+	vmovaps	xmm0, xmm8
+	vmovaps	xmm8, xmm1
+	vmovss	DWORD PTR [rcx+88], xmm1
+$LN220@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vcomiss	xmm10, xmm5
+	vmovaps	xmm4, xmm5
+	jbe	SHORT $LN223@oddeven
+
+; 29   : 				tomb[b] = tomb[a];
+
+	vmovss	DWORD PTR [rcx+80], xmm10
+
+; 30   : 				tomb[a] = buf;
+
+	vmovaps	xmm4, xmm10
+	vmovaps	xmm10, xmm5
+	vmovss	DWORD PTR [rcx+64], xmm5
+$LN223@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vcomiss	xmm6, xmm0
+	vmovaps	xmm2, xmm0
+	jbe	SHORT $LN226@oddeven
+
+; 29   : 				tomb[b] = tomb[a];
+
+	vmovss	DWORD PTR [rcx+84], xmm6
+
+; 30   : 				tomb[a] = buf;
+
+	vmovaps	xmm2, xmm6
+	vmovaps	xmm6, xmm0
+	vmovss	DWORD PTR [rcx+68], xmm0
+$LN226@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vcomiss	xmm7, xmm8
+	vmovaps	xmm1, xmm7
+	jbe	SHORT $LN229@oddeven
+
+; 30   : 				tomb[a] = buf;
+
+	vmovss	DWORD PTR [rcx+72], xmm8
+	vmovaps	xmm1, xmm8
+	vmovaps	xmm8, xmm7
+	vmovss	DWORD PTR [rcx+88], xmm7
+$LN229@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vcomiss	xmm3, xmm9
+	jbe	SHORT $LN232@oddeven
+
+; 29   : 				tomb[b] = tomb[a];
+
+	vmovss	DWORD PTR [rcx+92], xmm3
+
+; 30   : 				tomb[a] = buf;
+
+	vmovaps	xmm3, xmm9
+	vmovss	DWORD PTR [rcx+76], xmm9
+$LN232@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vcomiss	xmm1, xmm4
+	vmovaps	xmm0, xmm1
+	jbe	SHORT $LN235@oddeven
+
+; 30   : 				tomb[a] = buf;
+
+	vmovss	DWORD PTR [rcx+72], xmm4
+	vmovaps	xmm0, xmm4
+	vmovaps	xmm4, xmm1
+	vmovss	DWORD PTR [rcx+80], xmm1
+$LN235@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vcomiss	xmm3, xmm2
+	vmovaps	xmm1, xmm3
+	jbe	SHORT $LN238@oddeven
+
+; 30   : 				tomb[a] = buf;
+
+	vmovss	DWORD PTR [rcx+76], xmm2
+	vmovaps	xmm1, xmm2
+	vmovaps	xmm2, xmm3
+	vmovss	DWORD PTR [rcx+84], xmm3
+$LN238@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vcomiss	xmm6, xmm0
+	vmovaps	xmm5, xmm0
+	jbe	SHORT $LN241@oddeven
+
+; 29   : 				tomb[b] = tomb[a];
+
+	vmovss	DWORD PTR [rcx+72], xmm6
+
+; 30   : 				tomb[a] = buf;
+
+	vmovaps	xmm5, xmm6
+	vmovaps	xmm6, xmm0
+	vmovss	DWORD PTR [rcx+68], xmm0
+$LN241@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vcomiss	xmm1, xmm4
+	vmovaps	xmm3, xmm4
+	jbe	SHORT $LN244@oddeven
+
+; 29   : 				tomb[b] = tomb[a];
+
+	vmovss	DWORD PTR [rcx+80], xmm1
+
+; 30   : 				tomb[a] = buf;
+
+	vmovaps	xmm3, xmm1
+	vmovaps	xmm1, xmm4
+	vmovss	DWORD PTR [rcx+76], xmm4
+$LN244@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vcomiss	xmm2, xmm8
+	vmovaps	xmm4, xmm2
+	jbe	SHORT $LN247@oddeven
+
+; 30   : 				tomb[a] = buf;
+
+	vmovss	DWORD PTR [rcx+84], xmm8
+	vmovaps	xmm4, xmm8
+	vmovaps	xmm8, xmm2
+	vmovss	DWORD PTR [rcx+88], xmm2
+$LN247@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vmovss	xmm2, DWORD PTR [rcx+96]
+	vcomiss	xmm10, xmm2
+	jbe	SHORT $LN250@oddeven
+
+; 28   : 				buf = tomb[b];
+
+	vmovaps	xmm0, xmm2
+
+; 30   : 				tomb[a] = buf;
+
+	vmovss	DWORD PTR [rcx+64], xmm2
+	vmovaps	xmm2, xmm10
+	vmovss	DWORD PTR [rcx+96], xmm10
+	vmovaps	xmm10, xmm0
+$LN250@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vcomiss	xmm3, xmm2
+	vmovaps	xmm7, xmm3
+	jbe	SHORT $LN253@oddeven
+
+; 30   : 				tomb[a] = buf;
+
+	vmovss	DWORD PTR [rcx+80], xmm2
+	vmovaps	xmm7, xmm2
+	vmovaps	xmm2, xmm3
+	vmovss	DWORD PTR [rcx+96], xmm3
+$LN253@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vcomiss	xmm5, xmm7
+	vmovaps	xmm9, xmm5
+	jbe	SHORT $LN256@oddeven
+
+; 30   : 				tomb[a] = buf;
+
+	vmovss	DWORD PTR [rcx+72], xmm7
+	vmovaps	xmm9, xmm7
+	vmovaps	xmm7, xmm5
+	vmovss	DWORD PTR [rcx+80], xmm5
+$LN256@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vcomiss	xmm1, xmm4
+	vmovaps	xmm0, xmm1
+	jbe	SHORT $LN259@oddeven
+
+; 30   : 				tomb[a] = buf;
+
+	vmovss	DWORD PTR [rcx+76], xmm4
+	vmovaps	xmm0, xmm4
+	vmovaps	xmm4, xmm1
+	vmovss	DWORD PTR [rcx+84], xmm1
+$LN259@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vcomiss	xmm8, xmm2
+	vmovaps	xmm11, xmm8
+	jbe	SHORT $LN262@oddeven
+
+; 30   : 				tomb[a] = buf;
+
+	vmovss	DWORD PTR [rcx+88], xmm2
+	vmovaps	xmm11, xmm2
+	vmovaps	xmm2, xmm8
+	vmovss	DWORD PTR [rcx+96], xmm8
+$LN262@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vcomiss	xmm6, xmm9
+	vmovaps	xmm3, xmm6
+	jbe	SHORT $LN265@oddeven
+
+; 30   : 				tomb[a] = buf;
+
+	vmovss	DWORD PTR [rcx+68], xmm9
+	vmovaps	xmm3, xmm9
+	vmovaps	xmm9, xmm6
+	vmovss	DWORD PTR [rcx+72], xmm6
+$LN265@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vcomiss	xmm0, xmm7
+	vmovaps	xmm5, xmm0
+	jbe	SHORT $LN268@oddeven
+
+; 30   : 				tomb[a] = buf;
+
+	vmovss	DWORD PTR [rcx+76], xmm7
+	vmovaps	xmm5, xmm7
+	vmovaps	xmm7, xmm0
+	vmovss	DWORD PTR [rcx+80], xmm0
+$LN268@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vcomiss	xmm4, xmm11
+	vmovaps	xmm6, xmm4
+	jbe	SHORT $LN271@oddeven
+
+; 30   : 				tomb[a] = buf;
+
+	vmovss	DWORD PTR [rcx+84], xmm11
+	vmovaps	xmm6, xmm11
+	vmovaps	xmm11, xmm4
+	vmovss	DWORD PTR [rcx+88], xmm4
+$LN271@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vmovss	xmm0, DWORD PTR [rcx+92]
+	vcomiss	xmm0, xmm2
+	vmovaps	xmm4, xmm0
+	jbe	SHORT $LN274@oddeven
+
+; 30   : 				tomb[a] = buf;
+
+	vmovss	DWORD PTR [rcx+92], xmm2
+	vmovaps	xmm4, xmm2
+	vmovaps	xmm2, xmm0
+	vmovss	DWORD PTR [rcx+96], xmm0
+$LN274@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vmovss	xmm0, DWORD PTR [rcx]
+	vcomiss	xmm0, xmm10
+	jbe	SHORT $LN277@oddeven
+
+; 30   : 				tomb[a] = buf;
+
+	vmovss	DWORD PTR [rcx], xmm10
+	vmovaps	xmm10, xmm0
+	vmovss	DWORD PTR [rcx+64], xmm0
+$LN277@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vmovss	xmm0, DWORD PTR [rcx+4]
+	vcomiss	xmm0, xmm3
+	jbe	SHORT $LN280@oddeven
+
+; 30   : 				tomb[a] = buf;
+
+	vmovss	DWORD PTR [rcx+4], xmm3
+	vmovaps	xmm3, xmm0
+	vmovss	DWORD PTR [rcx+68], xmm0
+$LN280@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vmovss	xmm0, DWORD PTR [rcx+8]
+	vcomiss	xmm0, xmm9
+	jbe	SHORT $LN283@oddeven
+
+; 30   : 				tomb[a] = buf;
+
+	vmovss	DWORD PTR [rcx+8], xmm9
+	vmovaps	xmm9, xmm0
+	vmovss	DWORD PTR [rcx+72], xmm0
+$LN283@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vmovss	xmm0, DWORD PTR [rcx+12]
+	vcomiss	xmm0, xmm5
+	jbe	SHORT $LN286@oddeven
+
+; 30   : 				tomb[a] = buf;
+
+	vmovss	DWORD PTR [rcx+12], xmm5
+	vmovaps	xmm5, xmm0
+	vmovss	DWORD PTR [rcx+76], xmm0
+$LN286@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vmovss	xmm0, DWORD PTR [rcx+16]
+	vcomiss	xmm0, xmm7
+	jbe	SHORT $LN289@oddeven
+
+; 30   : 				tomb[a] = buf;
+
+	vmovss	DWORD PTR [rcx+16], xmm7
+	vmovaps	xmm7, xmm0
+	vmovss	DWORD PTR [rcx+80], xmm0
+$LN289@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vmovss	xmm0, DWORD PTR [rcx+20]
+	vcomiss	xmm0, xmm6
+	jbe	SHORT $LN292@oddeven
+
+; 30   : 				tomb[a] = buf;
+
+	vmovss	DWORD PTR [rcx+20], xmm6
+	vmovaps	xmm6, xmm0
+	vmovss	DWORD PTR [rcx+84], xmm0
+$LN292@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vmovss	xmm0, DWORD PTR [rcx+24]
+	vcomiss	xmm0, xmm11
+	jbe	SHORT $LN295@oddeven
+
+; 30   : 				tomb[a] = buf;
+
+	vmovss	DWORD PTR [rcx+24], xmm11
+	vmovaps	xmm11, xmm0
+	vmovss	DWORD PTR [rcx+88], xmm0
+$LN295@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vmovss	xmm0, DWORD PTR [rcx+28]
+	vcomiss	xmm0, xmm4
+	jbe	SHORT $LN298@oddeven
+
+; 30   : 				tomb[a] = buf;
+
+	vmovss	DWORD PTR [rcx+28], xmm4
+	vmovaps	xmm4, xmm0
+	vmovss	DWORD PTR [rcx+92], xmm0
+$LN298@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vmovss	xmm0, DWORD PTR [rcx+32]
+	vcomiss	xmm0, xmm2
+	jbe	SHORT $LN301@oddeven
+
+; 29   : 				tomb[b] = tomb[a];
+
+	vmovss	DWORD PTR [rcx+96], xmm0
+
+; 30   : 				tomb[a] = buf;
+
+	vmovaps	xmm0, xmm2
+	vmovss	DWORD PTR [rcx+32], xmm2
+$LN301@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vcomiss	xmm0, xmm10
+	jbe	SHORT $LN304@oddeven
+
+; 29   : 				tomb[b] = tomb[a];
+
+	vmovss	DWORD PTR [rcx+64], xmm0
+
+; 30   : 				tomb[a] = buf;
+
+	vmovaps	xmm0, xmm10
+	vmovss	DWORD PTR [rcx+32], xmm10
+$LN304@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vmovss	xmm1, DWORD PTR [rcx+36]
+	vcomiss	xmm1, xmm3
+	jbe	SHORT $LN307@oddeven
+
+; 29   : 				tomb[b] = tomb[a];
+
+	vmovss	DWORD PTR [rcx+68], xmm1
+
+; 30   : 				tomb[a] = buf;
+
+	vmovaps	xmm1, xmm3
+	vmovss	DWORD PTR [rcx+36], xmm3
+$LN307@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vmovss	xmm2, DWORD PTR [rcx+40]
+	vcomiss	xmm2, xmm9
+	jbe	SHORT $LN310@oddeven
+
+; 29   : 				tomb[b] = tomb[a];
+
+	vmovss	DWORD PTR [rcx+72], xmm2
+
+; 30   : 				tomb[a] = buf;
+
+	vmovaps	xmm2, xmm9
+	vmovss	DWORD PTR [rcx+40], xmm9
+$LN310@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vmovss	xmm3, DWORD PTR [rcx+44]
+	vcomiss	xmm3, xmm5
+	jbe	SHORT $LN313@oddeven
 
 ; 29   : 				tomb[b] = tomb[a];
 
@@ -1138,917 +1680,329 @@ $LN199@oddeven:
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovaps	xmm3, xmm1
-	vmovss	DWORD PTR [rcx+68], xmm1
-$LN202@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vcomiss	xmm3, xmm2
-	vmovaps	xmm5, xmm2
-	jbe	SHORT $LN205@oddeven
-
-; 29   : 				tomb[b] = tomb[a];
-
-	vmovss	DWORD PTR [rcx+72], xmm3
-
-; 30   : 				tomb[a] = buf;
-
-	vmovaps	xmm5, xmm3
-	vmovaps	xmm3, xmm2
-	vmovss	DWORD PTR [rcx+68], xmm2
-$LN205@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vmovss	xmm1, DWORD PTR [rcx+80]
-	vmovss	xmm2, DWORD PTR [rcx+84]
-	vcomiss	xmm1, xmm2
-	vmovaps	xmm0, xmm1
-	jbe	SHORT $LN208@oddeven
-
-; 30   : 				tomb[a] = buf;
-
-	vmovss	DWORD PTR [rcx+80], xmm2
-	vmovaps	xmm0, xmm2
-	vmovaps	xmm2, xmm1
-	vmovss	DWORD PTR [rcx+84], xmm1
-$LN208@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vmovss	xmm4, DWORD PTR [rcx+88]
-	vmovss	xmm6, DWORD PTR [rcx+92]
-	vcomiss	xmm4, xmm6
-	vmovaps	xmm1, xmm4
-	jbe	SHORT $LN211@oddeven
-
-; 30   : 				tomb[a] = buf;
-
-	vmovss	DWORD PTR [rcx+88], xmm6
-	vmovaps	xmm1, xmm6
-	vmovaps	xmm6, xmm4
-	vmovss	DWORD PTR [rcx+92], xmm4
-$LN211@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vcomiss	xmm0, xmm1
-	vmovaps	xmm4, xmm1
-	jbe	SHORT $LN214@oddeven
-
-; 29   : 				tomb[b] = tomb[a];
-
-	vmovss	DWORD PTR [rcx+88], xmm0
-
-; 30   : 				tomb[a] = buf;
-
-	vmovaps	xmm4, xmm0
-	vmovaps	xmm0, xmm1
-	vmovss	DWORD PTR [rcx+80], xmm1
-$LN214@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vcomiss	xmm2, xmm6
-	vmovaps	xmm1, xmm2
-	jbe	SHORT $LN217@oddeven
-
-; 30   : 				tomb[a] = buf;
-
-	vmovss	DWORD PTR [rcx+84], xmm6
-	vmovaps	xmm1, xmm6
-	vmovaps	xmm6, xmm2
-	vmovss	DWORD PTR [rcx+92], xmm2
-$LN217@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vcomiss	xmm1, xmm4
-	vmovaps	xmm8, xmm4
-	jbe	SHORT $LN220@oddeven
-
-; 29   : 				tomb[b] = tomb[a];
-
-	vmovss	DWORD PTR [rcx+88], xmm1
-
-; 30   : 				tomb[a] = buf;
-
-	vmovaps	xmm8, xmm1
-	vmovaps	xmm1, xmm4
-	vmovss	DWORD PTR [rcx+84], xmm4
-$LN220@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vcomiss	xmm7, xmm0
-	vmovaps	xmm4, xmm0
-	jbe	SHORT $LN223@oddeven
-
-; 29   : 				tomb[b] = tomb[a];
-
-	vmovss	DWORD PTR [rcx+80], xmm7
-
-; 30   : 				tomb[a] = buf;
-
-	vmovaps	xmm4, xmm7
-	vmovaps	xmm7, xmm0
-	vmovss	DWORD PTR [rcx+64], xmm0
-$LN223@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vcomiss	xmm5, xmm8
-	vmovaps	xmm0, xmm5
-	jbe	SHORT $LN226@oddeven
-
-; 30   : 				tomb[a] = buf;
-
-	vmovss	DWORD PTR [rcx+72], xmm8
-	vmovaps	xmm0, xmm8
-	vmovaps	xmm8, xmm5
-	vmovss	DWORD PTR [rcx+88], xmm5
-$LN226@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vcomiss	xmm0, xmm4
-	vmovaps	xmm5, xmm0
-	jbe	SHORT $LN229@oddeven
-
-; 30   : 				tomb[a] = buf;
-
-	vmovss	DWORD PTR [rcx+72], xmm4
-	vmovaps	xmm5, xmm4
-	vmovaps	xmm4, xmm0
-	vmovss	DWORD PTR [rcx+80], xmm0
-$LN229@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vcomiss	xmm3, xmm1
-	vmovaps	xmm2, xmm1
-	jbe	SHORT $LN232@oddeven
-
-; 29   : 				tomb[b] = tomb[a];
-
-	vmovss	DWORD PTR [rcx+84], xmm3
-
-; 30   : 				tomb[a] = buf;
-
-	vmovaps	xmm2, xmm3
-	vmovaps	xmm3, xmm1
-	vmovss	DWORD PTR [rcx+68], xmm1
-$LN232@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vmovss	xmm0, DWORD PTR [rcx+76]
-	vcomiss	xmm0, xmm6
-	jbe	SHORT $LN235@oddeven
-
-; 29   : 				tomb[b] = tomb[a];
-
-	vmovss	DWORD PTR [rcx+92], xmm0
-
-; 30   : 				tomb[a] = buf;
-
-	vmovaps	xmm0, xmm6
-	vmovss	DWORD PTR [rcx+76], xmm6
-$LN235@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vcomiss	xmm0, xmm2
-	vmovaps	xmm6, xmm0
-	jbe	SHORT $LN238@oddeven
-
-; 30   : 				tomb[a] = buf;
-
-	vmovss	DWORD PTR [rcx+76], xmm2
-	vmovaps	xmm6, xmm2
-	vmovaps	xmm2, xmm0
-	vmovss	DWORD PTR [rcx+84], xmm0
-$LN238@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vcomiss	xmm3, xmm5
-	vmovaps	xmm10, xmm5
-	jbe	SHORT $LN241@oddeven
-
-; 29   : 				tomb[b] = tomb[a];
-
-	vmovss	DWORD PTR [rcx+72], xmm3
-
-; 30   : 				tomb[a] = buf;
-
-	vmovaps	xmm10, xmm3
 	vmovaps	xmm3, xmm5
-	vmovss	DWORD PTR [rcx+68], xmm5
-$LN241@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vcomiss	xmm6, xmm4
-	vmovaps	xmm5, xmm4
-	jbe	SHORT $LN244@oddeven
-
-; 29   : 				tomb[b] = tomb[a];
-
-	vmovss	DWORD PTR [rcx+80], xmm6
-
-; 30   : 				tomb[a] = buf;
-
-	vmovaps	xmm5, xmm6
-	vmovaps	xmm6, xmm4
-	vmovss	DWORD PTR [rcx+76], xmm4
-$LN244@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vcomiss	xmm2, xmm8
-	vmovaps	xmm9, xmm8
-	jbe	SHORT $LN247@oddeven
-
-; 29   : 				tomb[b] = tomb[a];
-
-	vmovss	DWORD PTR [rcx+88], xmm2
-
-; 30   : 				tomb[a] = buf;
-
-	vmovaps	xmm9, xmm2
-	vmovaps	xmm2, xmm8
-	vmovss	DWORD PTR [rcx+84], xmm8
-$LN247@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vmovss	xmm1, DWORD PTR [rcx+96]
-	vcomiss	xmm7, xmm1
-	jbe	SHORT $LN250@oddeven
-
-; 28   : 				buf = tomb[b];
-
-	vmovaps	xmm0, xmm1
-
-; 30   : 				tomb[a] = buf;
-
-	vmovss	DWORD PTR [rcx+64], xmm1
-	vmovaps	xmm1, xmm7
-	vmovss	DWORD PTR [rcx+96], xmm7
-	vmovaps	xmm7, xmm0
-$LN250@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vcomiss	xmm5, xmm1
-	vmovaps	xmm4, xmm5
-	jbe	SHORT $LN253@oddeven
-
-; 30   : 				tomb[a] = buf;
-
-	vmovss	DWORD PTR [rcx+80], xmm1
-	vmovaps	xmm4, xmm1
-	vmovaps	xmm1, xmm5
-	vmovss	DWORD PTR [rcx+96], xmm5
-$LN253@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vcomiss	xmm10, xmm4
-	vmovaps	xmm5, xmm10
-	jbe	SHORT $LN256@oddeven
-
-; 30   : 				tomb[a] = buf;
-
-	vmovss	DWORD PTR [rcx+72], xmm4
-	vmovaps	xmm5, xmm4
-	vmovaps	xmm4, xmm10
-	vmovss	DWORD PTR [rcx+80], xmm10
-$LN256@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vcomiss	xmm9, xmm1
-	vmovaps	xmm8, xmm9
-	jbe	SHORT $LN259@oddeven
-
-; 30   : 				tomb[a] = buf;
-
-	vmovss	DWORD PTR [rcx+88], xmm1
-	vmovaps	xmm8, xmm1
-	vmovaps	xmm1, xmm9
-	vmovss	DWORD PTR [rcx+96], xmm9
-$LN259@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vcomiss	xmm6, xmm2
-	vmovaps	xmm0, xmm6
-	jbe	SHORT $LN262@oddeven
-
-; 30   : 				tomb[a] = buf;
-
-	vmovss	DWORD PTR [rcx+76], xmm2
-	vmovaps	xmm0, xmm2
-	vmovaps	xmm2, xmm6
-	vmovss	DWORD PTR [rcx+84], xmm6
-$LN262@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vcomiss	xmm3, xmm5
-	jbe	SHORT $LN265@oddeven
-
-; 29   : 				tomb[b] = tomb[a];
-
-	vmovss	DWORD PTR [rcx+72], xmm3
-
-; 30   : 				tomb[a] = buf;
-
-	vmovss	DWORD PTR [rcx+68], xmm5
-$LN265@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vcomiss	xmm0, xmm4
-	jbe	SHORT $LN268@oddeven
-
-; 30   : 				tomb[a] = buf;
-
-	vmovss	DWORD PTR [rcx+76], xmm4
-	vmovaps	xmm4, xmm0
-	vmovss	DWORD PTR [rcx+80], xmm0
-$LN268@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vcomiss	xmm2, xmm8
-	jbe	SHORT $LN271@oddeven
-
-; 29   : 				tomb[b] = tomb[a];
-
-	vmovss	DWORD PTR [rcx+88], xmm2
-
-; 30   : 				tomb[a] = buf;
-
-	vmovss	DWORD PTR [rcx+84], xmm8
-$LN271@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vmovss	xmm0, DWORD PTR [rcx+92]
-	vcomiss	xmm0, xmm1
-	jbe	SHORT $LN274@oddeven
-
-; 30   : 				tomb[a] = buf;
-
-	vmovss	DWORD PTR [rcx+92], xmm1
-	vmovaps	xmm1, xmm0
-	vmovss	DWORD PTR [rcx+96], xmm0
-$LN274@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vmovss	xmm0, DWORD PTR [rcx]
-	vcomiss	xmm0, xmm7
-	jbe	SHORT $LN277@oddeven
-
-; 30   : 				tomb[a] = buf;
-
-	vmovss	DWORD PTR [rcx], xmm7
-	vmovaps	xmm7, xmm0
-	vmovss	DWORD PTR [rcx+64], xmm0
-$LN277@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vmovss	xmm2, DWORD PTR [rcx+32]
-	vcomiss	xmm2, xmm1
-	vmovaps	xmm0, xmm2
-	jbe	SHORT $LN280@oddeven
-
-; 30   : 				tomb[a] = buf;
-
-	vmovss	DWORD PTR [rcx+32], xmm1
-	vmovaps	xmm0, xmm1
-	vmovaps	xmm1, xmm2
-	vmovss	DWORD PTR [rcx+96], xmm2
-$LN280@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vcomiss	xmm0, xmm7
-	vmovaps	xmm3, xmm0
-	jbe	SHORT $LN283@oddeven
-
-; 30   : 				tomb[a] = buf;
-
-	vmovss	DWORD PTR [rcx+32], xmm7
-	vmovaps	xmm3, xmm7
-	vmovaps	xmm7, xmm0
-	vmovss	DWORD PTR [rcx+64], xmm0
-$LN283@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vmovss	xmm8, DWORD PTR [rcx+16]
-	vcomiss	xmm8, xmm4
-	vmovaps	xmm0, xmm4
-	jbe	SHORT $LN286@oddeven
-
-; 29   : 				tomb[b] = tomb[a];
-
-	vmovss	DWORD PTR [rcx+80], xmm8
-
-; 30   : 				tomb[a] = buf;
-
-	vmovaps	xmm0, xmm8
-	vmovaps	xmm8, xmm4
-	vmovss	DWORD PTR [rcx+16], xmm4
-$LN286@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vmovss	xmm2, DWORD PTR [rcx+48]
-	vcomiss	xmm2, xmm0
-	vmovaps	xmm4, xmm2
-	jbe	SHORT $LN289@oddeven
-
-; 30   : 				tomb[a] = buf;
-
-	vmovss	DWORD PTR [rcx+48], xmm0
-	vmovaps	xmm4, xmm0
-	vmovaps	xmm0, xmm2
-	vmovss	DWORD PTR [rcx+80], xmm2
-$LN289@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vcomiss	xmm8, xmm3
-	jbe	SHORT $LN292@oddeven
-
-; 29   : 				tomb[b] = tomb[a];
-
-	vmovss	DWORD PTR [rcx+32], xmm8
-
-; 30   : 				tomb[a] = buf;
-
-	vmovaps	xmm8, xmm3
-	vmovss	DWORD PTR [rcx+16], xmm3
-$LN292@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vcomiss	xmm4, xmm7
-	jbe	SHORT $LN295@oddeven
-
-; 29   : 				tomb[b] = tomb[a];
-
-	vmovss	DWORD PTR [rcx+64], xmm4
-
-; 30   : 				tomb[a] = buf;
-
-	vmovss	DWORD PTR [rcx+48], xmm7
-$LN295@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vcomiss	xmm0, xmm1
-	jbe	SHORT $LN298@oddeven
-
-; 29   : 				tomb[b] = tomb[a];
-
-	vmovss	DWORD PTR [rcx+96], xmm0
-
-; 30   : 				tomb[a] = buf;
-
-	vmovss	DWORD PTR [rcx+80], xmm1
-$LN298@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vmovss	xmm5, DWORD PTR [rcx+8]
-	vmovss	xmm1, DWORD PTR [rcx+72]
-	vcomiss	xmm5, xmm1
-	jbe	SHORT $LN301@oddeven
-
-; 28   : 				buf = tomb[b];
-
-	vmovaps	xmm0, xmm1
-
-; 30   : 				tomb[a] = buf;
-
-	vmovss	DWORD PTR [rcx+8], xmm1
-	vmovaps	xmm1, xmm5
-	vmovss	DWORD PTR [rcx+72], xmm5
-	vmovaps	xmm5, xmm0
-$LN301@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vmovss	xmm0, DWORD PTR [rcx+40]
-	vcomiss	xmm0, xmm1
-	vmovaps	xmm4, xmm0
-	jbe	SHORT $LN304@oddeven
-
-; 30   : 				tomb[a] = buf;
-
-	vmovss	DWORD PTR [rcx+40], xmm1
-	vmovaps	xmm4, xmm1
-	vmovaps	xmm1, xmm0
-	vmovss	DWORD PTR [rcx+72], xmm0
-$LN304@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vmovss	xmm2, DWORD PTR [rcx+24]
-	vmovss	xmm6, DWORD PTR [rcx+88]
-	vcomiss	xmm2, xmm6
-	jbe	SHORT $LN307@oddeven
-
-; 28   : 				buf = tomb[b];
-
-	vmovaps	xmm0, xmm6
-
-; 30   : 				tomb[a] = buf;
-
-	vmovss	DWORD PTR [rcx+24], xmm6
-	vmovaps	xmm6, xmm2
-	vmovss	DWORD PTR [rcx+88], xmm2
-	vmovaps	xmm2, xmm0
-$LN307@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vmovss	xmm3, DWORD PTR [rcx+56]
-	vcomiss	xmm3, xmm6
-	vmovaps	xmm0, xmm3
-	jbe	SHORT $LN310@oddeven
-
-; 30   : 				tomb[a] = buf;
-
-	vmovss	DWORD PTR [rcx+56], xmm6
-	vmovaps	xmm0, xmm6
-	vmovaps	xmm6, xmm3
-	vmovss	DWORD PTR [rcx+88], xmm3
-$LN310@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vcomiss	xmm2, xmm4
-	vmovaps	xmm3, xmm2
-	jbe	SHORT $LN313@oddeven
-
-; 30   : 				tomb[a] = buf;
-
-	vmovss	DWORD PTR [rcx+24], xmm4
-	vmovaps	xmm3, xmm4
-	vmovaps	xmm4, xmm2
-	vmovss	DWORD PTR [rcx+40], xmm2
+	vmovss	DWORD PTR [rcx+44], xmm5
 $LN313@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vcomiss	xmm0, xmm1
-	vmovaps	xmm2, xmm0
+	vmovss	xmm10, DWORD PTR [rcx+48]
+	vcomiss	xmm10, xmm7
 	jbe	SHORT $LN316@oddeven
+
+; 29   : 				tomb[b] = tomb[a];
+
+	vmovss	DWORD PTR [rcx+80], xmm10
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+56], xmm1
-	vmovaps	xmm2, xmm1
-	vmovaps	xmm1, xmm0
-	vmovss	DWORD PTR [rcx+72], xmm0
+	vmovaps	xmm10, xmm7
+	vmovss	DWORD PTR [rcx+48], xmm7
 $LN316@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vcomiss	xmm5, xmm8
+	vmovss	xmm9, DWORD PTR [rcx+52]
+	vcomiss	xmm9, xmm6
 	jbe	SHORT $LN319@oddeven
 
 ; 29   : 				tomb[b] = tomb[a];
 
-	vmovss	DWORD PTR [rcx+16], xmm5
+	vmovss	DWORD PTR [rcx+84], xmm9
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+8], xmm8
+	vmovaps	xmm9, xmm6
+	vmovss	DWORD PTR [rcx+52], xmm6
 $LN319@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vmovss	xmm0, DWORD PTR [rcx+32]
-	vcomiss	xmm3, xmm0
+	vmovss	xmm8, DWORD PTR [rcx+56]
+	vcomiss	xmm8, xmm11
 	jbe	SHORT $LN322@oddeven
 
 ; 29   : 				tomb[b] = tomb[a];
 
-	vmovss	DWORD PTR [rcx+32], xmm3
+	vmovss	DWORD PTR [rcx+88], xmm8
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+24], xmm0
+	vmovaps	xmm8, xmm11
+	vmovss	DWORD PTR [rcx+56], xmm11
 $LN322@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vmovss	xmm0, DWORD PTR [rcx+48]
-	vcomiss	xmm4, xmm0
+	vmovss	xmm7, DWORD PTR [rcx+60]
+	vcomiss	xmm7, xmm4
 	jbe	SHORT $LN325@oddeven
 
 ; 29   : 				tomb[b] = tomb[a];
 
-	vmovss	DWORD PTR [rcx+48], xmm4
+	vmovss	DWORD PTR [rcx+92], xmm7
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+40], xmm0
+	vmovaps	xmm7, xmm4
+	vmovss	DWORD PTR [rcx+60], xmm4
 $LN325@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vmovss	xmm0, DWORD PTR [rcx+64]
-	vcomiss	xmm2, xmm0
+	vmovss	xmm6, DWORD PTR [rcx+16]
+	vcomiss	xmm6, xmm0
 	jbe	SHORT $LN328@oddeven
 
 ; 29   : 				tomb[b] = tomb[a];
 
-	vmovss	DWORD PTR [rcx+64], xmm2
+	vmovss	DWORD PTR [rcx+32], xmm6
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+56], xmm0
+	vmovaps	xmm6, xmm0
+	vmovss	DWORD PTR [rcx+16], xmm0
 $LN328@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vmovss	xmm0, DWORD PTR [rcx+80]
-	vcomiss	xmm1, xmm0
+	vmovss	xmm5, DWORD PTR [rcx+20]
+	vcomiss	xmm5, xmm1
 	jbe	SHORT $LN331@oddeven
 
 ; 29   : 				tomb[b] = tomb[a];
 
-	vmovss	DWORD PTR [rcx+80], xmm1
+	vmovss	DWORD PTR [rcx+36], xmm5
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+72], xmm0
+	vmovaps	xmm5, xmm1
+	vmovss	DWORD PTR [rcx+20], xmm1
 $LN331@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vmovss	xmm0, DWORD PTR [rcx+96]
-	vcomiss	xmm6, xmm0
+	vmovss	xmm4, DWORD PTR [rcx+24]
+	vcomiss	xmm4, xmm2
 	jbe	SHORT $LN334@oddeven
 
 ; 29   : 				tomb[b] = tomb[a];
 
-	vmovss	DWORD PTR [rcx+96], xmm6
+	vmovss	DWORD PTR [rcx+40], xmm4
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+88], xmm0
+	vmovaps	xmm4, xmm2
+	vmovss	DWORD PTR [rcx+24], xmm2
 $LN334@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vmovss	xmm0, DWORD PTR [rcx+4]
-	vmovss	xmm1, DWORD PTR [rcx+68]
-	vcomiss	xmm0, xmm1
+	vmovss	xmm2, DWORD PTR [rcx+28]
+	vcomiss	xmm2, xmm3
 	jbe	SHORT $LN337@oddeven
+
+; 29   : 				tomb[b] = tomb[a];
+
+	vmovss	DWORD PTR [rcx+44], xmm2
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+4], xmm1
-	vmovaps	xmm1, xmm0
-	vmovss	DWORD PTR [rcx+68], xmm0
+	vmovaps	xmm2, xmm3
+	vmovss	DWORD PTR [rcx+28], xmm3
 $LN337@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vmovss	xmm0, DWORD PTR [rcx+36]
-	vcomiss	xmm0, xmm1
-	vmovaps	xmm9, xmm0
+	vmovss	xmm0, DWORD PTR [rcx+64]
+	vcomiss	xmm10, xmm0
 	jbe	SHORT $LN340@oddeven
+
+; 29   : 				tomb[b] = tomb[a];
+
+	vmovss	DWORD PTR [rcx+64], xmm10
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+36], xmm1
-	vmovaps	xmm9, xmm1
-	vmovaps	xmm1, xmm0
-	vmovss	DWORD PTR [rcx+68], xmm0
+	vmovaps	xmm10, xmm0
+	vmovss	DWORD PTR [rcx+48], xmm0
 $LN340@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vmovss	xmm2, DWORD PTR [rcx+20]
-	vmovss	xmm3, DWORD PTR [rcx+84]
-	vcomiss	xmm2, xmm3
+	vmovss	xmm0, DWORD PTR [rcx+68]
+	vcomiss	xmm9, xmm0
 	jbe	SHORT $LN343@oddeven
 
-; 28   : 				buf = tomb[b];
+; 29   : 				tomb[b] = tomb[a];
 
-	vmovaps	xmm0, xmm3
+	vmovss	DWORD PTR [rcx+68], xmm9
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+20], xmm3
-	vmovaps	xmm3, xmm2
-	vmovss	DWORD PTR [rcx+84], xmm2
-	vmovaps	xmm2, xmm0
+	vmovaps	xmm9, xmm0
+	vmovss	DWORD PTR [rcx+52], xmm0
 $LN343@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vmovss	xmm6, DWORD PTR [rcx+52]
-	vcomiss	xmm6, xmm3
+	vmovss	xmm0, DWORD PTR [rcx+72]
+	vcomiss	xmm8, xmm0
 	jbe	SHORT $LN346@oddeven
 
 ; 29   : 				tomb[b] = tomb[a];
 
-	vmovss	DWORD PTR [rcx+84], xmm6
+	vmovss	DWORD PTR [rcx+72], xmm8
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovaps	xmm6, xmm3
-	vmovss	DWORD PTR [rcx+52], xmm3
+	vmovaps	xmm8, xmm0
+	vmovss	DWORD PTR [rcx+56], xmm0
 $LN346@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vcomiss	xmm2, xmm9
-	vmovaps	xmm10, xmm2
+	vmovss	xmm0, DWORD PTR [rcx+76]
+	vcomiss	xmm7, xmm0
 	jbe	SHORT $LN349@oddeven
+
+; 29   : 				tomb[b] = tomb[a];
+
+	vmovss	DWORD PTR [rcx+76], xmm7
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+20], xmm9
-	vmovaps	xmm10, xmm9
-	vmovaps	xmm9, xmm2
-	vmovss	DWORD PTR [rcx+36], xmm2
+	vmovaps	xmm7, xmm0
+	vmovss	DWORD PTR [rcx+60], xmm0
 $LN349@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vcomiss	xmm6, xmm1
+	vmovss	xmm1, DWORD PTR [rcx+80]
+	vmovss	xmm0, DWORD PTR [rcx+84]
+	vcomiss	xmm1, xmm0
 	jbe	SHORT $LN352@oddeven
 
 ; 29   : 				tomb[b] = tomb[a];
 
-	vmovss	DWORD PTR [rcx+68], xmm6
+	vmovss	DWORD PTR [rcx+84], xmm1
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovaps	xmm6, xmm1
-	vmovss	DWORD PTR [rcx+52], xmm1
+	vmovaps	xmm1, xmm0
+	vmovss	DWORD PTR [rcx+80], xmm0
 $LN352@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vmovss	xmm5, DWORD PTR [rcx+12]
-	vmovss	xmm3, DWORD PTR [rcx+76]
-	vcomiss	xmm5, xmm3
+	vmovss	xmm0, DWORD PTR [rcx+8]
+	vcomiss	xmm0, xmm6
 	jbe	SHORT $LN355@oddeven
 
-; 28   : 				buf = tomb[b];
+; 29   : 				tomb[b] = tomb[a];
 
-	vmovaps	xmm0, xmm3
+	vmovss	DWORD PTR [rcx+16], xmm0
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+12], xmm3
-	vmovaps	xmm3, xmm5
-	vmovss	DWORD PTR [rcx+76], xmm5
-	vmovaps	xmm5, xmm0
+	vmovss	DWORD PTR [rcx+8], xmm6
 $LN355@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vmovss	xmm0, DWORD PTR [rcx+44]
-	vcomiss	xmm0, xmm3
-	vmovaps	xmm4, xmm0
+	vmovss	xmm0, DWORD PTR [rcx+12]
+	vcomiss	xmm0, xmm5
 	jbe	SHORT $LN358@oddeven
+
+; 29   : 				tomb[b] = tomb[a];
+
+	vmovss	DWORD PTR [rcx+20], xmm0
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+44], xmm3
-	vmovaps	xmm4, xmm3
-	vmovaps	xmm3, xmm0
-	vmovss	DWORD PTR [rcx+76], xmm0
+	vmovss	DWORD PTR [rcx+12], xmm5
 $LN358@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vmovss	xmm1, DWORD PTR [rcx+28]
-	vmovss	xmm2, DWORD PTR [rcx+92]
-	vcomiss	xmm1, xmm2
+	vmovss	xmm0, DWORD PTR [rcx+32]
+	vcomiss	xmm4, xmm0
 	jbe	SHORT $LN361@oddeven
 
-; 28   : 				buf = tomb[b];
+; 29   : 				tomb[b] = tomb[a];
 
-	vmovaps	xmm0, xmm2
+	vmovss	DWORD PTR [rcx+32], xmm4
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+28], xmm2
-	vmovaps	xmm2, xmm1
-	vmovss	DWORD PTR [rcx+92], xmm1
-	vmovaps	xmm1, xmm0
+	vmovss	DWORD PTR [rcx+24], xmm0
 $LN361@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vmovss	xmm0, DWORD PTR [rcx+60]
-	vcomiss	xmm0, xmm2
+	vmovss	xmm0, DWORD PTR [rcx+36]
+	vcomiss	xmm2, xmm0
 	jbe	SHORT $LN364@oddeven
 
 ; 29   : 				tomb[b] = tomb[a];
 
-	vmovss	DWORD PTR [rcx+92], xmm0
+	vmovss	DWORD PTR [rcx+36], xmm2
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovaps	xmm0, xmm2
-	vmovss	DWORD PTR [rcx+60], xmm2
+	vmovss	DWORD PTR [rcx+28], xmm0
 $LN364@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vcomiss	xmm1, xmm4
-	vmovaps	xmm2, xmm1
+	vmovss	xmm0, DWORD PTR [rcx+40]
+	vcomiss	xmm0, xmm10
 	jbe	SHORT $LN367@oddeven
+
+; 29   : 				tomb[b] = tomb[a];
+
+	vmovss	DWORD PTR [rcx+48], xmm0
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+28], xmm4
-	vmovaps	xmm2, xmm4
-	vmovaps	xmm4, xmm1
-	vmovss	DWORD PTR [rcx+44], xmm1
+	vmovss	DWORD PTR [rcx+40], xmm10
 $LN367@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vcomiss	xmm0, xmm3
-	vmovaps	xmm7, xmm0
+	vmovss	xmm0, DWORD PTR [rcx+44]
+	vcomiss	xmm0, xmm9
 	jbe	SHORT $LN370@oddeven
+
+; 29   : 				tomb[b] = tomb[a];
+
+	vmovss	DWORD PTR [rcx+52], xmm0
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+60], xmm3
-	vmovaps	xmm7, xmm3
-	vmovaps	xmm3, xmm0
-	vmovss	DWORD PTR [rcx+76], xmm0
+	vmovss	DWORD PTR [rcx+44], xmm9
 $LN370@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vcomiss	xmm5, xmm10
-	vmovaps	xmm8, xmm5
+	vmovss	xmm0, DWORD PTR [rcx+64]
+	vcomiss	xmm8, xmm0
 	jbe	SHORT $LN373@oddeven
 
+; 29   : 				tomb[b] = tomb[a];
+
+	vmovss	DWORD PTR [rcx+64], xmm8
+
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+12], xmm10
-	vmovaps	xmm8, xmm10
-	vmovaps	xmm10, xmm5
-	vmovss	DWORD PTR [rcx+20], xmm5
+	vmovss	DWORD PTR [rcx+56], xmm0
 $LN373@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vcomiss	xmm2, xmm9
-	vmovaps	xmm5, xmm2
-	jbe	SHORT $LN376@oddeven
-
-; 30   : 				tomb[a] = buf;
-
-	vmovss	DWORD PTR [rcx+28], xmm9
-	vmovaps	xmm5, xmm9
-	vmovaps	xmm9, xmm2
-	vmovss	DWORD PTR [rcx+36], xmm2
-$LN376@oddeven:
-
-; 27   : 			if (tomb[a] > tomb[b]) {
-
-	vcomiss	xmm4, xmm6
-	vmovaps	xmm2, xmm4
-	jbe	SHORT $LN379@oddeven
-
-; 30   : 				tomb[a] = buf;
-
-	vmovss	DWORD PTR [rcx+44], xmm6
-	vmovaps	xmm2, xmm6
-	vmovaps	xmm6, xmm4
-	vmovss	DWORD PTR [rcx+52], xmm4
-$LN379@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
 	vmovss	xmm0, DWORD PTR [rcx+68]
 	vcomiss	xmm7, xmm0
-	jbe	SHORT $LN382@oddeven
+	jbe	SHORT $LN376@oddeven
 
 ; 29   : 				tomb[b] = tomb[a];
 
@@ -2056,23 +2010,54 @@ $LN379@oddeven:
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovaps	xmm7, xmm0
 	vmovss	DWORD PTR [rcx+60], xmm0
+$LN376@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vmovss	xmm0, DWORD PTR [rcx+72]
+	vcomiss	xmm0, xmm1
+	jbe	SHORT $LN379@oddeven
+
+; 29   : 				tomb[b] = tomb[a];
+
+	vmovss	DWORD PTR [rcx+80], xmm0
+
+; 30   : 				tomb[a] = buf;
+
+	vmovss	DWORD PTR [rcx+72], xmm1
+$LN379@oddeven:
+
+; 27   : 			if (tomb[a] > tomb[b]) {
+
+	vmovss	xmm0, DWORD PTR [rcx+76]
+	vmovss	xmm1, DWORD PTR [rcx+84]
+	vcomiss	xmm0, xmm1
+	jbe	SHORT $LN382@oddeven
+
+; 29   : 				tomb[b] = tomb[a];
+
+	vmovss	DWORD PTR [rcx+84], xmm0
+
+; 30   : 				tomb[a] = buf;
+
+	vmovss	DWORD PTR [rcx+76], xmm1
 $LN382@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vmovss	xmm0, DWORD PTR [rcx+84]
-	vcomiss	xmm3, xmm0
+	vmovss	xmm0, DWORD PTR [rcx+88]
+	vmovss	xmm1, DWORD PTR [rcx+96]
+	vcomiss	xmm0, xmm1
 	jbe	SHORT $LN385@oddeven
 
 ; 29   : 				tomb[b] = tomb[a];
 
-	vmovss	DWORD PTR [rcx+84], xmm3
+	vmovss	DWORD PTR [rcx+96], xmm0
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+76], xmm0
+	vmovss	DWORD PTR [rcx+88], xmm1
 $LN385@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
@@ -2093,107 +2078,114 @@ $LN388@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vmovss	xmm0, DWORD PTR [rcx+16]
-	vcomiss	xmm8, xmm0
+	vmovss	xmm0, DWORD PTR [rcx+12]
+	vmovss	xmm1, DWORD PTR [rcx+16]
+	vcomiss	xmm0, xmm1
 	jbe	SHORT $LN391@oddeven
 
 ; 29   : 				tomb[b] = tomb[a];
 
-	vmovss	DWORD PTR [rcx+16], xmm8
+	vmovss	DWORD PTR [rcx+16], xmm0
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+12], xmm0
+	vmovss	DWORD PTR [rcx+12], xmm1
 $LN391@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vmovss	xmm0, DWORD PTR [rcx+24]
-	vcomiss	xmm10, xmm0
+	vmovss	xmm0, DWORD PTR [rcx+20]
+	vmovss	xmm1, DWORD PTR [rcx+24]
+	vcomiss	xmm0, xmm1
 	jbe	SHORT $LN394@oddeven
 
 ; 29   : 				tomb[b] = tomb[a];
 
-	vmovss	DWORD PTR [rcx+24], xmm10
+	vmovss	DWORD PTR [rcx+24], xmm0
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+20], xmm0
+	vmovss	DWORD PTR [rcx+20], xmm1
 $LN394@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vmovss	xmm0, DWORD PTR [rcx+32]
-	vcomiss	xmm5, xmm0
+	vmovss	xmm0, DWORD PTR [rcx+28]
+	vmovss	xmm1, DWORD PTR [rcx+32]
+	vcomiss	xmm0, xmm1
 	jbe	SHORT $LN397@oddeven
 
 ; 29   : 				tomb[b] = tomb[a];
 
-	vmovss	DWORD PTR [rcx+32], xmm5
+	vmovss	DWORD PTR [rcx+32], xmm0
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+28], xmm0
+	vmovss	DWORD PTR [rcx+28], xmm1
 $LN397@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vmovss	xmm0, DWORD PTR [rcx+40]
-	vcomiss	xmm9, xmm0
+	vmovss	xmm0, DWORD PTR [rcx+36]
+	vmovss	xmm1, DWORD PTR [rcx+40]
+	vcomiss	xmm0, xmm1
 	jbe	SHORT $LN400@oddeven
 
 ; 29   : 				tomb[b] = tomb[a];
 
-	vmovss	DWORD PTR [rcx+40], xmm9
+	vmovss	DWORD PTR [rcx+40], xmm0
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+36], xmm0
+	vmovss	DWORD PTR [rcx+36], xmm1
 $LN400@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vmovss	xmm0, DWORD PTR [rcx+48]
-	vcomiss	xmm2, xmm0
+	vmovss	xmm0, DWORD PTR [rcx+44]
+	vmovss	xmm1, DWORD PTR [rcx+48]
+	vcomiss	xmm0, xmm1
 	jbe	SHORT $LN403@oddeven
 
 ; 29   : 				tomb[b] = tomb[a];
 
-	vmovss	DWORD PTR [rcx+48], xmm2
+	vmovss	DWORD PTR [rcx+48], xmm0
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+44], xmm0
+	vmovss	DWORD PTR [rcx+44], xmm1
 $LN403@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vmovss	xmm0, DWORD PTR [rcx+56]
-	vcomiss	xmm6, xmm0
+	vmovss	xmm0, DWORD PTR [rcx+52]
+	vmovss	xmm1, DWORD PTR [rcx+56]
+	vcomiss	xmm0, xmm1
 	jbe	SHORT $LN406@oddeven
 
 ; 29   : 				tomb[b] = tomb[a];
 
-	vmovss	DWORD PTR [rcx+56], xmm6
+	vmovss	DWORD PTR [rcx+56], xmm0
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+52], xmm0
+	vmovss	DWORD PTR [rcx+52], xmm1
 $LN406@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
 
-	vmovss	xmm0, DWORD PTR [rcx+64]
-	vcomiss	xmm7, xmm0
+	vmovss	xmm0, DWORD PTR [rcx+60]
+	vmovss	xmm1, DWORD PTR [rcx+64]
+	vcomiss	xmm0, xmm1
 	jbe	SHORT $LN409@oddeven
 
 ; 29   : 				tomb[b] = tomb[a];
 
-	vmovss	DWORD PTR [rcx+64], xmm7
+	vmovss	DWORD PTR [rcx+64], xmm0
 
 ; 30   : 				tomb[a] = buf;
 
-	vmovss	DWORD PTR [rcx+60], xmm0
+	vmovss	DWORD PTR [rcx+60], xmm1
 $LN409@oddeven:
 
 ; 27   : 			if (tomb[a] > tomb[b]) {
@@ -2260,177 +2252,220 @@ $LN418@oddeven:
 	vmovss	DWORD PTR [rcx+92], xmm1
 $LN421@oddeven:
 
-; 42   : // 4x4
-; 43   : 	cmpswap(0, 1, tomb);
-; 44   : 	cmpswap(2, 3, tomb);
-; 45   : 	cmpswap(0, 2, tomb);
-; 46   : 	cmpswap(1, 3, tomb);
-; 47   : 	cmpswap(1, 2, tomb);
-; 48   : 	
-; 49   : 	cmpswap(4, 5, tomb);
-; 50   : 	cmpswap(6, 7, tomb);
-; 51   : 	cmpswap(4, 6, tomb);
-; 52   : 	cmpswap(5, 7, tomb);
-; 53   : 	cmpswap(5, 6, tomb);
-; 54   : 	
-; 55   : 	cmpswap(0, 4, tomb);
-; 56   : 	cmpswap(1, 5, tomb); //SB
-; 57   : 	cmpswap(2, 6, tomb);
-; 58   : 	//cmpswap(2, 4, tomb);
-; 59   : 	//cmpswap(1, 5, tomb);
-; 60   : 	cmpswap(3, 7, tomb);
-; 61   : 	
-; 62   : 	cmpswap(2, 4, tomb); // SB
-; 63   : 	cmpswap(3, 5, tomb);
-; 64   : 	
-; 65   : 	cmpswap(1, 2, tomb);
-; 66   : 	cmpswap(3, 4, tomb);
-; 67   : 	cmpswap(5, 6, tomb);
-; 68   : 	
-; 69   : // 4x4	
-; 70   : 	cmpswap(8, 9, tomb);
-; 71   : 	cmpswap(10, 11, tomb);
-; 72   : 	cmpswap(8, 10, tomb);
-; 73   : 	cmpswap(9, 11, tomb);
-; 74   : 	cmpswap(9, 10, tomb);
-; 75   : 	
-; 76   : 	cmpswap(12, 13, tomb);
-; 77   : 	cmpswap(14, 15, tomb);
-; 78   : 	cmpswap(12, 14, tomb);
-; 79   : 	cmpswap(13, 15, tomb);
-; 80   : 	cmpswap(13, 14, tomb);
-; 81   : 	
-; 82   : 	cmpswap(8, 12, tomb);
-; 83   : 	cmpswap(9, 13, tomb); // SB
-; 84   : 	cmpswap(10, 14, tomb);
-; 85   : 	//cmpswap(10, 12, tomb);
-; 86   : 	//cmpswap(9, 13, tomb);
-; 87   : 	cmpswap(11, 15, tomb);
-; 88   : 	
-; 89   : 	cmpswap(10, 12, tomb); // SB
-; 90   : 	cmpswap(11, 13, tomb);
-; 91   : 	
-; 92   : 	cmpswap(9, 10, tomb);
-; 93   : 	cmpswap(11, 12, tomb);
-; 94   : 	cmpswap(13, 14, tomb);
-; 95   : 	
-; 96   : 	
-; 97   : 	cmpswap(0, 8, tomb);
-; 98   : 	cmpswap(4, 12, tomb);
-; 99   : 	cmpswap(4, 8, tomb);
-; 100  : 	cmpswap(2, 10, tomb);
-; 101  : 	cmpswap(6, 14, tomb);
-; 102  : 	cmpswap(6, 10, tomb);
-; 103  : 	cmpswap(2, 4, tomb);
-; 104  : 	cmpswap(6, 8, tomb);
-; 105  : 	cmpswap(10, 12, tomb);
-; 106  : 	cmpswap(1, 9, tomb);
-; 107  : 	cmpswap(5, 13, tomb);
-; 108  : 	cmpswap(5, 9, tomb);
-; 109  : 	cmpswap(3, 11, tomb);
-; 110  : 	cmpswap(7, 15, tomb);
-; 111  : 	cmpswap(7, 11, tomb);
-; 112  : 	cmpswap(3, 5, tomb);
-; 113  : 	cmpswap(7, 9, tomb);
-; 114  : 	cmpswap(11, 13, tomb);
-; 115  : 	cmpswap(1, 2, tomb);
-; 116  : 	cmpswap(3, 4, tomb);
-; 117  : 	cmpswap(5, 6, tomb);
-; 118  : 	cmpswap(7, 8, tomb);
-; 119  : 	cmpswap(9, 10, tomb);
-; 120  : 	cmpswap(11, 12, tomb);
-; 121  : 	cmpswap(13, 14, tomb);
-; 122  : 	cmpswap(16, 17, tomb);
-; 123  : 	cmpswap(18, 19, tomb);
-; 124  : 	cmpswap(16, 18, tomb);
-; 125  : 	cmpswap(17, 19, tomb);
-; 126  : 	cmpswap(17, 18, tomb);
-; 127  : 	cmpswap(20, 21, tomb);
-; 128  : 	cmpswap(22, 23, tomb);
-; 129  : 	cmpswap(20, 22, tomb);
-; 130  : 	cmpswap(21, 23, tomb);
-; 131  : 	cmpswap(21, 22, tomb);
-; 132  : 	cmpswap(16, 20, tomb);
-; 133  : 	cmpswap(18, 22, tomb);
-; 134  : 	cmpswap(18, 20, tomb);
-; 135  : 	cmpswap(17, 21, tomb);
-; 136  : 	cmpswap(19, 23, tomb);
-; 137  : 	cmpswap(19, 21, tomb);
-; 138  : 	cmpswap(17, 18, tomb);
-; 139  : 	cmpswap(19, 20, tomb);
-; 140  : 	cmpswap(21, 22, tomb);
-; 141  : 	cmpswap(16, 24, tomb);
-; 142  : 	cmpswap(20, 24, tomb);
-; 143  : 	cmpswap(18, 20, tomb);
-; 144  : 	cmpswap(22, 24, tomb);
-; 145  : 	cmpswap(19, 21, tomb);
-; 146  : 	cmpswap(17, 18, tomb);
-; 147  : 	cmpswap(19, 20, tomb);
-; 148  : 	cmpswap(21, 22, tomb);
-; 149  : 	cmpswap(23, 24, tomb);
-; 150  : 	cmpswap(0, 16, tomb);
-; 151  : 	cmpswap(8, 24, tomb);
-; 152  : 	cmpswap(8, 16, tomb);
-; 153  : 	cmpswap(4, 20, tomb);
-; 154  : 	cmpswap(12, 20, tomb);
-; 155  : 	cmpswap(4, 8, tomb);
-; 156  : 	cmpswap(12, 16, tomb);
-; 157  : 	cmpswap(20, 24, tomb);
-; 158  : 	cmpswap(2, 18, tomb);
-; 159  : 	cmpswap(10, 18, tomb);
-; 160  : 	cmpswap(6, 22, tomb);
-; 161  : 	cmpswap(14, 22, tomb);
-; 162  : 	cmpswap(6, 10, tomb);
-; 163  : 	cmpswap(14, 18, tomb);
-; 164  : 	cmpswap(2, 4, tomb);
-; 165  : 	cmpswap(6, 8, tomb);
-; 166  : 	cmpswap(10, 12, tomb);
-; 167  : 	cmpswap(14, 16, tomb);
-; 168  : 	cmpswap(18, 20, tomb);
-; 169  : 	cmpswap(22, 24, tomb);
-; 170  : 	cmpswap(1, 17, tomb);
-; 171  : 	cmpswap(9, 17, tomb);
-; 172  : 	cmpswap(5, 21, tomb);
-; 173  : 	cmpswap(13, 21, tomb);
-; 174  : 	cmpswap(5, 9, tomb);
-; 175  : 	cmpswap(13, 17, tomb);
-; 176  : 	cmpswap(3, 19, tomb);
-; 177  : 	cmpswap(11, 19, tomb);
-; 178  : 	cmpswap(7, 23, tomb);
-; 179  : 	cmpswap(15, 23, tomb);
-; 180  : 	cmpswap(7, 11, tomb);
-; 181  : 	cmpswap(15, 19, tomb);
-; 182  : 	cmpswap(3, 5, tomb);
-; 183  : 	cmpswap(7, 9, tomb);
-; 184  : 	cmpswap(11, 13, tomb);
-; 185  : 	cmpswap(15, 17, tomb);
-; 186  : 	cmpswap(19, 21, tomb);
-; 187  : 	cmpswap(1, 2, tomb);
-; 188  : 	cmpswap(3, 4, tomb);
-; 189  : 	cmpswap(5, 6, tomb);
-; 190  : 	cmpswap(7, 8, tomb);
-; 191  : 	cmpswap(9, 10, tomb);
-; 192  : 	cmpswap(11, 12, tomb);
-; 193  : 	cmpswap(13, 14, tomb);
-; 194  : 	cmpswap(15, 16, tomb);
-; 195  : 	cmpswap(17, 18, tomb);
-; 196  : 	cmpswap(19, 20, tomb);
-; 197  : 	cmpswap(21, 22, tomb);
-; 198  : 	cmpswap(23, 24, tomb);
-; 199  : 
-; 200  : }
+; 391  : 	// 4x4
+; 392  : 	cmpswap(0, 1, tomb);
+; 393  : 	cmpswap(2, 3, tomb);
+; 394  : 	cmpswap(0, 2, tomb);
+; 395  : 	cmpswap(1, 3, tomb);
+; 396  : 	cmpswap(1, 2, tomb);
+; 397  : 
+; 398  : 	cmpswap(4, 5, tomb);
+; 399  : 	cmpswap(6, 7, tomb);
+; 400  : 	cmpswap(4, 6, tomb);
+; 401  : 	cmpswap(5, 7, tomb);
+; 402  : 	cmpswap(5, 6, tomb);
+; 403  : 
+; 404  : 	cmpswap(0, 4, tomb);
+; 405  : 	cmpswap(1, 5, tomb); //SB
+; 406  : 	cmpswap(2, 6, tomb);
+; 407  : 	//cmpswap(2, 4, tomb);
+; 408  : 	//cmpswap(1, 5, tomb);
+; 409  : 	cmpswap(3, 7, tomb);
+; 410  : 
+; 411  : 	cmpswap(2, 4, tomb); // SB
+; 412  : 	cmpswap(3, 5, tomb);
+; 413  : 
+; 414  : 	cmpswap(1, 2, tomb);
+; 415  : 	cmpswap(3, 4, tomb);
+; 416  : 	cmpswap(5, 6, tomb);
+; 417  : 
+; 418  : 	// 4x4	
+; 419  : 	cmpswap(8, 9, tomb);
+; 420  : 	cmpswap(10, 11, tomb);
+; 421  : 	cmpswap(8, 10, tomb);
+; 422  : 	cmpswap(9, 11, tomb);
+; 423  : 	cmpswap(9, 10, tomb);
+; 424  : 
+; 425  : 	cmpswap(12, 13, tomb);
+; 426  : 	cmpswap(14, 15, tomb);
+; 427  : 	cmpswap(12, 14, tomb);
+; 428  : 	cmpswap(13, 15, tomb);
+; 429  : 	cmpswap(13, 14, tomb);
+; 430  : 
+; 431  : 	cmpswap(8, 12, tomb);
+; 432  : 	cmpswap(9, 13, tomb); // SB
+; 433  : 	cmpswap(10, 14, tomb);
+; 434  : 	//cmpswap(10, 12, tomb);
+; 435  : 	//cmpswap(9, 13, tomb);
+; 436  : 	cmpswap(11, 15, tomb);
+; 437  : 
+; 438  : 	cmpswap(10, 12, tomb); // SB
+; 439  : 	cmpswap(11, 13, tomb);
+; 440  : 
+; 441  : 	cmpswap(9, 10, tomb);
+; 442  : 	cmpswap(11, 12, tomb);
+; 443  : 	cmpswap(13, 14, tomb);
+; 444  : 
+; 445  : 
+; 446  : 	cmpswap(0, 8, tomb);//
+; 447  : 	cmpswap(1, 9, tomb);//
+; 448  : 	cmpswap(2, 10, tomb);//
+; 449  : 	cmpswap(3, 11, tomb);//
+; 450  : 	cmpswap(4, 12, tomb);//
+; 451  : 	cmpswap(5, 13, tomb);//
+; 452  : 	cmpswap(6, 14, tomb);//
+; 453  : 	cmpswap(7, 15, tomb);//
+; 454  : 
+; 455  : 
+; 456  : 	cmpswap(4, 8, tomb);//2
+; 457  : 	cmpswap(5, 9, tomb);//2
+; 458  : 	cmpswap(6, 10, tomb);//2
+; 459  : 	cmpswap(7, 11, tomb);//2
+; 460  : 
+; 461  : 	cmpswap(2, 4, tomb);//3
+; 462  : 	cmpswap(3, 5, tomb);//3
+; 463  : 	cmpswap(6, 8, tomb);//???3
+; 464  : 	cmpswap(7, 9, tomb);//???3
+; 465  : 	cmpswap(10, 12, tomb);//3
+; 466  : 	cmpswap(11, 13, tomb);//3
+; 467  : 
+; 468  : 	cmpswap(1, 2, tomb);//4
+; 469  : 	cmpswap(3, 4, tomb);//4
+; 470  : 	cmpswap(5, 6, tomb);//4
+; 471  : 	cmpswap(7, 8, tomb);//4
+; 472  : 	cmpswap(9, 10, tomb);//4
+; 473  : 	cmpswap(11, 12, tomb);//4
+; 474  : 	cmpswap(13, 14, tomb);//4
+; 475  : 
+; 476  : 						  // Eddig 8x8-as (16 bemenetï¿½)
+; 477  : 
+; 478  : 						  //4x4
+; 479  : 	cmpswap(16, 17, tomb);
+; 480  : 	cmpswap(18, 19, tomb);
+; 481  : 	cmpswap(20, 21, tomb);//SB
+; 482  : 	cmpswap(22, 23, tomb);//SB
+; 483  : 
+; 484  : 	cmpswap(16, 18, tomb);
+; 485  : 	cmpswap(20, 22, tomb);
+; 486  : 	cmpswap(17, 19, tomb);
+; 487  : 	cmpswap(21, 23, tomb);//SB
+; 488  : 
+; 489  : 	cmpswap(17, 18, tomb);
+; 490  : 	//cmpswap(20, 21, tomb);
+; 491  : 	//cmpswap(22, 23, tomb);
+; 492  : 	//cmpswap(20, 22, tomb);
+; 493  : 	//cmpswap(21, 23, tomb);
+; 494  : 	cmpswap(21, 22, tomb);
+; 495  : 
+; 496  : 
+; 497  : 	cmpswap(16, 20, tomb);
+; 498  : 	cmpswap(17, 21, tomb);//SB
+; 499  : 	cmpswap(18, 22, tomb);
+; 500  : 	cmpswap(19, 23, tomb);//SB
+; 501  : 
+; 502  : 	cmpswap(18, 20, tomb);
+; 503  : 	//cmpswap(17, 21, tomb);
+; 504  : 	//cmpswap(19, 23, tomb);
+; 505  : 	cmpswap(19, 21, tomb);
+; 506  : 
+; 507  : 	cmpswap(17, 18, tomb);
+; 508  : 	cmpswap(19, 20, tomb);
+; 509  : 	cmpswap(21, 22, tomb);
+; 510  : 
+; 511  : 
+; 512  : 	cmpswap(16, 24, tomb);
+; 513  : 
+; 514  : 	cmpswap(20, 24, tomb);
+; 515  : 
+; 516  : 	//??????? TODO ?????
+; 517  : 
+; 518  : 	cmpswap(18, 20, tomb);
+; 519  : 	cmpswap(19, 21, tomb);//SB
+; 520  : 	cmpswap(22, 24, tomb);
+; 521  : 
+; 522  : 	//cmpswap(19, 21, tomb);
+; 523  : 	cmpswap(17, 18, tomb);
+; 524  : 	cmpswap(19, 20, tomb);
+; 525  : 	cmpswap(21, 22, tomb);
+; 526  : 	cmpswap(23, 24, tomb);
+; 527  : 	//Eddig egy 8x8-as (De ez csak 9 bemenetï¿½)
+; 528  : 
+; 529  : 	// 16x16 
+; 530  : 	cmpswap(0, 16, tomb);
+; 531  : 	cmpswap(1, 17, tomb);
+; 532  : 	cmpswap(2, 18, tomb);
+; 533  : 	cmpswap(3, 19, tomb);
+; 534  : 	cmpswap(4, 20, tomb);
+; 535  : 	cmpswap(5, 21, tomb);
+; 536  : 	cmpswap(6, 22, tomb);
+; 537  : 	cmpswap(7, 23, tomb);
+; 538  : 	cmpswap(8, 24, tomb);
+; 539  : 
+; 540  : 
+; 541  : 	cmpswap(8, 16, tomb);
+; 542  : 	cmpswap(9, 17, tomb);
+; 543  : 	cmpswap(10, 18, tomb);
+; 544  : 	cmpswap(11, 19, tomb);
+; 545  : 	cmpswap(12, 20, tomb);
+; 546  : 	cmpswap(13, 21, tomb);
+; 547  : 	cmpswap(14, 22, tomb);
+; 548  : 	cmpswap(15, 23, tomb);
+; 549  : 
+; 550  : 
+; 551  : 	cmpswap(4, 8, tomb);
+; 552  : 	cmpswap(5, 9, tomb);
+; 553  : 	cmpswap(6, 10, tomb);
+; 554  : 	cmpswap(7, 11, tomb);
+; 555  : 
+; 556  : 	cmpswap(12, 16, tomb);
+; 557  : 	cmpswap(13, 17, tomb);
+; 558  : 	cmpswap(14, 18, tomb);
+; 559  : 	cmpswap(15, 19, tomb);
+; 560  : 
+; 561  : 	cmpswap(20, 21, tomb);
+; 562  : 
+; 563  : 
+; 564  : 	cmpswap(2, 4, tomb);
+; 565  : 	cmpswap(3, 5, tomb);
+; 566  : 	cmpswap(6, 8, tomb);
+; 567  : 	cmpswap(7, 9, tomb);
+; 568  : 	cmpswap(10, 12, tomb);
+; 569  : 	cmpswap(11, 13, tomb);
+; 570  : 	cmpswap(14, 16, tomb);
+; 571  : 	cmpswap(15, 17, tomb);
+; 572  : 	cmpswap(18, 20, tomb);
+; 573  : 	cmpswap(19, 21, tomb);
+; 574  : 	cmpswap(22, 24, tomb);
+; 575  : 
+; 576  : 
+; 577  : 	cmpswap(1, 2, tomb);
+; 578  : 	cmpswap(3, 4, tomb);
+; 579  : 	cmpswap(5, 6, tomb);
+; 580  : 	cmpswap(7, 8, tomb);
+; 581  : 	cmpswap(9, 10, tomb);
+; 582  : 	cmpswap(11, 12, tomb);
+; 583  : 	cmpswap(13, 14, tomb);
+; 584  : 	cmpswap(15, 16, tomb);
+; 585  : 	cmpswap(17, 18, tomb);
+; 586  : 	cmpswap(19, 20, tomb);
+; 587  : 	cmpswap(21, 22, tomb);
+; 588  : 	cmpswap(23, 24, tomb);
+; 589  : }
 
-	vmovaps	xmm6, XMMWORD PTR [rsp+64]
-	vmovaps	xmm7, XMMWORD PTR [rsp+48]
-	vmovaps	xmm8, XMMWORD PTR [rsp+32]
-	vmovaps	xmm9, XMMWORD PTR [rsp+16]
-	vmovaps	xmm10, XMMWORD PTR [rsp]
-	add	rsp, 88					; 00000058H
+	vmovaps	xmm6, XMMWORD PTR [rsp+112]
+	vmovaps	xmm7, XMMWORD PTR [rsp+96]
+	vmovaps	xmm8, XMMWORD PTR [rsp+80]
+	vmovaps	xmm9, XMMWORD PTR [rsp+64]
+	vmovaps	xmm10, XMMWORD PTR [rsp+48]
+	vmovaps	xmm11, XMMWORD PTR [rsp+32]
+	vmovaps	xmm12, XMMWORD PTR [rsp+16]
+	vmovaps	xmm13, XMMWORD PTR [rsp]
+	add	rsp, 136				; 00000088H
 	ret	0
 ?oddeven@@YAXPEAM@Z ENDP				; oddeven
 _TEXT	ENDS
 ; Function compile flags: /Ogtpy
-; File d:\d_strabi\d dokumentumai\bme\heterogén számítási rendszerek\hf\private_dev\dev\heterogen_hf_cpu_batchers\heterogen_hf_szp\_src\conv_filter.cpp
+; File d:\d_strabi\d dokumentumai\bme\heterogén számítási rendszerek\hf\kismacska\hetero_hf_3\heterogen_hf_cpu_batchers\heterogen_hf_szp\_src\conv_filter.cpp
 ;	COMDAT ?med_filter@@YAXHHHHHHPEAM00@Z
 _TEXT	SEGMENT
 fval$1 = 32
@@ -2446,17 +2481,17 @@ imgFloatSrc$ = 264
 imgFloatDst$ = 272
 ?med_filter@@YAXHHHHHHPEAM00@Z PROC			; med_filter, COMDAT
 
-; 390  : {
+; 594  : {
 
 $LN44:
 
-; 391  : 	// írási bázis: 0. sor, 0. oszlop (a kimenet NEM kiterjesztett)
-; 392  : 	int wr_base = 0;
-; 393  : 	// olvasási bázis: a kiterjesztett kép bal felsõ pixele (ez az elsõ konvolúció elsõ bemeneti adata)
-; 394  : 	int rd_base = 0;
-; 395  : 	
-; 396  : 	// Végiglépkedünk a kép sorain
-; 397  : 	for (int y=0; y<imgHeight; y++)
+; 595  : 	// Ã­rÃ¡si bÃ¡zis: 0. sor, 0. oszlop (a kimenet NEM kiterjesztett)
+; 596  : 	int wr_base = 0;
+; 597  : 	// olvasÃ¡si bÃ¡zis: a kiterjesztett kÃ©p bal felsÅ‘ pixele (ez az elsÅ‘ konvolÃºciÃ³ elsÅ‘ bemeneti adata)
+; 598  : 	int rd_base = 0;
+; 599  : 	
+; 600  : 	// VÃ©giglÃ©pkedÃ¼nk a kÃ©p sorain
+; 601  : 	for (int y=0; y<imgHeight; y++)
 
 	test	ecx, ecx
 	jle	$LN42@med_filter
@@ -2468,7 +2503,7 @@ $LN44:
 	xor	rax, rsp
 	mov	QWORD PTR __$ArrayPad$[rsp], rax
 
-; 390  : {
+; 594  : {
 
 	mov	rsi, QWORD PTR imgFloatDst$[rsp]
 	mov	QWORD PTR [r11+8], rbx
@@ -2488,34 +2523,34 @@ $LN44:
 	npad	5
 $LL4@med_filter:
 
-; 398  : 	{
-; 399  : 		// A sorokon belül végiglépkedünk egy sor pixelein
-; 400  : 		for (int x=0; x<imgWidth; x++)
+; 602  : 	{
+; 603  : 		// A sorokon belÃ¼l vÃ©giglÃ©pkedÃ¼nk egy sor pixelein
+; 604  : 		for (int x=0; x<imgWidth; x++)
 
 	test	r14d, r14d
 	jle	$LN2@med_filter
 
-; 409  : 					for (int dx = 0; dx < 5; dx++) {
-; 410  : 						fval[dy * 5 + dx] = imgFloatSrc[(y*imgWidthF + x + dy*imgWidthF + dx) * 4 + rgb];
+; 613  : 					for (int dx = 0; dx < 5; dx++) {
+; 614  : 						fval[dy * 5 + dx] = imgFloatSrc[(y*imgWidthF + x + dy*imgWidthF + dx) * 4 + rgb];
 
 	mov	r9, rbp
 	mov	r10, rsi
 	mov	rdi, r14
 $LL7@med_filter:
 
-; 401  : 		{
-; 402  : 			for (int rgb = 0; rgb < 4; rgb++) {
+; 605  : 		{
+; 606  : 			for (int rgb = 0; rgb < 4; rgb++) {
 
 	mov	ebx, 4
 	npad	9
 $LL10@med_filter:
 
-; 403  : 
-; 404  : 			
-; 405  : 			// RGBA komponensek akkumulátora
-; 406  : 				float fval[25];
-; 407  : 
-; 408  : 				for (int dy = 0; dy < 5; dy++) {
+; 607  : 
+; 608  : 			
+; 609  : 			// RGBA komponensek akkumulÃ¡tora
+; 610  : 				float fval[25];
+; 611  : 
+; 612  : 				for (int dy = 0; dy < 5; dy++) {
 
 	lea	rcx, QWORD PTR fval$1[rsp+4]
 	mov	rdx, r9
@@ -2523,8 +2558,8 @@ $LL10@med_filter:
 	npad	2
 $LL13@med_filter:
 
-; 409  : 					for (int dx = 0; dx < 5; dx++) {
-; 410  : 						fval[dy * 5 + dx] = imgFloatSrc[(y*imgWidthF + x + dy*imgWidthF + dx) * 4 + rgb];
+; 613  : 					for (int dx = 0; dx < 5; dx++) {
+; 614  : 						fval[dy * 5 + dx] = imgFloatSrc[(y*imgWidthF + x + dy*imgWidthF + dx) * 4 + rgb];
 
 	mov	eax, DWORD PTR [rdx-32]
 	mov	DWORD PTR [rcx-4], eax
@@ -2541,16 +2576,16 @@ $LL13@med_filter:
 	sub	r8, 1
 	jne	SHORT $LL13@med_filter
 
-; 411  : 					}
-; 412  : 				}
-; 413  : 
-; 414  : 				oddeven(fval);
+; 615  : 					}
+; 616  : 				}
+; 617  : 
+; 618  : 				oddeven(fval);
 
 	lea	rcx, QWORD PTR fval$1[rsp]
 	call	?oddeven@@YAXPEAM@Z			; oddeven
 
-; 415  : 
-; 416  : 				imgFloatDst[(y*imgWidth + x) * 4 + rgb] = fval[12];
+; 619  : 
+; 620  : 				imgFloatDst[(y*imgWidth + x) * 4 + rgb] = fval[12];
 
 	vmovss	xmm0, DWORD PTR fval$1[rsp+48]
 	vmovss	DWORD PTR [r10], xmm0
@@ -2559,21 +2594,21 @@ $LL13@med_filter:
 	sub	rbx, 1
 	jne	SHORT $LL10@med_filter
 
-; 398  : 	{
-; 399  : 		// A sorokon belül végiglépkedünk egy sor pixelein
-; 400  : 		for (int x=0; x<imgWidth; x++)
+; 602  : 	{
+; 603  : 		// A sorokon belÃ¼l vÃ©giglÃ©pkedÃ¼nk egy sor pixelein
+; 604  : 		for (int x=0; x<imgWidth; x++)
 
 	sub	rdi, 1
 	jne	SHORT $LL7@med_filter
 $LN2@med_filter:
 
-; 391  : 	// írási bázis: 0. sor, 0. oszlop (a kimenet NEM kiterjesztett)
-; 392  : 	int wr_base = 0;
-; 393  : 	// olvasási bázis: a kiterjesztett kép bal felsõ pixele (ez az elsõ konvolúció elsõ bemeneti adata)
-; 394  : 	int rd_base = 0;
-; 395  : 	
-; 396  : 	// Végiglépkedünk a kép sorain
-; 397  : 	for (int y=0; y<imgHeight; y++)
+; 595  : 	// Ã­rÃ¡si bÃ¡zis: 0. sor, 0. oszlop (a kimenet NEM kiterjesztett)
+; 596  : 	int wr_base = 0;
+; 597  : 	// olvasÃ¡si bÃ¡zis: a kiterjesztett kÃ©p bal felsÅ‘ pixele (ez az elsÅ‘ konvolÃºciÃ³ elsÅ‘ bemeneti adata)
+; 598  : 	int rd_base = 0;
+; 599  : 	
+; 600  : 	// VÃ©giglÃ©pkedÃ¼nk a kÃ©p sorain
+; 601  : 	for (int y=0; y<imgHeight; y++)
 
 	add	rbp, r11
 	add	rsi, r12
@@ -2585,12 +2620,12 @@ $LN2@med_filter:
 	mov	rbp, QWORD PTR [rsp+224]
 	mov	rbx, QWORD PTR [rsp+208]
 
-; 417  : 		
-; 418  : 
-; 419  : 			}
-; 420  : 		}
-; 421  : 	}
-; 422  : }
+; 621  : 		
+; 622  : 
+; 623  : 			}
+; 624  : 		}
+; 625  : 	}
+; 626  : }
 
 	mov	rcx, QWORD PTR __$ArrayPad$[rsp]
 	xor	rcx, rsp
