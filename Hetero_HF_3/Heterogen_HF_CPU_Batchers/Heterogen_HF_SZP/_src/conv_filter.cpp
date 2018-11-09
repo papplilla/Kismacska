@@ -22,7 +22,7 @@
 	}
 }*/
 
-inline void cmpswap(int a, int b, float * tomb) {
+/*inline void cmpswap(int a, int b, float * tomb) {
 	float buf;
 			if (tomb[a] > tomb[b]) {
 				buf = tomb[b];
@@ -30,7 +30,7 @@ inline void cmpswap(int a, int b, float * tomb) {
 				tomb[a] = buf;
 			}
 }
-
+*/
 inline void cmpswap2(int a, int b, float * tomb) {
 	float buf1 = tomb[a];
 	float buf2 = tomb[b];
@@ -38,554 +38,198 @@ inline void cmpswap2(int a, int b, float * tomb) {
 	tomb[b] = std::min(buf1, buf2);
 }
 
-#if 0
-void oddeven(float * tomb) {
-// 4x4
-	cmpswap(0, 1, tomb);
-	cmpswap(2, 3, tomb);
-	cmpswap(0, 2, tomb);
-	cmpswap(1, 3, tomb);
-	cmpswap(1, 2, tomb);
-	
-	cmpswap(4, 5, tomb);
-	cmpswap(6, 7, tomb);
-	cmpswap(4, 6, tomb);
-	cmpswap(5, 7, tomb);
-	cmpswap(5, 6, tomb);
-	
-	cmpswap(0, 4, tomb);
-	cmpswap(1, 5, tomb); //SB
-	cmpswap(2, 6, tomb);
-	//cmpswap(2, 4, tomb);
-	//cmpswap(1, 5, tomb);
-	cmpswap(3, 7, tomb);
-	
-	cmpswap(2, 4, tomb); // SB
-	cmpswap(3, 5, tomb);
-	
-	cmpswap(1, 2, tomb);
-	cmpswap(3, 4, tomb);
-	cmpswap(5, 6, tomb);
-	
-// 4x4	
-	cmpswap(8, 9, tomb);
-	cmpswap(10, 11, tomb);
-	cmpswap(8, 10, tomb);
-	cmpswap(9, 11, tomb);
-	cmpswap(9, 10, tomb);
-	
-	cmpswap(12, 13, tomb);
-	cmpswap(14, 15, tomb);
-	cmpswap(12, 14, tomb);
-	cmpswap(13, 15, tomb);
-	cmpswap(13, 14, tomb);
-	
-	cmpswap(8, 12, tomb);
-	cmpswap(9, 13, tomb); // SB
-	cmpswap(10, 14, tomb);
-	//cmpswap(10, 12, tomb);
-	//cmpswap(9, 13, tomb);
-	cmpswap(11, 15, tomb);
-	
-	cmpswap(10, 12, tomb); // SB
-	cmpswap(11, 13, tomb);
-	
-	cmpswap(9, 10, tomb);
-	cmpswap(11, 12, tomb);
-	cmpswap(13, 14, tomb);
-	
-	
-	cmpswap(0, 8, tomb);
-	cmpswap(4, 12, tomb);
-	cmpswap(4, 8, tomb);
-	cmpswap(2, 10, tomb);
-	cmpswap(6, 14, tomb);
-	cmpswap(6, 10, tomb);
-	cmpswap(2, 4, tomb);
-	cmpswap(6, 8, tomb);
-	cmpswap(10, 12, tomb);
-	cmpswap(1, 9, tomb);
-	cmpswap(5, 13, tomb);
-	cmpswap(5, 9, tomb);
-	cmpswap(3, 11, tomb);
-	cmpswap(7, 15, tomb);
-	cmpswap(7, 11, tomb);
-	cmpswap(3, 5, tomb);
-	cmpswap(7, 9, tomb);
-	cmpswap(11, 13, tomb);
-	cmpswap(1, 2, tomb);
-	cmpswap(3, 4, tomb);
-	cmpswap(5, 6, tomb);
-	cmpswap(7, 8, tomb);
-	cmpswap(9, 10, tomb);
-	cmpswap(11, 12, tomb);
-	cmpswap(13, 14, tomb);
-	cmpswap(16, 17, tomb);
-	cmpswap(18, 19, tomb);
-	cmpswap(16, 18, tomb);
-	cmpswap(17, 19, tomb);
-	cmpswap(17, 18, tomb);
-	cmpswap(20, 21, tomb);
-	cmpswap(22, 23, tomb);
-	cmpswap(20, 22, tomb);
-	cmpswap(21, 23, tomb);
-	cmpswap(21, 22, tomb);
-	cmpswap(16, 20, tomb);
-	cmpswap(18, 22, tomb);
-	cmpswap(18, 20, tomb);
-	cmpswap(17, 21, tomb);
-	cmpswap(19, 23, tomb);
-	cmpswap(19, 21, tomb);
-	cmpswap(17, 18, tomb);
-	cmpswap(19, 20, tomb);
-	cmpswap(21, 22, tomb);
-	cmpswap(16, 24, tomb);
-	cmpswap(20, 24, tomb);
-	cmpswap(18, 20, tomb);
-	cmpswap(22, 24, tomb);
-	cmpswap(19, 21, tomb);
-	cmpswap(17, 18, tomb);
-	cmpswap(19, 20, tomb);
-	cmpswap(21, 22, tomb);
-	cmpswap(23, 24, tomb);
-	cmpswap(0, 16, tomb);
-	cmpswap(8, 24, tomb);
-	cmpswap(8, 16, tomb);
-	cmpswap(4, 20, tomb);
-	cmpswap(12, 20, tomb);
-	cmpswap(4, 8, tomb);
-	cmpswap(12, 16, tomb);
-	cmpswap(20, 24, tomb);
-	cmpswap(2, 18, tomb);
-	cmpswap(10, 18, tomb);
-	cmpswap(6, 22, tomb);
-	cmpswap(14, 22, tomb);
-	cmpswap(6, 10, tomb);
-	cmpswap(14, 18, tomb);
-	cmpswap(2, 4, tomb);
-	cmpswap(6, 8, tomb);
-	cmpswap(10, 12, tomb);
-	cmpswap(14, 16, tomb);
-	cmpswap(18, 20, tomb);
-	cmpswap(22, 24, tomb);
-	cmpswap(1, 17, tomb);
-	cmpswap(9, 17, tomb);
-	cmpswap(5, 21, tomb);
-	cmpswap(13, 21, tomb);
-	cmpswap(5, 9, tomb);
-	cmpswap(13, 17, tomb);
-	cmpswap(3, 19, tomb);
-	cmpswap(11, 19, tomb);
-	cmpswap(7, 23, tomb);
-	cmpswap(15, 23, tomb);
-	cmpswap(7, 11, tomb);
-	cmpswap(15, 19, tomb);
-	cmpswap(3, 5, tomb);
-	cmpswap(7, 9, tomb);
-	cmpswap(11, 13, tomb);
-	cmpswap(15, 17, tomb);
-	cmpswap(19, 21, tomb);
-	cmpswap(1, 2, tomb);
-	cmpswap(3, 4, tomb);
-	cmpswap(5, 6, tomb);
-	cmpswap(7, 8, tomb);
-	cmpswap(9, 10, tomb);
-	cmpswap(11, 12, tomb);
-	cmpswap(13, 14, tomb);
-	cmpswap(15, 16, tomb);
-	cmpswap(17, 18, tomb);
-	cmpswap(19, 20, tomb);
-	cmpswap(21, 22, tomb);
-	cmpswap(23, 24, tomb);
 
-}
-
-void oddevenSB(float * tomb) {
-// 4x4
-	cmpswap(0, 1, tomb);
-	cmpswap(2, 3, tomb);
-	cmpswap(0, 2, tomb);
-	cmpswap(1, 3, tomb);
-	cmpswap(1, 2, tomb);
+#define PIXEL_COMPARE_AND_SWAP(x, y) if (tomb[(x)] > tomb[(y)]) { tmp = tomb[(y)];tomb[(y)] = tomb[(x)];tomb[(x)] = tmp;	}	
 	
-	cmpswap(4, 5, tomb);
-	cmpswap(6, 7, tomb);
-	cmpswap(4, 6, tomb);
-	cmpswap(5, 7, tomb);
-	cmpswap(5, 6, tomb);
-	
-	cmpswap(0, 4, tomb);
-	cmpswap(1, 5, tomb); //SB
-	cmpswap(2, 6, tomb);
-	//cmpswap(2, 4, tomb);
-	//cmpswap(1, 5, tomb);
-	cmpswap(3, 7, tomb);
-	
-	cmpswap(2, 4, tomb); // SB
-	cmpswap(3, 5, tomb);
-	
-	cmpswap(1, 2, tomb);
-	cmpswap(3, 4, tomb);
-	cmpswap(5, 6, tomb);
-	
-// 4x4	
-	cmpswap(8, 9, tomb);
-	cmpswap(10, 11, tomb);
-	cmpswap(8, 10, tomb);
-	cmpswap(9, 11, tomb);
-	cmpswap(9, 10, tomb);
-	
-	cmpswap(12, 13, tomb);
-	cmpswap(14, 15, tomb);
-	cmpswap(12, 14, tomb);
-	cmpswap(13, 15, tomb);
-	cmpswap(13, 14, tomb);
-	
-	cmpswap(8, 12, tomb);
-	cmpswap(9, 13, tomb); // SB
-	cmpswap(10, 14, tomb);
-	//cmpswap(10, 12, tomb);
-	//cmpswap(9, 13, tomb);
-	cmpswap(11, 15, tomb);
-	
-	cmpswap(10, 12, tomb); // SB
-	cmpswap(11, 13, tomb);
-	
-	cmpswap(9, 10, tomb);
-	cmpswap(11, 12, tomb);
-	cmpswap(13, 14, tomb);
-	
-	
-	cmpswap(0, 8, tomb);//
-	cmpswap(4, 12, tomb);//
-	cmpswap(4, 8, tomb);//2
-	cmpswap(2, 10, tomb);//
-	cmpswap(6, 14, tomb);//
-	cmpswap(6, 10, tomb);//2
-	cmpswap(2, 4, tomb);//3
-	cmpswap(6, 8, tomb);//???3
-	cmpswap(10, 12, tomb);//3
-	cmpswap(1, 9, tomb);//
-	cmpswap(5, 13, tomb);//
-	cmpswap(5, 9, tomb);//2
-	cmpswap(3, 11, tomb);//
-	cmpswap(7, 15, tomb);//
-	cmpswap(7, 11, tomb);//2
-	cmpswap(3, 5, tomb);//3
-	cmpswap(7, 9, tomb);//???3
-	cmpswap(11, 13, tomb);//3
-	cmpswap(1, 2, tomb);//4
-	cmpswap(3, 4, tomb);//4
-	cmpswap(5, 6, tomb);//4
-	cmpswap(7, 8, tomb);//4
-	cmpswap(9, 10, tomb);//4
-	cmpswap(11, 12, tomb);//4
-	cmpswap(13, 14, tomb);//4
-// Eddig 8x8-as (16 bemenetű)
-	
-//4x4
-	cmpswap(16, 17, tomb);
-	cmpswap(18, 19, tomb);
-	cmpswap(20, 21, tomb);//SB
-	cmpswap(22, 23, tomb);//SB
-	
-	cmpswap(16, 18, tomb);
-	cmpswap(20, 22, tomb);
-	cmpswap(17, 19, tomb);
-	cmpswap(21, 23, tomb);//SB
-	
-	cmpswap(17, 18, tomb);
-	//cmpswap(20, 21, tomb);
-	//cmpswap(22, 23, tomb);
-	//cmpswap(20, 22, tomb);
-	//cmpswap(21, 23, tomb);
-	cmpswap(21, 22, tomb);
-	
-	
-	cmpswap(16, 20, tomb);
-	cmpswap(17, 21, tomb);//SB
-	cmpswap(18, 22, tomb);
-	cmpswap(19, 23, tomb);//SB
-	
-	cmpswap(18, 20, tomb);
-	//cmpswap(17, 21, tomb);
-	//cmpswap(19, 23, tomb);
-	cmpswap(19, 21, tomb);
-	
-	cmpswap(17, 18, tomb);
-	cmpswap(19, 20, tomb);
-	cmpswap(21, 22, tomb);
-	
-	
-	cmpswap(16, 24, tomb);
-	
-	cmpswap(20, 24, tomb);
-	
-	cmpswap(18, 20, tomb);
-	cmpswap(19, 21, tomb);//SB
-	cmpswap(22, 24, tomb);
-	
-	//cmpswap(19, 21, tomb);
-	cmpswap(17, 18, tomb);
-	cmpswap(19, 20, tomb);
-	cmpswap(21, 22, tomb);
-	cmpswap(23, 24, tomb);
-//Eddig egy 8x8-as (De ez csak 9 bemenetű)
-	
-	cmpswap(0, 16, tomb);
-	cmpswap(8, 24, tomb);
-	cmpswap(8, 16, tomb);
-	cmpswap(4, 20, tomb);
-	cmpswap(12, 20, tomb);
-	cmpswap(4, 8, tomb);
-	cmpswap(12, 16, tomb);
-	cmpswap(20, 24, tomb);
-	cmpswap(2, 18, tomb);
-	cmpswap(10, 18, tomb);
-	cmpswap(6, 22, tomb);
-	cmpswap(14, 22, tomb);
-	cmpswap(6, 10, tomb);
-	cmpswap(14, 18, tomb);
-	cmpswap(2, 4, tomb);
-	cmpswap(6, 8, tomb);
-	cmpswap(10, 12, tomb);
-	cmpswap(14, 16, tomb);
-	cmpswap(18, 20, tomb);
-	cmpswap(22, 24, tomb);
-	cmpswap(1, 17, tomb);
-	cmpswap(9, 17, tomb);
-	cmpswap(5, 21, tomb);
-	cmpswap(13, 21, tomb);
-	cmpswap(5, 9, tomb);
-	cmpswap(13, 17, tomb);
-	cmpswap(3, 19, tomb);
-	cmpswap(11, 19, tomb);
-	cmpswap(7, 23, tomb);
-	cmpswap(15, 23, tomb);
-	cmpswap(7, 11, tomb);
-	cmpswap(15, 19, tomb);
-	cmpswap(3, 5, tomb);
-	cmpswap(7, 9, tomb);
-	cmpswap(11, 13, tomb);
-	cmpswap(15, 17, tomb);
-	cmpswap(19, 21, tomb);
-	cmpswap(1, 2, tomb);
-	cmpswap(3, 4, tomb);
-	cmpswap(5, 6, tomb);
-	cmpswap(7, 8, tomb);
-	cmpswap(9, 10, tomb);
-	cmpswap(11, 12, tomb);
-	cmpswap(13, 14, tomb);
-	cmpswap(15, 16, tomb);
-	cmpswap(17, 18, tomb);
-	cmpswap(19, 20, tomb);
-	cmpswap(21, 22, tomb);
-	cmpswap(23, 24, tomb);
-
-}
-
-
-#endif
 
 void oddeven(float * tomb) {
+	float tmp;
 	// 4x4
-	cmpswap(0, 1, tomb);
-	cmpswap(2, 3, tomb);
-	cmpswap(0, 2, tomb);
-	cmpswap(1, 3, tomb);
-	cmpswap(1, 2, tomb);
+	PIXEL_COMPARE_AND_SWAP(0, 1);
+	PIXEL_COMPARE_AND_SWAP(2, 3);
+	PIXEL_COMPARE_AND_SWAP(0, 2);
+	PIXEL_COMPARE_AND_SWAP(1, 3);
+	PIXEL_COMPARE_AND_SWAP(1, 2);
+	//printf("Hello");
+	PIXEL_COMPARE_AND_SWAP(4, 5);
+	PIXEL_COMPARE_AND_SWAP(6, 7);
+	PIXEL_COMPARE_AND_SWAP(4, 6);
+	PIXEL_COMPARE_AND_SWAP(5, 7);
+	PIXEL_COMPARE_AND_SWAP(5, 6);
 
-	cmpswap(4, 5, tomb);
-	cmpswap(6, 7, tomb);
-	cmpswap(4, 6, tomb);
-	cmpswap(5, 7, tomb);
-	cmpswap(5, 6, tomb);
+	PIXEL_COMPARE_AND_SWAP(0, 4);
+	PIXEL_COMPARE_AND_SWAP(1, 5); 
+	PIXEL_COMPARE_AND_SWAP(2, 6);
+	PIXEL_COMPARE_AND_SWAP(3, 7);
 
-	cmpswap(0, 4, tomb);
-	cmpswap(1, 5, tomb); //SB
-	cmpswap(2, 6, tomb);
-	//cmpswap(2, 4, tomb);
-	//cmpswap(1, 5, tomb);
-	cmpswap(3, 7, tomb);
+	PIXEL_COMPARE_AND_SWAP(2, 4); 
+	PIXEL_COMPARE_AND_SWAP(3, 5);
 
-	cmpswap(2, 4, tomb); // SB
-	cmpswap(3, 5, tomb);
-
-	cmpswap(1, 2, tomb);
-	cmpswap(3, 4, tomb);
-	cmpswap(5, 6, tomb);
+	PIXEL_COMPARE_AND_SWAP(1, 2);
+	PIXEL_COMPARE_AND_SWAP(3, 4);
+	PIXEL_COMPARE_AND_SWAP(5, 6);
 
 	// 4x4	
-	cmpswap(8, 9, tomb);
-	cmpswap(10, 11, tomb);
-	cmpswap(8, 10, tomb);
-	cmpswap(9, 11, tomb);
-	cmpswap(9, 10, tomb);
+	PIXEL_COMPARE_AND_SWAP(8, 9);
+	PIXEL_COMPARE_AND_SWAP(10, 11);
+	PIXEL_COMPARE_AND_SWAP(8, 10);
+	PIXEL_COMPARE_AND_SWAP(9, 11);
+	PIXEL_COMPARE_AND_SWAP(9, 10);
 
-	cmpswap(12, 13, tomb);
-	cmpswap(14, 15, tomb);
-	cmpswap(12, 14, tomb);
-	cmpswap(13, 15, tomb);
-	cmpswap(13, 14, tomb);
+	PIXEL_COMPARE_AND_SWAP(12, 13);
+	PIXEL_COMPARE_AND_SWAP(14, 15);
+	PIXEL_COMPARE_AND_SWAP(12, 14);
+	PIXEL_COMPARE_AND_SWAP(13, 15);
+	PIXEL_COMPARE_AND_SWAP(13, 14);
 
-	cmpswap(8, 12, tomb);
-	cmpswap(9, 13, tomb); // SB
-	cmpswap(10, 14, tomb);
-	//cmpswap(10, 12, tomb);
-	//cmpswap(9, 13, tomb);
-	cmpswap(11, 15, tomb);
+	PIXEL_COMPARE_AND_SWAP(8, 12);
+	PIXEL_COMPARE_AND_SWAP(9, 13); 
+	PIXEL_COMPARE_AND_SWAP(10, 14);
+	PIXEL_COMPARE_AND_SWAP(11, 15);
 
-	cmpswap(10, 12, tomb); // SB
-	cmpswap(11, 13, tomb);
+	PIXEL_COMPARE_AND_SWAP(10, 12); 
+	PIXEL_COMPARE_AND_SWAP(11, 13);
 
-	cmpswap(9, 10, tomb);
-	cmpswap(11, 12, tomb);
-	cmpswap(13, 14, tomb);
+	PIXEL_COMPARE_AND_SWAP(9, 10);
+	PIXEL_COMPARE_AND_SWAP(11, 12);
+	PIXEL_COMPARE_AND_SWAP(13, 14);
 
 
-	cmpswap(0, 8, tomb);//
-	cmpswap(1, 9, tomb);//
-	cmpswap(2, 10, tomb);//
-	cmpswap(3, 11, tomb);//
-	cmpswap(4, 12, tomb);//
-	cmpswap(5, 13, tomb);//
-	cmpswap(6, 14, tomb);//
-	cmpswap(7, 15, tomb);//
+	PIXEL_COMPARE_AND_SWAP(0, 8); 
+	PIXEL_COMPARE_AND_SWAP(1, 9); 
+	PIXEL_COMPARE_AND_SWAP(2, 10); 
+	PIXEL_COMPARE_AND_SWAP(3, 11); 
+	PIXEL_COMPARE_AND_SWAP(4, 12); 
+	PIXEL_COMPARE_AND_SWAP(5, 13); 
+	PIXEL_COMPARE_AND_SWAP(6, 14); 
+	PIXEL_COMPARE_AND_SWAP(7, 15); 
 
 
-	cmpswap(4, 8, tomb);//2
-	cmpswap(5, 9, tomb);//2
-	cmpswap(6, 10, tomb);//2
-	cmpswap(7, 11, tomb);//2
+	PIXEL_COMPARE_AND_SWAP(4, 8); 
+	PIXEL_COMPARE_AND_SWAP(5, 9); 
+	PIXEL_COMPARE_AND_SWAP(6, 10); 
+	PIXEL_COMPARE_AND_SWAP(7, 11); 
 
-	cmpswap(2, 4, tomb);//3
-	cmpswap(3, 5, tomb);//3
-	cmpswap(6, 8, tomb);//???3
-	cmpswap(7, 9, tomb);//???3
-	cmpswap(10, 12, tomb);//3
-	cmpswap(11, 13, tomb);//3
+	PIXEL_COMPARE_AND_SWAP(2, 4); 
+	PIXEL_COMPARE_AND_SWAP(3, 5); 
+	PIXEL_COMPARE_AND_SWAP(6, 8);
+	PIXEL_COMPARE_AND_SWAP(7, 9);
+	PIXEL_COMPARE_AND_SWAP(10, 12); 
+	PIXEL_COMPARE_AND_SWAP(11, 13); 
 
-	cmpswap(1, 2, tomb);//4
-	cmpswap(3, 4, tomb);//4
-	cmpswap(5, 6, tomb);//4
-	cmpswap(7, 8, tomb);//4
-	cmpswap(9, 10, tomb);//4
-	cmpswap(11, 12, tomb);//4
-	cmpswap(13, 14, tomb);//4
+	PIXEL_COMPARE_AND_SWAP(1, 2); 
+	PIXEL_COMPARE_AND_SWAP(3, 4); 
+	PIXEL_COMPARE_AND_SWAP(5, 6); 
+	PIXEL_COMPARE_AND_SWAP(7, 8); 
+	PIXEL_COMPARE_AND_SWAP(9, 10); 
+	PIXEL_COMPARE_AND_SWAP(11, 12); 
+	PIXEL_COMPARE_AND_SWAP(13, 14); 
 
-						  // Eddig 8x8-as (16 bemenet�)
+// Eddig 8x8-as (16 bemenet)
 
-						  //4x4
-	cmpswap(16, 17, tomb);
-	cmpswap(18, 19, tomb);
-	cmpswap(20, 21, tomb);//SB
-	cmpswap(22, 23, tomb);//SB
+	//4x4
+	PIXEL_COMPARE_AND_SWAP(16, 17);
+	PIXEL_COMPARE_AND_SWAP(18, 19);
+	PIXEL_COMPARE_AND_SWAP(20, 21);
+	PIXEL_COMPARE_AND_SWAP(22, 23);
 
-	cmpswap(16, 18, tomb);
-	cmpswap(20, 22, tomb);
-	cmpswap(17, 19, tomb);
-	cmpswap(21, 23, tomb);//SB
+	PIXEL_COMPARE_AND_SWAP(16, 18);
+	PIXEL_COMPARE_AND_SWAP(20, 22);
+	PIXEL_COMPARE_AND_SWAP(17, 19);
+	PIXEL_COMPARE_AND_SWAP(21, 23);
 
-	cmpswap(17, 18, tomb);
-	//cmpswap(20, 21, tomb);
-	//cmpswap(22, 23, tomb);
-	//cmpswap(20, 22, tomb);
-	//cmpswap(21, 23, tomb);
-	cmpswap(21, 22, tomb);
+	PIXEL_COMPARE_AND_SWAP(17, 18);
+	PIXEL_COMPARE_AND_SWAP(21, 22);
 
 
-	cmpswap(16, 20, tomb);
-	cmpswap(17, 21, tomb);//SB
-	cmpswap(18, 22, tomb);
-	cmpswap(19, 23, tomb);//SB
+	PIXEL_COMPARE_AND_SWAP(16, 20);
+	PIXEL_COMPARE_AND_SWAP(17, 21);
+	PIXEL_COMPARE_AND_SWAP(18, 22);
+	PIXEL_COMPARE_AND_SWAP(19, 23);
 
-	cmpswap(18, 20, tomb);
-	//cmpswap(17, 21, tomb);
-	//cmpswap(19, 23, tomb);
-	cmpswap(19, 21, tomb);
+	PIXEL_COMPARE_AND_SWAP(18, 20);
+	PIXEL_COMPARE_AND_SWAP(19, 21);
 
-	cmpswap(17, 18, tomb);
-	cmpswap(19, 20, tomb);
-	cmpswap(21, 22, tomb);
+	PIXEL_COMPARE_AND_SWAP(17, 18);
+	PIXEL_COMPARE_AND_SWAP(19, 20);
+	PIXEL_COMPARE_AND_SWAP(21, 22);
 
 
-	cmpswap(16, 24, tomb);
+	PIXEL_COMPARE_AND_SWAP(16, 24);
 
-	cmpswap(20, 24, tomb);
+	PIXEL_COMPARE_AND_SWAP(20, 24);
 
-	//??????? TODO ?????
+	PIXEL_COMPARE_AND_SWAP(18, 20);
+	PIXEL_COMPARE_AND_SWAP(19, 21);
+	PIXEL_COMPARE_AND_SWAP(22, 24);
 
-	cmpswap(18, 20, tomb);
-	cmpswap(19, 21, tomb);//SB
-	cmpswap(22, 24, tomb);
+	//cmpswap(19, 21);
+	PIXEL_COMPARE_AND_SWAP(17, 18);
+	PIXEL_COMPARE_AND_SWAP(19, 20);
+	PIXEL_COMPARE_AND_SWAP(21, 22);
+	PIXEL_COMPARE_AND_SWAP(23, 24);
+	//Eddig egy 8x8-as (De ez csak 9 bemenet)
 
-	//cmpswap(19, 21, tomb);
-	cmpswap(17, 18, tomb);
-	cmpswap(19, 20, tomb);
-	cmpswap(21, 22, tomb);
-	cmpswap(23, 24, tomb);
-	//Eddig egy 8x8-as (De ez csak 9 bemenet�)
-
-	// 16x16 
-	cmpswap(0, 16, tomb);
-	cmpswap(1, 17, tomb);
-	cmpswap(2, 18, tomb);
-	cmpswap(3, 19, tomb);
-	cmpswap(4, 20, tomb);
-	cmpswap(5, 21, tomb);
-	cmpswap(6, 22, tomb);
-	cmpswap(7, 23, tomb);
-	cmpswap(8, 24, tomb);
+// 16x16 
+	PIXEL_COMPARE_AND_SWAP(0, 16);
+	PIXEL_COMPARE_AND_SWAP(1, 17);
+	PIXEL_COMPARE_AND_SWAP(2, 18);
+	PIXEL_COMPARE_AND_SWAP(3, 19);
+	PIXEL_COMPARE_AND_SWAP(4, 20);
+	PIXEL_COMPARE_AND_SWAP(5, 21);
+	PIXEL_COMPARE_AND_SWAP(6, 22);
+	PIXEL_COMPARE_AND_SWAP(7, 23);
+	PIXEL_COMPARE_AND_SWAP(8, 24);
 
 
-	cmpswap(8, 16, tomb);
-	cmpswap(9, 17, tomb);
-	cmpswap(10, 18, tomb);
-	cmpswap(11, 19, tomb);
-	cmpswap(12, 20, tomb);
-	cmpswap(13, 21, tomb);
-	cmpswap(14, 22, tomb);
-	cmpswap(15, 23, tomb);
+	PIXEL_COMPARE_AND_SWAP(8, 16);
+	PIXEL_COMPARE_AND_SWAP(9, 17);
+	PIXEL_COMPARE_AND_SWAP(10, 18);
+	PIXEL_COMPARE_AND_SWAP(11, 19);
+	PIXEL_COMPARE_AND_SWAP(12, 20);
+	PIXEL_COMPARE_AND_SWAP(13, 21);
+	PIXEL_COMPARE_AND_SWAP(14, 22);
+	PIXEL_COMPARE_AND_SWAP(15, 23);
 
 
-	cmpswap(4, 8, tomb);
-	cmpswap(5, 9, tomb);
-	cmpswap(6, 10, tomb);
-	cmpswap(7, 11, tomb);
+	PIXEL_COMPARE_AND_SWAP(4, 8);
+	PIXEL_COMPARE_AND_SWAP(5, 9);
+	PIXEL_COMPARE_AND_SWAP(6, 10);
+	PIXEL_COMPARE_AND_SWAP(7, 11);
 
-	cmpswap(12, 16, tomb);
-	cmpswap(13, 17, tomb);
-	cmpswap(14, 18, tomb);
-	cmpswap(15, 19, tomb);
+	PIXEL_COMPARE_AND_SWAP(12, 16);
+	PIXEL_COMPARE_AND_SWAP(13, 17);
+	PIXEL_COMPARE_AND_SWAP(14, 18);
+	PIXEL_COMPARE_AND_SWAP(15, 19);
 
-	cmpswap(20, 21, tomb);
-
-
-	cmpswap(2, 4, tomb);
-	cmpswap(3, 5, tomb);
-	cmpswap(6, 8, tomb);
-	cmpswap(7, 9, tomb);
-	cmpswap(10, 12, tomb);
-	cmpswap(11, 13, tomb);
-	cmpswap(14, 16, tomb);
-	cmpswap(15, 17, tomb);
-	cmpswap(18, 20, tomb);
-	cmpswap(19, 21, tomb);
-	cmpswap(22, 24, tomb);
+	PIXEL_COMPARE_AND_SWAP(20, 21);
 
 
-	cmpswap(1, 2, tomb);
-	cmpswap(3, 4, tomb);
-	cmpswap(5, 6, tomb);
-	cmpswap(7, 8, tomb);
-	cmpswap(9, 10, tomb);
-	cmpswap(11, 12, tomb);
-	cmpswap(13, 14, tomb);
-	cmpswap(15, 16, tomb);
-	cmpswap(17, 18, tomb);
-	cmpswap(19, 20, tomb);
-	cmpswap(21, 22, tomb);
-	cmpswap(23, 24, tomb);
+	PIXEL_COMPARE_AND_SWAP(2, 4);
+	PIXEL_COMPARE_AND_SWAP(3, 5);
+	PIXEL_COMPARE_AND_SWAP(6, 8);
+	PIXEL_COMPARE_AND_SWAP(7, 9);
+	PIXEL_COMPARE_AND_SWAP(10, 12);
+	PIXEL_COMPARE_AND_SWAP(11, 13);
+	PIXEL_COMPARE_AND_SWAP(14, 16);
+	PIXEL_COMPARE_AND_SWAP(15, 17);
+	PIXEL_COMPARE_AND_SWAP(18, 20);
+	PIXEL_COMPARE_AND_SWAP(19, 21);
+	PIXEL_COMPARE_AND_SWAP(22, 24);
+
+
+	PIXEL_COMPARE_AND_SWAP(1, 2);
+	PIXEL_COMPARE_AND_SWAP(3, 4);
+	PIXEL_COMPARE_AND_SWAP(5, 6);
+	PIXEL_COMPARE_AND_SWAP(7, 8);
+	PIXEL_COMPARE_AND_SWAP(9, 10);
+	PIXEL_COMPARE_AND_SWAP(11, 12);
+	PIXEL_COMPARE_AND_SWAP(13, 14);
+	PIXEL_COMPARE_AND_SWAP(15, 16);
+	PIXEL_COMPARE_AND_SWAP(17, 18);
+	PIXEL_COMPARE_AND_SWAP(19, 20);
+	PIXEL_COMPARE_AND_SWAP(21, 22);
+	PIXEL_COMPARE_AND_SWAP(23, 24);
 }
 
 void med_filter(int imgHeight, int imgWidth, int imgHeightF, int imgWidthF,
@@ -618,8 +262,6 @@ void med_filter(int imgHeight, int imgWidth, int imgHeightF, int imgWidthF,
 				oddeven(fval);
 
 				imgFloatDst[(y*imgWidth + x) * 4 + rgb] = fval[12];
-		
-
 			}
 		}
 	}

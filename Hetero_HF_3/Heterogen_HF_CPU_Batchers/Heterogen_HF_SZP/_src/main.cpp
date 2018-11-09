@@ -335,5 +335,7 @@ for (int r=0; r<RUNS; r++)
 	ilEnable(IL_FILE_OVERWRITE);
     ilSaveImage((const char*)("output.jpg"));
 	ilDeleteImages(1, &ilImg);
+
+
 }
 
