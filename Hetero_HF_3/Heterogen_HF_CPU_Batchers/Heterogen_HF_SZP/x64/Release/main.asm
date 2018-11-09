@@ -72,13 +72,13 @@ pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$1$main DD imagerel $LN102@main+314
-	DD	imagerel $LN102@main+1599
+	DD	imagerel $LN102@main+1609
 	DD	imagerel $chain$1$main
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
-$pdata$2$main DD imagerel $LN102@main+1599
-	DD	imagerel $LN102@main+2311
+$pdata$2$main DD imagerel $LN102@main+1609
+	DD	imagerel $LN102@main+2327
 	DD	imagerel $chain$2$main
 pdata	ENDS
 ;	COMDAT pdata
@@ -109,7 +109,7 @@ xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
 $chain$2$main DD 020021H
-	DD	030f400H
+	DD	030e400H
 	DD	imagerel $LN102@main
 	DD	imagerel $LN102@main+43
 	DD	imagerel $unwind$main
@@ -117,7 +117,7 @@ xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
 $chain$1$main DD 020821H
-	DD	030f408H
+	DD	030e408H
 	DD	imagerel $LN102@main+43
 	DD	imagerel $LN102@main+314
 	DD	imagerel $chain$0$main
@@ -136,7 +136,7 @@ $unwind$main DD	0b2b19H
 	DD	0325419H
 	DD	0313419H
 	DD	02a0119H
-	DD	0d010e012H
+	DD	0d010f012H
 	DD	0700cc00eH
 	DD	0600bH
 	DD	imagerel __GSHandlerCheck

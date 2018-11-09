@@ -1,7 +1,7 @@
 ﻿  conv_filter.cpp
   Generating code
-  1 of 6 functions (16.7%) were compiled, the rest were copied from previous compilation.
+  0 of 6 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+    0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   sse_lab.vcxproj -> D:\D_Strabi\D Dokumentumai\BME\Heterogén számítási rendszerek\HF\Kismacska\Hetero_HF_3\Heterogen_HF_CPU_Batchers\Heterogen_HF_SZP\x64/Release/sse_lab.exe
