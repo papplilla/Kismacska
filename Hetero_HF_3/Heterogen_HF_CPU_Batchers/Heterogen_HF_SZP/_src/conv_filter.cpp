@@ -9,6 +9,8 @@
 
 #include <algorithm>
 
+void mergeSort(float * tomb);
+
 /*void bubble(int n, float * tomb) {
 	float buf;
 	for (int i = n; i >= 11; i--) {
@@ -42,7 +44,7 @@ inline void cmpswap2(int a, int b, float * tomb) {
 #define PIXEL_COMPARE_AND_SWAP(x, y) if (tomb[(x)] > tomb[(y)]) { tmp = tomb[(y)];tomb[(y)] = tomb[(x)];tomb[(x)] = tmp;	}	
 	
 
-void oddeven(float * tomb) {
+void mergeSort(float * tomb) {
 	float tmp;
 	// 4x4
 	PIXEL_COMPARE_AND_SWAP(0, 1);
@@ -232,39 +234,26 @@ void oddeven(float * tomb) {
 	PIXEL_COMPARE_AND_SWAP(23, 24);
 }
 
-void med_filter(int imgHeight, int imgWidth, int imgHeightF, int imgWidthF,
-				 int imgFOffsetH, int imgFOffsetW,
-				 float *filter, float *imgFloatSrc, float *imgFloatDst)
+#define MEDIAN 12
+
+void medianFilter(int imgHeight, int imgWidth, int imgWidthF, float *imgFloatSrc, float *imgFloatDst)
 {
-	// írási bázis: 0. sor, 0. oszlop (a kimenet NEM kiterjesztett)
-	int wr_base = 0;
-	// olvasási bázis: a kiterjesztett kép bal felső pixele (ez az első konvolúció első bemeneti adata)
-	int rd_base = 0;
-	
-	// Végiglépkedünk a kép sorain
+	// Kép sorai
 	for (int y=0; y<imgHeight; y++)
-	{
-		// A sorokon belül végiglépkedünk egy sor pixelein
+		// Kép oszlopai
 		for (int x=0; x<imgWidth; x++)
-		{
-			for (int rgb = 0; rgb < 4; rgb++) {
+			// Szín komponensek
+			for (int rgb = 0; rgb < 4; rgb++)
+			{			
+				float medianArray[25];
 
-			
-			// RGBA komponensek akkumulátora
-				float fval[25];
+				for (int medianY = 0; medianY < 5; medianY++) 
+					for (int medianX = 0; medianX < 5; medianX++) 
+						medianArray[5*medianY  + medianX] = imgFloatSrc[((y+ medianY )*imgWidthF + x + medianX)*4 + rgb];
 
-				for (int dy = 0; dy < 5; dy++) {
-					for (int dx = 0; dx < 5; dx++) {
-						fval[dy * 5 + dx] = imgFloatSrc[(y*imgWidthF + x + dy*imgWidthF + dx) * 4 + rgb];
-					}
-				}
-
-				oddeven(fval);
-
-				imgFloatDst[(y*imgWidth + x) * 4 + rgb] = fval[12];
+				mergeSort(medianArray);
+				imgFloatDst[(y*imgWidth + x) * 4 + rgb] = medianArray[MEDIAN];
 			}
-		}
-	}
 }
 
 

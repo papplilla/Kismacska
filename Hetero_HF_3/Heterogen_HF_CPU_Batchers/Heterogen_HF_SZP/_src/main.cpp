@@ -295,9 +295,7 @@ void main()
 	s0 = clock();
 for (int r=0; r<RUNS; r++)
 {
-	med_filter(imgHeight, imgWidth, imgHeightF, imgWidthF,
-				imgFOffsetH, imgFOffsetW,
-				filter_laplace, imgFloat, imgFloatRes);
+	medianFilter(imgHeight, imgWidth, imgWidthF, imgFloat, imgFloatRes);
 }
 
     e0 = clock();

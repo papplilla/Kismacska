@@ -60,26 +60,26 @@ _BSS	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$main DD	imagerel $LN102@main
-	DD	imagerel $LN102@main+37
+	DD	imagerel $LN102@main+43
 	DD	imagerel $unwind$main
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
-$pdata$0$main DD imagerel $LN102@main+37
-	DD	imagerel $LN102@main+303
+$pdata$0$main DD imagerel $LN102@main+43
+	DD	imagerel $LN102@main+314
 	DD	imagerel $chain$0$main
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
-$pdata$2$main DD imagerel $LN102@main+303
-	DD	imagerel $LN102@main+1543
-	DD	imagerel $chain$2$main
+$pdata$1$main DD imagerel $LN102@main+314
+	DD	imagerel $LN102@main+1599
+	DD	imagerel $chain$1$main
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
-$pdata$3$main DD imagerel $LN102@main+1543
-	DD	imagerel $LN102@main+2249
-	DD	imagerel $chain$3$main
+$pdata$2$main DD imagerel $LN102@main+1599
+	DD	imagerel $LN102@main+2311
+	DD	imagerel $chain$2$main
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
@@ -108,38 +108,37 @@ $unwind$printf DD 041b01H
 xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
-$chain$3$main DD 040021H
-	DD	02ff400H
-	DD	02ee400H
+$chain$2$main DD 020021H
+	DD	030f400H
 	DD	imagerel $LN102@main
-	DD	imagerel $LN102@main+37
+	DD	imagerel $LN102@main+43
 	DD	imagerel $unwind$main
 xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
-$chain$2$main DD 041021H
-	DD	02ff410H
-	DD	02ee408H
-	DD	imagerel $LN102@main+37
-	DD	imagerel $LN102@main+303
+$chain$1$main DD 020821H
+	DD	030f408H
+	DD	imagerel $LN102@main+43
+	DD	imagerel $LN102@main+314
 	DD	imagerel $chain$0$main
 xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
 $chain$0$main DD 020921H
-	DD	0136809H
+	DD	0146809H
 	DD	imagerel $LN102@main
-	DD	imagerel $LN102@main+37
+	DD	imagerel $LN102@main+43
 	DD	imagerel $unwind$main
 xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
-$unwind$main DD	092519H
-	DD	0303413H
-	DD	0280113H
-	DD	0c00ad00cH
-	DD	060077008H
-	DD	05006H
+$unwind$main DD	0b2b19H
+	DD	0325419H
+	DD	0313419H
+	DD	02a0119H
+	DD	0d010e012H
+	DD	0700cc00eH
+	DD	0600bH
 	DD	imagerel __GSHandlerCheck
-	DD	0120H
+	DD	0130H
 END
