@@ -1,0 +1,107 @@
+﻿  sse_lab_mo.cpp
+c:\heterogen_hf\_src\sse_lab_mo.cpp(21): error C2065: '__m128': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(21): error C2146: syntax error: missing ';' before identifier 'fval'
+c:\heterogen_hf\_src\sse_lab_mo.cpp(21): error C2065: 'fval': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(22): error C2065: 'fval': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(22): error C3861: '_mm_set_ps1': identifier not found
+c:\heterogen_hf\_src\sse_lab_mo.cpp(23): error C2065: 'fval': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(23): error C3861: '_mm_set_ps1': identifier not found
+c:\heterogen_hf\_src\sse_lab_mo.cpp(24): error C2065: 'fval': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(24): error C3861: '_mm_set_ps1': identifier not found
+c:\heterogen_hf\_src\sse_lab_mo.cpp(25): error C2065: 'fval': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(25): error C3861: '_mm_set_ps1': identifier not found
+c:\heterogen_hf\_src\sse_lab_mo.cpp(26): error C2065: 'fval': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(26): error C3861: '_mm_set_ps1': identifier not found
+c:\heterogen_hf\_src\sse_lab_mo.cpp(27): error C2065: 'fval': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(27): error C3861: '_mm_set_ps1': identifier not found
+c:\heterogen_hf\_src\sse_lab_mo.cpp(28): error C2065: 'fval': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(28): error C3861: '_mm_set_ps1': identifier not found
+c:\heterogen_hf\_src\sse_lab_mo.cpp(29): error C2065: 'fval': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(29): error C3861: '_mm_set_ps1': identifier not found
+c:\heterogen_hf\_src\sse_lab_mo.cpp(32): error C2065: 'FILTER_H': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(38): error C2065: '__m128': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(38): error C2146: syntax error: missing ';' before identifier 'coeff'
+c:\heterogen_hf\_src\sse_lab_mo.cpp(38): error C2065: 'coeff': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(39): error C2065: 'coeff': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(39): error C3861: '_mm_set_ps1': identifier not found
+c:\heterogen_hf\_src\sse_lab_mo.cpp(40): error C2065: 'coeff': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(40): error C3861: '_mm_set_ps1': identifier not found
+c:\heterogen_hf\_src\sse_lab_mo.cpp(41): error C2065: 'coeff': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(41): error C3861: '_mm_set_ps1': identifier not found
+c:\heterogen_hf\_src\sse_lab_mo.cpp(42): error C2065: 'coeff': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(42): error C3861: '_mm_set_ps1': identifier not found
+c:\heterogen_hf\_src\sse_lab_mo.cpp(43): error C2065: 'coeff': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(43): error C3861: '_mm_set_ps1': identifier not found
+c:\heterogen_hf\_src\sse_lab_mo.cpp(45): error C2065: '__m128': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(45): error C2146: syntax error: missing ';' before identifier 'pixel'
+c:\heterogen_hf\_src\sse_lab_mo.cpp(45): error C2065: 'pixel': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(45): error C2065: 'mul_res': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(48): error C2065: 'pixel': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(48): error C3861: '_mm_load_ps': identifier not found
+c:\heterogen_hf\_src\sse_lab_mo.cpp(49): error C2065: 'mul_res': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(49): error C2065: 'pixel': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(49): error C2065: 'coeff': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(49): error C3861: '_mm_mul_ps': identifier not found
+c:\heterogen_hf\_src\sse_lab_mo.cpp(50): error C2065: 'fval': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(50): error C2065: 'mul_res': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(50): error C3861: '_mm_add_ps': identifier not found
+c:\heterogen_hf\_src\sse_lab_mo.cpp(54): error C2065: 'pixel': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(54): error C3861: '_mm_load_ps': identifier not found
+c:\heterogen_hf\_src\sse_lab_mo.cpp(55): error C2065: 'mul_res': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(55): error C2065: 'pixel': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(55): error C2065: 'coeff': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(55): error C3861: '_mm_mul_ps': identifier not found
+c:\heterogen_hf\_src\sse_lab_mo.cpp(56): error C2065: 'fval': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(56): error C2065: 'mul_res': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(56): error C3861: '_mm_add_ps': identifier not found
+c:\heterogen_hf\_src\sse_lab_mo.cpp(57): error C2065: 'mul_res': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(57): error C2065: 'pixel': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(57): error C2065: 'coeff': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(57): error C3861: '_mm_mul_ps': identifier not found
+c:\heterogen_hf\_src\sse_lab_mo.cpp(58): error C2065: 'fval': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(58): error C2065: 'mul_res': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(58): error C3861: '_mm_add_ps': identifier not found
+c:\heterogen_hf\_src\sse_lab_mo.cpp(62): error C2065: 'pixel': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(62): error C3861: '_mm_load_ps': identifier not found
+c:\heterogen_hf\_src\sse_lab_mo.cpp(63): error C2065: 'mul_res': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(63): error C2065: 'pixel': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(63): error C2065: 'coeff': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(63): error C3861: '_mm_mul_ps': identifier not found
+c:\heterogen_hf\_src\sse_lab_mo.cpp(64): error C2065: 'fval': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(64): error C2065: 'mul_res': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(64): error C3861: '_mm_add_ps': identifier not found
+c:\heterogen_hf\_src\sse_lab_mo.cpp(65): error C2065: 'mul_res': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(65): error C2065: 'pixel': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(65): error C2065: 'coeff': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(65): error C3861: '_mm_mul_ps': identifier not found
+c:\heterogen_hf\_src\sse_lab_mo.cpp(66): error C2065: 'fval': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(66): error C2065: 'mul_res': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(66): error C3861: '_mm_add_ps': identifier not found
+c:\heterogen_hf\_src\sse_lab_mo.cpp(67): error C2065: 'mul_res': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(67): error C2065: 'pixel': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(67): error C2065: 'coeff': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(67): error C3861: '_mm_mul_ps': identifier not found
+c:\heterogen_hf\_src\sse_lab_mo.cpp(68): error C2065: 'fval': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(68): error C2065: 'mul_res': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(68): error C3861: '_mm_add_ps': identifier not found
+c:\heterogen_hf\_src\sse_lab_mo.cpp(71): error C2065: 'pixel': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(71): error C3861: '_mm_load_ps': identifier not found
+c:\heterogen_hf\_src\sse_lab_mo.cpp(72): error C2065: 'mul_res': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(72): error C2065: 'pixel': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(72): error C2065: 'coeff': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(72): error C3861: '_mm_mul_ps': identifier not found
+c:\heterogen_hf\_src\sse_lab_mo.cpp(73): error C2065: 'fval': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(73): error C2065: 'mul_res': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(73): error C3861: '_mm_add_ps': identifier not found
+c:\heterogen_hf\_src\sse_lab_mo.cpp(74): error C2065: 'mul_res': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(74): error C2065: 'pixel': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(74): error C2065: 'coeff': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(74): error C3861: '_mm_mul_ps': identifier not found
+c:\heterogen_hf\_src\sse_lab_mo.cpp(75): error C2065: 'fval': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(75): error C2065: 'mul_res': undeclared identifier
+c:\heterogen_hf\_src\sse_lab_mo.cpp(75): error C3861: '_mm_add_ps': identifier not found
+c:\heterogen_hf\_src\sse_lab_mo.cpp(75): fatal error C1003: error count exceeds 100; stopping compilation
+  main.cpp
+c:\heterogen_hf\_src\main.cpp(93): error C3861: 'conv_filter_sse2': identifier not found
+  conv_filter.cpp
+  Generating Code...

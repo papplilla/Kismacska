@@ -334,9 +334,9 @@ void med_filter(int imgHeight, int imgWidth, int imgHeightF, int imgWidthF,
 	int imgFOffsetH, int imgFOffsetW,
 	float *filter, float *imgFloatSrc, float *imgFloatDst)
 {
-	// �r�si b�zis: 0. sor, 0. oszlop (a kimenet NEM kiterjesztett)
+	// irasi bazis: 0. sor, 0. oszlop (a kimenet NEM kiterjesztett)
 	int wr_base = 0;
-	// olvas�si b�zis: a kiterjesztett k�p bal fels� pixele (ez az els� konvol�ci� els� bemeneti adata)
+	// olvasasi bazis: a kiterjesztett kep bal felso pixele (ez az elso konvoloci� els� bemeneti adata)
 	int rd_base = 0;
 
 	// V�gigl�pked�nk a k�p sorain

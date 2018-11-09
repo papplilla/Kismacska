@@ -1,9 +1,22 @@
 ﻿  median_filter.cpp
+d:\d_strabi\d dokumentumai\bme\heterogén számítási rendszerek\hf\kismacska\hetero_hw_2\_src\median_filter.cpp(127): error C2039: 'max': is not a member of 'std'
+  d:\d_strabi\d dokumentumai\bme\heterogén számítási rendszerek\hf\kismacska\hetero_hw_2\predefined c++ types (compiler internal)(254): note: see declaration of 'std'
+d:\d_strabi\d dokumentumai\bme\heterogén számítási rendszerek\hf\kismacska\hetero_hw_2\_src\median_filter.cpp(127): error C3861: 'max': identifier not found
+d:\d_strabi\d dokumentumai\bme\heterogén számítási rendszerek\hf\kismacska\hetero_hw_2\_src\median_filter.cpp(128): error C2039: 'min': is not a member of 'std'
+  d:\d_strabi\d dokumentumai\bme\heterogén számítási rendszerek\hf\kismacska\hetero_hw_2\predefined c++ types (compiler internal)(254): note: see declaration of 'std'
+d:\d_strabi\d dokumentumai\bme\heterogén számítási rendszerek\hf\kismacska\hetero_hw_2\_src\median_filter.cpp(128): error C3861: 'min': identifier not found
   median_filter_avx.cpp
-d:\git\hetero_hw\kismacska\hetero_hw_2\_src\median_filter_avx.cpp(101): warning C4244: '=': conversion from 'short' to 'unsigned char', possible loss of data
+d:\d_strabi\d dokumentumai\bme\heterogén számítási rendszerek\hf\kismacska\hetero_hw_2\_src\median_filter_avx.cpp(101): warning C4244: '=': conversion from 'short' to 'unsigned char', possible loss of data
   main.cpp
+d:\d_strabi\d dokumentumai\bme\heterogén számítási rendszerek\hf\kismacska\hetero_hw_2\_src\median_filter.cpp(127): error C2589: '(': illegal token on right side of '::'
+d:\d_strabi\d dokumentumai\bme\heterogén számítási rendszerek\hf\kismacska\hetero_hw_2\_src\median_filter.cpp(127): error C2062: type 'unknown-type' unexpected
+d:\d_strabi\d dokumentumai\bme\heterogén számítási rendszerek\hf\kismacska\hetero_hw_2\_src\median_filter.cpp(127): error C2059: syntax error: ')'
+d:\d_strabi\d dokumentumai\bme\heterogén számítási rendszerek\hf\kismacska\hetero_hw_2\_src\median_filter.cpp(128): error C2589: '(': illegal token on right side of '::'
+d:\d_strabi\d dokumentumai\bme\heterogén számítási rendszerek\hf\kismacska\hetero_hw_2\_src\median_filter.cpp(128): error C2062: type 'unknown-type' unexpected
+d:\d_strabi\d dokumentumai\bme\heterogén számítási rendszerek\hf\kismacska\hetero_hw_2\_src\median_filter.cpp(128): error C2059: syntax error: ')'
+d:\d_strabi\d dokumentumai\bme\heterogén számítási rendszerek\hf\kismacska\hetero_hw_2\_src\main.cpp(94): error C2660: 'med_filter': function does not take 8 arguments
+  d:\d_strabi\d dokumentumai\bme\heterogén számítási rendszerek\hf\kismacska\hetero_hw_2\_src\median_filter.cpp(333): note: see declaration of 'med_filter'
   sorter.cpp
-d:\git\hetero_hw\kismacska\hetero_hw_2\_src\sorter.cpp(221): warning C4244: '=': conversion from 'float' to 'unsigned char', possible loss of data
-d:\git\hetero_hw\kismacska\hetero_hw_2\_src\sorter.cpp(231): warning C4244: '=': conversion from 'float' to 'unsigned char', possible loss of data
+d:\d_strabi\d dokumentumai\bme\heterogén számítási rendszerek\hf\kismacska\hetero_hw_2\_src\sorter.cpp(221): warning C4244: '=': conversion from 'float' to 'unsigned char', possible loss of data
+d:\d_strabi\d dokumentumai\bme\heterogén számítási rendszerek\hf\kismacska\hetero_hw_2\_src\sorter.cpp(231): warning C4244: '=': conversion from 'float' to 'unsigned char', possible loss of data
   Generating Code...
-  sse_lab.vcxproj -> d:\GIT\Hetero_HW\Kismacska\Hetero_HW_2\Win32/Debug/sse_lab.exe

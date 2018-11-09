@@ -16,6 +16,8 @@
 #include "defs.h"
 #include "func.h"
 
+#include "median_filter.cpp"
+
 
 void main()
 {
@@ -88,7 +90,8 @@ void main()
 for (int r=0; r<RUNS; r++)
 {
 #if 1
-	median_filter(imgHeight, imgWidth, imgHeightF, imgWidthF, imgSrcExt, imgRes);
+	//median_filter(imgHeight, imgWidth, imgHeightF, imgWidthF, imgSrcExt, imgRes);
+	med_filter(imgHeight, imgWidth, imgHeightF, imgWidthF, imgFOfssetH, imgFOfssetW,  imgSrcExt, imgRes);
 #endif
 
 #if 0
