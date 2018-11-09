@@ -9,21 +9,23 @@
 
 #include <algorithm>
 
-void mergeSort(float * tomb);
+void mergeSort(float * arr);
+
+/*
+inline void cmpswap2(int a, int b, float * arr)
+{
+	float buf1 = arr[a];
+	float buf2 = arr[b];
+	arr[a] = std::max(buf1, buf2);
+	arr[b] = std::min(buf1, buf2);
+}*/
 
 
-inline void cmpswap2(int a, int b, float * tomb) {
-	float buf1 = tomb[a];
-	float buf2 = tomb[b];
-	tomb[a] = std::max(buf1, buf2);
-	tomb[b] = std::min(buf1, buf2);
-}
-
-
-#define PIXEL_COMPARE_AND_SWAP(x, y) if (tomb[(x)] > tomb[(y)]) { tmp = tomb[(y)];tomb[(y)] = tomb[(x)];tomb[(x)] = tmp;	}	
+#define PIXEL_COMPARE_AND_SWAP(x, y) if(arr[(x)] > arr[(y)]) { tmp = arr[(y)];arr[(y)] = arr[(x)];arr[(x)] = tmp;	}	
 	
 
-void mergeSort(float * tomb) {
+void mergeSort(float * arr)
+{
 	float tmp;
 	// 4x4
 	PIXEL_COMPARE_AND_SWAP(0, 1);
@@ -203,7 +205,8 @@ void mergeSort(float * tomb) {
 	PIXEL_COMPARE_AND_SWAP(11, 12);
 }
 
-void mergeSortFull(float * tomb) {
+void mergeSortFull(float * arr)
+{
 	float tmp;
 	// 4x4
 	PIXEL_COMPARE_AND_SWAP(0, 1);

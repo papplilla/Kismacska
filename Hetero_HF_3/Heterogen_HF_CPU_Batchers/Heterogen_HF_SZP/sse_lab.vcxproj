@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="_src\conv_filter.cpp" />
+    <ClCompile Include="_src\conv_filter_avx.cpp" />
     <ClCompile Include="_src\main.cpp" />
   </ItemGroup>
   <ItemGroup>

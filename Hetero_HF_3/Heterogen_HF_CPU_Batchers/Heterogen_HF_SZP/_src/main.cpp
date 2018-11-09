@@ -295,7 +295,9 @@ void main()
 	s0 = clock();
 for (int r=0; r<RUNS; r++)
 {
-	medianFilter(imgHeight, imgWidth, imgWidthF, imgFloat, imgFloatRes);
+	//medianFilter(imgHeight, imgWidth, imgWidthF, imgFloat, imgFloatRes);
+	medianFilterAVX(imgHeight, imgWidth, imgWidthF, imgFloat, imgFloatRes);
+
 }
 
     e0 = clock();
