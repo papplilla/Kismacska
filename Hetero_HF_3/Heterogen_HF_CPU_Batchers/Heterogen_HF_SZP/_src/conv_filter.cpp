@@ -398,12 +398,13 @@ void mergeSortFull(float * arr)
 
 #define MEDIAN 12
 
-void medianFilter(int imgHeight, int imgWidth, int imgWidthF, float *imgFloatSrc, float *imgFloatDst)
+//void medianFilter(int imgHeight, int imgWidth, int imgWidthF, float *imgFloatSrc, float *imgFloatDst)
+void medianFilter(int imgHeight, int imgWidth, int imgWidthF, int imgFOffsetH, int imgFOffsetW,  float *imgFloatSrc, float *imgFloatDst)
 {
 	// Kép sorai
-	for (int y=0; y<imgHeight; y++)
+	for (int y=imgFOffsetH; y<(imgHeight + imgFOffsetH); y++)
 		// Kép oszlopai
-		for (int x=0; x<imgWidth; x++)
+		for (int x=imgFOffsetW; x<(imgWidth + imgFOffsetW); x++)
 			// Szín komponensek
 			for (int rgb = 0; rgb < 4; rgb++)
 			{			
@@ -411,7 +412,7 @@ void medianFilter(int imgHeight, int imgWidth, int imgWidthF, float *imgFloatSrc
 
 				for (int medianY = 0; medianY < 5; medianY++) 
 					for (int medianX = 0; medianX < 5; medianX++) 
-						medianArray[5*medianY  + medianX] = imgFloatSrc[((y+ medianY )*imgWidthF + x + medianX)*4 + rgb];
+						medianArray[5*medianY  + medianX] = imgFloatSrc[((y+(medianY-2))*imgWidthF + x + (medianX-2))*4 + rgb];
 
 				mergeSort(medianArray);
 				imgFloatDst[(y*imgWidth + x) * 4 + rgb] = medianArray[MEDIAN];

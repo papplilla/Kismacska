@@ -1,7 +1,10 @@
-﻿  main.cpp
+﻿  conv_filter.cpp
+  conv_filter_avx.cpp
+d:\d_strabi\d dokumentumai\bme\heterogén számítási rendszerek\hf\kismacska\hetero_hf_3\heterogen_hf_cpu_batchers\heterogen_hf_szp\_src\conv_filter_avx.cpp(31): warning C4101: 'tmp': unreferenced local variable
+  main.cpp
   Generating code
   5 of 9 functions (55.6%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
+    1 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   sse_lab.vcxproj -> D:\D_Strabi\D Dokumentumai\BME\Heterogén számítási rendszerek\HF\Kismacska\Hetero_HF_3\Heterogen_HF_CPU_Batchers\Heterogen_HF_SZP\x64/Release/sse_lab.exe

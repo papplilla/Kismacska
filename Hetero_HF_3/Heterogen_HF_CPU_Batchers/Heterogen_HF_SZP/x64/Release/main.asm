@@ -72,13 +72,13 @@ pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
 $pdata$1$main DD imagerel $LN74+298
-	DD	imagerel $LN74+1338
+	DD	imagerel $LN74+1349
 	DD	imagerel $chain$1$main
 pdata	ENDS
 ;	COMDAT pdata
 pdata	SEGMENT
-$pdata$2$main DD imagerel $LN74+1338
-	DD	imagerel $LN74+2019
+$pdata$2$main DD imagerel $LN74+1349
+	DD	imagerel $LN74+2035
 	DD	imagerel $chain$2$main
 pdata	ENDS
 ;	COMDAT pdata
@@ -109,7 +109,7 @@ xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
 $chain$2$main DD 020021H
-	DD	019d400H
+	DD	01bd400H
 	DD	imagerel $LN74
 	DD	imagerel $LN74+18
 	DD	imagerel $unwind$main
@@ -117,7 +117,7 @@ xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
 $chain$1$main DD 020821H
-	DD	019d408H
+	DD	01bd408H
 	DD	imagerel $LN74+18
 	DD	imagerel $LN74+298
 	DD	imagerel $chain$0$main
@@ -125,7 +125,7 @@ xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
 $chain$0$main DD 020921H
-	DD	0b6809H
+	DD	0c6809H
 	DD	imagerel $LN74
 	DD	imagerel $LN74+18
 	DD	imagerel $unwind$main
@@ -133,7 +133,7 @@ xdata	ENDS
 ;	COMDAT xdata
 xdata	SEGMENT
 $unwind$main DD	091201H
-	DD	01a0112H
+	DD	01c0112H
 	DD	0e009f00bH
 	DD	07005c007H
 	DD	050036004H
@@ -142,36 +142,36 @@ $unwind$main DD	091201H
 ; File d:\d_strabi\d dokumentumai\bme\heterogén számítási rendszerek\hf\kismacska\hetero_hf_3\heterogen_hf_cpu_batchers\heterogen_hf_szp\_src\main.cpp
 ;	COMDAT main
 _TEXT	SEGMENT
-tv11459 = 48
-tv11408 = 48
-tv11462 = 56
-tv11417 = 56
-tv11460 = 64
-tv11382 = 64
-imgFloat$1$ = 72
-tv11413 = 80
-tv11409 = 80
-tv11435 = 88
-tv11423 = 88
-tv11483 = 96
-imgFloatRes$1$ = 96
-tv11481 = 104
-tv11384 = 104
-tv11437 = 112
-tv11386 = 112
-tv11486 = 120
-tv11388 = 120
-imgData$1$ = 128
-tv11446 = 136
-tv11443 = 144
-tv11440 = 152
-tv11421 = 160
-ilImg$ = 272
-tv11464 = 280
-tv11425 = 280
-tv11383 = 288
-imgHeight$1$ = 288
-imgWidth$1$ = 296
+tv11461 = 64
+tv11411 = 64
+tv11466 = 72
+tv11420 = 72
+tv11462 = 80
+tv11384 = 80
+imgFloat$1$ = 88
+tv11416 = 96
+tv11412 = 96
+tv11439 = 104
+tv11427 = 104
+tv11485 = 112
+imgFloatRes$1$ = 112
+tv11483 = 120
+tv11386 = 120
+tv11440 = 128
+tv11388 = 128
+tv11488 = 136
+tv11390 = 136
+imgData$1$ = 144
+tv11449 = 152
+tv11446 = 160
+tv11443 = 168
+tv11424 = 176
+ilImg$ = 288
+tv11467 = 296
+tv11429 = 296
+imgHeight$1$ = 304
+tv11385 = 304
+imgWidth$1$ = 312
 main	PROC						; COMDAT
 
 ; 230  : {
@@ -184,8 +184,8 @@ $LN74:
 	push	r12
 	push	r14
 	push	r15
-	sub	rsp, 208				; 000000d0H
-	vmovaps	XMMWORD PTR [rsp+176], xmm6
+	sub	rsp, 224				; 000000e0H
+	vmovaps	XMMWORD PTR [rsp+192], xmm6
 
 ; 231  : 	ilInit(); iluInit();
 
@@ -267,7 +267,7 @@ $LN74:
 	cdqe
 	shl	rax, 2
 	mov	rcx, rax
-	mov	QWORD PTR tv11486[rsp], rax
+	mov	QWORD PTR tv11488[rsp], rax
 	call	_aligned_malloc
 	mov	QWORD PTR imgFloat$1$[rsp], rax
 	mov	r10, rax
@@ -286,7 +286,7 @@ $LN74:
 	movsxd	r9, ecx
 	lea	rdx, QWORD PTR [rax+8]
 	shl	r9, 2
-	npad	5
+	npad	2
 $LL4@main:
 
 ; 254  : 	{
@@ -322,7 +322,7 @@ $LN2@main:
 	sub	r8, 1
 	jne	SHORT $LL4@main
 $LN3@main:
-	mov	QWORD PTR [rsp+200], r13
+	mov	QWORD PTR [rsp+216], r13
 
 ; 261  : 			*(imgFloat + pixel + 3) = 0.0f;
 ; 262  : 		}
@@ -340,26 +340,26 @@ $LN3@main:
 	movsxd	rbp, ecx
 	cdqe
 	lea	r12d, DWORD PTR [r14+r14]
-	mov	QWORD PTR tv11437[rsp], rax
+	mov	QWORD PTR tv11440[rsp], rax
 	add	rbp, 8
 	lea	eax, DWORD PTR [r14*4]
-	mov	DWORD PTR tv11464[rsp], r12d
+	mov	DWORD PTR tv11467[rsp], r12d
 	cdqe
-	mov	QWORD PTR tv11483[rsp], rax
+	mov	QWORD PTR tv11485[rsp], rax
 	lea	r8, QWORD PTR [rbp+6]
-	mov	QWORD PTR tv11460[rsp], rbp
+	mov	QWORD PTR tv11462[rsp], rbp
 	lea	r8, QWORD PTR [r10+r8*4]
 	lea	rax, QWORD PTR [rax*4]
-	mov	QWORD PTR tv11459[rsp], r8
-	mov	QWORD PTR tv11481[rsp], rax
+	mov	QWORD PTR tv11461[rsp], r8
+	mov	QWORD PTR tv11483[rsp], rax
 	lea	eax, DWORD PTR [r14*8+16]
 	movsxd	rdx, eax
 	mov	eax, DWORD PTR imgHeight$1$[rsp]
 	sub	rdx, rbp
-	mov	QWORD PTR tv11413[rsp], rdx
+	mov	QWORD PTR tv11416[rsp], rdx
 	sub	r13, rbp
-	mov	QWORD PTR tv11462[rsp], rax
-	npad	7
+	mov	QWORD PTR tv11466[rsp], rax
+	npad	4
 $LL10@main:
 
 ; 266  : 	{
@@ -378,27 +378,27 @@ $LL10@main:
 	lea	r9, QWORD PTR [rdx+3]
 	add	rax, -3
 	sub	rcx, rbx
-	mov	QWORD PTR tv11446[rsp], rax
+	mov	QWORD PTR tv11449[rsp], rax
 	sub	rcx, rdx
-	mov	r14, QWORD PTR tv11446[rsp]
+	mov	r14, QWORD PTR tv11449[rsp]
 	sub	rax, rdx
-	mov	rdx, QWORD PTR tv11413[rsp]
+	mov	rdx, QWORD PTR tv11416[rsp]
 	add	r11, rax
 	dec	rax
-	mov	QWORD PTR tv11443[rsp], r11
+	mov	QWORD PTR tv11446[rsp], r11
 	add	rax, rsi
 	add	r9, rbx
-	mov	QWORD PTR tv11440[rsp], rax
+	mov	QWORD PTR tv11443[rsp], rax
 	lea	rax, QWORD PTR [rcx+rsi]
-	mov	QWORD PTR tv11421[rsp], rax
+	mov	QWORD PTR tv11424[rsp], rax
 	lea	rax, QWORD PTR [rsi+2]
-	mov	rsi, QWORD PTR tv11443[rsp]
+	mov	rsi, QWORD PTR tv11446[rsp]
 	add	rax, rcx
-	mov	rbp, QWORD PTR tv11421[rsp]
-	mov	QWORD PTR tv11423[rsp], rax
+	mov	rbp, QWORD PTR tv11424[rsp]
+	mov	QWORD PTR tv11427[rsp], rax
 	lea	eax, DWORD PTR [rdi-4]
-	mov	rdi, QWORD PTR tv11440[rsp]
-	mov	r12, QWORD PTR tv11423[rsp]
+	mov	rdi, QWORD PTR tv11443[rsp]
+	mov	r12, QWORD PTR tv11427[rsp]
 	shr	eax, 2
 	inc	eax
 	mov	ecx, eax
@@ -472,11 +472,11 @@ $LL60@main:
 	jne	$LL60@main
 	mov	edi, DWORD PTR imgWidth$1$[rsp]
 	mov	rsi, QWORD PTR imgData$1$[rsp]
-	mov	rbp, QWORD PTR tv11460[rsp]
-	mov	r12d, DWORD PTR tv11464[rsp]
-	mov	r8, QWORD PTR tv11459[rsp]
+	mov	rbp, QWORD PTR tv11462[rsp]
+	mov	r12d, DWORD PTR tv11467[rsp]
+	mov	r8, QWORD PTR tv11461[rsp]
 	lea	r14d, DWORD PTR [rdi+4]
-	mov	rax, QWORD PTR tv11462[rsp]
+	mov	rax, QWORD PTR tv11466[rsp]
 	mov	r10, QWORD PTR imgFloat$1$[rsp]
 $LC59@main:
 
@@ -532,8 +532,8 @@ $LC13@main:
 	vmovss	DWORD PTR [r8-16], xmm0
 	sub	rcx, 1
 	jne	SHORT $LC13@main
-	mov	r8, QWORD PTR tv11459[rsp]
-	mov	rax, QWORD PTR tv11462[rsp]
+	mov	r8, QWORD PTR tv11461[rsp]
+	mov	rax, QWORD PTR tv11466[rsp]
 $LN8@main:
 
 ; 261  : 			*(imgFloat + pixel + 3) = 0.0f;
@@ -542,17 +542,17 @@ $LN8@main:
 ; 264  : 
 ; 265  : 	for (row=0; row<imgHeight; row++)
 
-	add	rbp, QWORD PTR tv11483[rsp]
+	add	rbp, QWORD PTR tv11485[rsp]
 	add	r12d, r14d
-	add	r8, QWORD PTR tv11481[rsp]
+	add	r8, QWORD PTR tv11483[rsp]
 	add	r15d, edi
-	add	rbx, QWORD PTR tv11437[rsp]
+	add	rbx, QWORD PTR tv11440[rsp]
 	mov	r10, QWORD PTR imgFloat$1$[rsp]
 	sub	rax, 1
-	mov	QWORD PTR tv11462[rsp], rax
-	mov	QWORD PTR tv11460[rsp], rbp
-	mov	QWORD PTR tv11459[rsp], r8
-	mov	DWORD PTR tv11464[rsp], r12d
+	mov	QWORD PTR tv11466[rsp], rax
+	mov	QWORD PTR tv11462[rsp], rbp
+	mov	QWORD PTR tv11461[rsp], r8
+	mov	DWORD PTR tv11467[rsp], r12d
 	jne	$LL10@main
 	mov	r15d, DWORD PTR imgHeight$1$[rsp]
 	xor	ebp, ebp
@@ -570,7 +570,7 @@ $LN9@main:
 ; 284  : 	float *imgFloatRes;
 ; 285  :     imgFloatRes = (float *)(_aligned_malloc(4*imgWidthF*imgHeightF*sizeof(float), 32));
 
-	mov	rcx, QWORD PTR tv11486[rsp]
+	mov	rcx, QWORD PTR tv11488[rsp]
 	mov	edx, 32					; 00000020H
 	call	_aligned_malloc
 	mov	r12, rax
@@ -588,19 +588,20 @@ $LN9@main:
 ; 295  : 	s0 = clock();
 
 	call	clock
+	mov	ebx, eax
 
 ; 296  : for (int r=0; r<RUNS; r++)
 ; 297  : {
-; 298  : 	//medianFilter(imgHeight, imgWidth, imgWidthF, imgFloat, imgFloatRes);
-; 299  : 	medianFilterAVX(imgHeight, imgWidth, imgWidthF, imgFloat, imgFloatRes);
+; 298  : 	//medianFilter(imgHeight, imgWidth, imgWidthF, imgFOffsetH, imgFOffsetW, imgFloat, imgFloatRes);
+; 299  : 	medianFilterAVX(imgHeight, imgWidth, imgWidthF, imgFOffsetH, imgFOffsetW, imgFloat, imgFloatRes);
 
-	mov	r9, QWORD PTR imgFloat$1$[rsp]
+	mov	QWORD PTR [rsp+48], r12
+	mov	rax, QWORD PTR imgFloat$1$[rsp]
 	mov	r8d, r14d
 	mov	edx, edi
-	mov	QWORD PTR [rsp+32], r12
+	mov	QWORD PTR [rsp+40], rax
 	mov	ecx, r15d
-	mov	ebx, eax
-	call	?medianFilterAVX@@YAXHHHPEAM0@Z		; medianFilterAVX
+	call	?medianFilterAVX@@YAXHHHHHPEAM0@Z	; medianFilterAVX
 
 ; 300  : 
 ; 301  : }
@@ -635,7 +636,7 @@ $LN9@main:
 	vdivsd	xmm1, xmm1, QWORD PTR __real@412e848000000000
 	vmovq	rdx, xmm1
 	call	printf
-	vmovaps	xmm6, XMMWORD PTR [rsp+176]
+	vmovaps	xmm6, XMMWORD PTR [rsp+192]
 
 ; 308  : 
 ; 309  : 
@@ -655,22 +656,21 @@ $LN9@main:
 ; 304  :     d0 = (double)(e0-s0)/(RUNS*CLOCKS_PER_SEC);
 
 	lea	eax, DWORD PTR [rdi+rdi*2]
-	mov	DWORD PTR tv11425[rsp], ebp
+	mov	DWORD PTR tv11429[rsp], ebp
 	cdqe
 	mov	r11d, ebp
-	mov	QWORD PTR tv11435[rsp], rax
+	mov	QWORD PTR tv11439[rsp], rax
 	mov	r14, rbp
 	lea	eax, DWORD PTR [rdi*4]
-	mov	QWORD PTR tv11417[rsp], rbp
+	mov	QWORD PTR tv11420[rsp], rbp
 	cdqe
 	mov	r13, rbp
 	lea	rbp, QWORD PTR [r12+24]
-	mov	QWORD PTR tv11383[rsp], rax
-	mov	QWORD PTR tv11408[rsp], rbp
-	mov	QWORD PTR tv11409[rsp], r15
+	mov	QWORD PTR tv11385[rsp], rax
+	mov	QWORD PTR tv11411[rsp], rbp
+	mov	QWORD PTR tv11412[rsp], r15
 	lea	rcx, QWORD PTR [rax*4]
-	mov	QWORD PTR tv11382[rsp], rcx
-	npad	10
+	mov	QWORD PTR tv11384[rsp], rcx
 $LL19@main:
 
 ; 319  : 	{
@@ -698,24 +698,24 @@ $LL19@main:
 	lea	r12, QWORD PTR [rax+rsi]
 	dec	rax
 	add	rax, rsi
-	mov	QWORD PTR tv11388[rsp], rax
+	mov	QWORD PTR tv11390[rsp], rax
 	mov	rax, rbp
 	sub	rax, rcx
 	lea	rcx, QWORD PTR [rsi-3]
 	add	rcx, rax
 	dec	rsi
 	add	rax, rsi
-	mov	QWORD PTR tv11386[rsp], rcx
-	mov	rsi, QWORD PTR tv11388[rsp]
-	mov	QWORD PTR tv11384[rsp], rax
+	mov	QWORD PTR tv11388[rsp], rcx
+	mov	rsi, QWORD PTR tv11390[rsp]
+	mov	QWORD PTR tv11386[rsp], rax
 	lea	eax, DWORD PTR [rdi-4]
-	mov	rdi, QWORD PTR tv11386[rsp]
-	mov	r13, QWORD PTR tv11384[rsp]
+	mov	rdi, QWORD PTR tv11388[rsp]
+	mov	r13, QWORD PTR tv11386[rsp]
 	shr	eax, 2
 	inc	eax
 	mov	ecx, eax
 	lea	ebx, DWORD PTR [rax*4]
-	npad	4
+	npad	7
 $LL63@main:
 
 ; 326  : 			*(imgData+pixel_dst+2) = (ILubyte)(*(imgFloatWrite+pixel_src+2));
@@ -750,13 +750,13 @@ $LL63@main:
 	jne	$LL63@main
 	mov	edi, DWORD PTR imgWidth$1$[rsp]
 	mov	rsi, QWORD PTR imgData$1$[rsp]
-	mov	r13, QWORD PTR tv11417[rsp]
-	mov	r11d, DWORD PTR tv11425[rsp]
-	mov	rbp, QWORD PTR tv11408[rsp]
-	mov	r15, QWORD PTR tv11409[rsp]
+	mov	r13, QWORD PTR tv11420[rsp]
+	mov	r11d, DWORD PTR tv11429[rsp]
+	mov	rbp, QWORD PTR tv11411[rsp]
+	mov	r15, QWORD PTR tv11412[rsp]
 	mov	r12, QWORD PTR imgFloatRes$1$[rsp]
-	mov	rax, QWORD PTR tv11383[rsp]
-	mov	rcx, QWORD PTR tv11382[rsp]
+	mov	rax, QWORD PTR tv11385[rsp]
+	mov	rcx, QWORD PTR tv11384[rsp]
 $LC62@main:
 
 ; 319  : 	{
@@ -800,8 +800,8 @@ $LC22@main:
 	lea	r9, QWORD PTR [r9+16]
 	sub	rcx, 1
 	jne	SHORT $LC22@main
-	mov	rax, QWORD PTR tv11383[rsp]
-	mov	rcx, QWORD PTR tv11382[rsp]
+	mov	rax, QWORD PTR tv11385[rsp]
+	mov	rcx, QWORD PTR tv11384[rsp]
 $LN17@main:
 
 ; 308  : 
@@ -816,15 +816,15 @@ $LN17@main:
 ; 317  : 
 ; 318  : 	for (row=0; row<imgHeight; row++)
 
-	add	r14, QWORD PTR tv11435[rsp]
+	add	r14, QWORD PTR tv11439[rsp]
 	add	r11d, edi
 	add	r13, rax
-	mov	DWORD PTR tv11425[rsp], r11d
+	mov	DWORD PTR tv11429[rsp], r11d
 	add	rbp, rcx
-	mov	QWORD PTR tv11417[rsp], r13
+	mov	QWORD PTR tv11420[rsp], r13
 	sub	r15, 1
-	mov	QWORD PTR tv11408[rsp], rbp
-	mov	QWORD PTR tv11409[rsp], r15
+	mov	QWORD PTR tv11411[rsp], rbp
+	mov	QWORD PTR tv11412[rsp], r15
 	jne	$LL19@main
 $LN18@main:
 
@@ -868,9 +868,9 @@ $LN18@main:
 ; 339  : 
 ; 340  : }
 
-	mov	r13, QWORD PTR [rsp+200]
+	mov	r13, QWORD PTR [rsp+216]
 	xor	eax, eax
-	add	rsp, 208				; 000000d0H
+	add	rsp, 224				; 000000e0H
 	pop	r15
 	pop	r14
 	pop	r12
