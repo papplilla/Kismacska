@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="fir_hw.cpp" path="D:\Google Drive\Dokumentumok\My eBooks\Egyetem\9. félév\Heterogén számítási rendszerek\Laborok\Labor_05\Starter\_src\fir_hw.cpp"/>
+    <originFiles name="types.h" path="D:\Google Drive\Dokumentumok\My eBooks\Egyetem\9. félév\Heterogén számítási rendszerek\Laborok\Labor_05\Starter\_src\types.h"/>
+    <originFiles name="fir_hw.cpp" path="D:\Google Drive\Dokumentumok\My eBooks\Egyetem\9. félév\Heterogén számítási rendszerek\Laborok\Labor_05\Starter\_src\fir_hw.cpp"/>
+    <originFiles name="types.h" path="D:\Google Drive\Dokumentumok\My eBooks\Egyetem\9. félév\Heterogén számítási rendszerek\Laborok\Labor_05\Starter\_src\types.h"/>
+  </source>
+  <testbench>
+    <originFiles name="fir_sw.cpp" path="D:\Google Drive\Dokumentumok\My eBooks\Egyetem\9. félév\Heterogén számítási rendszerek\Laborok\Labor_05\Starter\_src\fir_sw.cpp"/>
+    <originFiles name="main.cpp" path="D:\Google Drive\Dokumentumok\My eBooks\Egyetem\9. félév\Heterogén számítási rendszerek\Laborok\Labor_05\Starter\_src\main.cpp"/>
+    <originFiles name="fir_sw.cpp" path="D:\Google Drive\Dokumentumok\My eBooks\Egyetem\9. félév\Heterogén számítási rendszerek\Laborok\Labor_05\Starter\_src\fir_sw.cpp"/>
+    <originFiles name="main.cpp" path="D:\Google Drive\Dokumentumok\My eBooks\Egyetem\9. félév\Heterogén számítási rendszerek\Laborok\Labor_05\Starter\_src\main.cpp"/>
+  </testbench>
+</autopilotfilemapping:AutoPilotFileMapping>

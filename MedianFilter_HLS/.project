@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>MedianFilter_HLS</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.cdt.managedbuilder.core.genmakebuilder</name>
+			<triggers>clean,full,incremental,</triggers>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.cdt.managedbuilder.core.ScannerConfigBuilder</name>
+			<triggers>full,incremental,</triggers>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>com.autoesl.autopilot.ui.AutopilotNature</nature>
+		<nature>org.eclipse.cdt.core.cnature</nature>
+		<nature>org.eclipse.cdt.core.ccnature</nature>
+		<nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
+		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>source</name>
+			<type>2</type>
+			<location>D:/Vivado_Workspace/MedianFilter_HLS/.apc/.src</location>
+		</link>
+		<link>
+			<name>testbench</name>
+			<type>2</type>
+			<location>D:/Vivado_Workspace/MedianFilter_HLS/.apc/.tb</location>
+		</link>
+		<link>
+			<name>MedianFilter/constraints</name>
+			<type>2</type>
+			<location>D:/Vivado_Workspace/MedianFilter_HLS/MedianFilter/.tcls</location>
+		</link>
+		<link>
+			<name>source/fir_hw.cpp</name>
+			<type>1</type>
+			<location>D:/Google Drive/Dokumentumok/My eBooks/Egyetem/9. félév/Heterogén számítási rendszerek/Laborok/Labor_05/Starter/_src/fir_hw.cpp</location>
+		</link>
+		<link>
+			<name>source/types.h</name>
+			<type>1</type>
+			<location>D:/Google Drive/Dokumentumok/My eBooks/Egyetem/9. félév/Heterogén számítási rendszerek/Laborok/Labor_05/Starter/_src/types.h</location>
+		</link>
+		<link>
+			<name>testbench/fir_sw.cpp</name>
+			<type>1</type>
+			<location>D:/Google Drive/Dokumentumok/My eBooks/Egyetem/9. félév/Heterogén számítási rendszerek/Laborok/Labor_05/Starter/_src/fir_sw.cpp</location>
+		</link>
+		<link>
+			<name>testbench/main.cpp</name>
+			<type>1</type>
+			<location>D:/Google Drive/Dokumentumok/My eBooks/Egyetem/9. félév/Heterogén számítási rendszerek/Laborok/Labor_05/Starter/_src/main.cpp</location>
+		</link>
+		<link>
+			<name>MedianFilter/constraints/.xml.directive</name>
+			<type>1</type>
+			<location>D:/Vivado_Workspace/MedianFilter_HLS/MedianFilter/MedianFilter.directive</location>
+		</link>
+		<link>
+			<name>MedianFilter/constraints/directives.tcl</name>
+			<type>1</type>
+			<location>D:/Vivado_Workspace/MedianFilter_HLS/MedianFilter/directives.tcl</location>
+		</link>
+		<link>
+			<name>MedianFilter/constraints/script.tcl</name>
+			<type>1</type>
+			<location>D:/Vivado_Workspace/MedianFilter_HLS/MedianFilter/script.tcl</location>
+		</link>
+	</linkedResources>
+</projectDescription>
