@@ -19,13 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="_src\conv_filter.cpp" />
-    <ClCompile Include="_src\conv_filter_avx.cpp" />
+    <ClCompile Include="_src\fir_hw.cpp" />
+    <ClCompile Include="_src\fir_sw.cpp" />
     <ClCompile Include="_src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="_src\defs.h" />
-    <ClInclude Include="_src\func.h" />
+    <ClInclude Include="_src\coeffs.h" />
+    <ClInclude Include="_src\types.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{C986E2A6-ABF8-4ABC-B292-63744CC03DFB}</ProjectGuid>
