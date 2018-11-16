@@ -561,6 +561,138 @@ __global__ void kernel_conv_sh_float_float(unsigned char* gInput, unsigned char*
 
 
 
+// ----- úJ
+// Shared memóriát használó megoldás (1.)
+// Shared memória adattípus: unsigned char
+// Számítás adattípusa: unsignde char, NEM integer
+__global__ void kernel_conv_sh_uchar_int(unsigned char* gInput, unsigned char* gOutput, int imgWidth, int imgWidthF)
+{
+	int row = blockIdx.y * blockDim.y + threadIdx.y;
+	int col = blockIdx.x * blockDim.x + threadIdx.x;
+
+	//int out_pix = (row*imgWidth + col) * 3;
+	//unsigned char arr[31]; 
+	unsigned char arr[25];
+
+	__shared__ unsigned char in_shmem[20][60];
+
+	int th1D = threadIdx.y*blockDim.x + threadIdx.x;	// thread ID 1D
+	int rx = blockIdx.x * blockDim.x;
+	int ry = blockIdx.y * blockDim.y;
+	int base = (ry*imgWidthF + rx) * 3;
+
+	int wr_x, int wr_y;
+	
+
+	//int ld_rgba = th1D % 3;
+	//int ld_col = (th1D / 3) % 20;
+	//int ld_row = th1D / 60;
+	//int ld_base = (blockIdx.y * blockDim.y) * 3 * imgWidthF + (blockIdx.x * blockDim.x) * 3 + (ld_row * 3 * imgWidthF);
+	//int ld_base = ((blockIdx.y * blockDim.y) * imgWidthF + (blockIdx.x * blockDim.x) + (ld_row  * imgWidthF)) * 3;
+
+	if (th1D < 240)
+	{
+#pragma unroll
+		for (int i = 0; i<5; i++)
+		{
+			wr_y = 4 * i + th1D / 60;
+			wr_x = th1D % 60;
+
+			in_shmem[wr_y][wr_x] = gInput[ base + wr_y * imgWidthF * 3 + wr_x];
+			//base += imgWidthF * 12;				// ???
+			//ld_base = ld_base + imgWidthF * 12;						// 
+		}
+	}
+	__syncthreads();
+
+	
+		//#pragma unroll 5
+		for (int medianY = 0; medianY<5; medianY++)
+		{
+			//#pragma unroll 5
+			for (int medianX = 0; medianX<5; medianX++)
+			{
+				//#pragma unroll 3
+				for (int rgb = 0; rgb < 3; rgb++)
+				{
+					
+					arr[medianY * 5 + medianX] = in_shmem[threadIdx.y + medianY][(threadIdx.x + medianX)*3 + rgb];
+				}
+			}
+		}
+
+		mergeSort(arr);
+		gOutput[out_pix + rgb] = arr[MEDIAN];
+	}
+}
+
+// Új
+// Shared memóriát használó megoldás (3.)
+// Shared memória adattípus: float
+// Számítás adattípusa: float
+__global__ void kernel_conv_sh_float_float(unsigned char* gInput, unsigned char* gOutput, int imgWidth, int imgWidthF)
+{
+int row = blockIdx.y * blockDim.y + threadIdx.y;
+int col = blockIdx.x * blockDim.x + threadIdx.x;
+
+//int out_pix = (row*imgWidth + col) * 3;
+//unsigned char arr[31]; 
+float arr[25];
+
+__shared__ unsigned char in_shmem[20][60];
+
+int th1D = threadIdx.y*blockDim.x + threadIdx.x;	// thread ID 1D
+int rx = blockIdx.x * blockDim.x;
+int ry = blockIdx.y * blockDim.y;
+int base = (ry*imgWidthF + rx) * 3;
+
+int wr_x, int wr_y;
+
+
+//int ld_rgba = th1D % 3;
+//int ld_col = (th1D / 3) % 20;
+//int ld_row = th1D / 60;
+//int ld_base = (blockIdx.y * blockDim.y) * 3 * imgWidthF + (blockIdx.x * blockDim.x) * 3 + (ld_row * 3 * imgWidthF);
+//int ld_base = ((blockIdx.y * blockDim.y) * imgWidthF + (blockIdx.x * blockDim.x) + (ld_row  * imgWidthF)) * 3;
+
+if (th1D < 240)
+{
+#pragma unroll
+	for (int i = 0; i<5; i++)
+	{
+		wr_y = 4 * i + th1D / 60;
+		wr_x = th1D % 60;
+
+		in_shmem[wr_y][wr_x] = (float)gInput[base + wr_y * imgWidthF * 3 + wr_x];
+		//base += imgWidthF * 12;				// ???
+		//ld_base = ld_base + imgWidthF * 12;						// 
+	}
+}
+__syncthreads();
+
+
+//#pragma unroll 5
+for (int medianY = 0; medianY<5; medianY++)
+{
+	//#pragma unroll 5
+	for (int medianX = 0; medianX<5; medianX++)
+	{
+		//#pragma unroll 3
+		for (int rgb = 0; rgb < 3; rgb++)
+		{
+
+			arr[medianY * 5 + medianX] = in_shmem[threadIdx.y + medianY][(threadIdx.x + medianX) * 3 + rgb];
+		}
+	}
+}
+
+mergeSort(arr);
+gOutput[out_pix + rgb] = (unsigned char)arr[MEDIAN];
+	}
+}
+
+
+
 void cudaMain(int imgHeight, int imgWidth, int imgHeightF, int imgWidthF,
 			  int imgFOfssetH, int imgFOfssetW,
 			  unsigned char *imgSrc, unsigned char *imgDst)

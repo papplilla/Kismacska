@@ -20,7 +20,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="_src\conv_filter.cpp" />
+    <ClCompile Include="_src\cuda_main.cu.c" />
     <ClCompile Include="_src\main.cpp" />
+    <ClCompile Include="_src\memalloc_host.cu.c" />
     <ClCompile Include="_src\time_measure.cpp" />
   </ItemGroup>
   <ItemGroup>
