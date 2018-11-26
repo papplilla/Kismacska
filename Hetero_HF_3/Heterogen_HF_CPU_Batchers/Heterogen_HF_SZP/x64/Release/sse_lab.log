@@ -1,5 +1,4 @@
-﻿  conv_filter_avx.cpp
-d:\d_strabi\d dokumentumai\bme\heterogén számítási rendszerek\hf\kismacska\hetero_hf_3\heterogen_hf_cpu_batchers\heterogen_hf_szp\_src\conv_filter_avx.cpp(187): warning C4101: 'tmpMax': unreferenced local variable
+﻿  main.cpp
   Generating code
   3 of 6 functions (50.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation

@@ -5,17 +5,1797 @@ include listing.inc
 INCLUDELIB OLDNAMES
 
 EXTRN	__security_check_cookie:PROC
-PUBLIC	__real@40c3880000000000
+PUBLIC	?medianFilter@@YAXHHHHHPEAM0@Z			; medianFilter
+PUBLIC	?mergeSortFull@@YAXPEAM@Z			; mergeSortFull
+PUBLIC	__real@408f400000000000
 PUBLIC	__real@412e848000000000
 EXTRN	__GSHandlerCheck:PROC
 EXTRN	__security_cookie:QWORD
 EXTRN	_fltused:DWORD
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$?medianFilter@@YAXHHHHHPEAM0@Z DD imagerel $LN43
+	DD	imagerel $LN43+50
+	DD	imagerel $unwind$?medianFilter@@YAXHHHHHPEAM0@Z
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$7$?medianFilter@@YAXHHHHHPEAM0@Z DD imagerel $LN43+50
+	DD	imagerel $LN43+400
+	DD	imagerel $chain$7$?medianFilter@@YAXHHHHHPEAM0@Z
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$8$?medianFilter@@YAXHHHHHPEAM0@Z DD imagerel $LN43+400
+	DD	imagerel $LN43+424
+	DD	imagerel $chain$8$?medianFilter@@YAXHHHHHPEAM0@Z
+pdata	ENDS
+;	COMDAT pdata
+pdata	SEGMENT
+$pdata$?mergeSortFull@@YAXPEAM@Z DD imagerel $LN144
+	DD	imagerel $LN144+3880
+	DD	imagerel $unwind$?mergeSortFull@@YAXPEAM@Z
 ;	COMDAT __real@412e848000000000
 CONST	SEGMENT
 __real@412e848000000000 DQ 0412e848000000000r	; 1e+06
 CONST	ENDS
-;	COMDAT __real@40c3880000000000
+;	COMDAT __real@408f400000000000
 CONST	SEGMENT
-__real@40c3880000000000 DQ 040c3880000000000r	; 10000
+__real@408f400000000000 DQ 0408f400000000000r	; 1000
 CONST	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$?mergeSortFull@@YAXPEAM@Z DD 0123f01H
+	DD	0d83fH
+	DD	01c83aH
+	DD	02b835H
+	DD	03a830H
+	DD	04982bH
+	DD	058826H
+	DD	067821H
+	DD	07681cH
+	DD	011010aH
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$chain$8$?medianFilter@@YAXHHHHHPEAM0@Z DD 021H
+	DD	imagerel $LN43
+	DD	imagerel $LN43+50
+	DD	imagerel $unwind$?medianFilter@@YAXHHHHHPEAM0@Z
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$chain$7$?medianFilter@@YAXHHHHHPEAM0@Z DD 0105f21H
+	DD	016f45fH
+	DD	017e455H
+	DD	018d439H
+	DD	019c423H
+	DD	01a7417H
+	DD	01f6413H
+	DD	01e540fH
+	DD	01c3404H
+	DD	imagerel $LN43
+	DD	imagerel $LN43+50
+	DD	imagerel $unwind$?medianFilter@@YAXHHHHHPEAM0@Z
+xdata	ENDS
+;	COMDAT xdata
+xdata	SEGMENT
+$unwind$?medianFilter@@YAXHHHHHPEAM0@Z DD 021c19H
+	DD	01b010aH
+	DD	imagerel __GSHandlerCheck
+	DD	0a0H
+xdata	ENDS
+; Function compile flags: /Ogtpy
+; File d:\d_strabi\d dokumentumai\bme\heterogén számítási rendszerek\hf\kismacska\hetero_hf_3\heterogen_hf_cpu_batchers\heterogen_hf_szp\_src\conv_filter.cpp
+;	COMDAT ?mergeSortFull@@YAXPEAM@Z
+_TEXT	SEGMENT
+arr$ = 144
+?mergeSortFull@@YAXPEAM@Z PROC				; mergeSortFull, COMDAT
+
+; 183  : {
+
+$LN144:
+	mov	rax, rsp
+	sub	rsp, 136				; 00000088H
+
+; 184  : 	float tmp;
+; 185  : 	// 4x4
+; 186  : 	PIXEL_COMPARE_AND_SWAP(0, 1);
+
+	vmovss	xmm1, DWORD PTR [rcx]
+	vmovss	xmm0, DWORD PTR [rcx+4]
+	vcomiss	xmm1, xmm0
+	vmovaps	XMMWORD PTR [rax-24], xmm6
+	vmovaps	XMMWORD PTR [rax-40], xmm7
+	vmovaps	XMMWORD PTR [rax-56], xmm8
+	vmovaps	XMMWORD PTR [rax-72], xmm9
+	vmovaps	XMMWORD PTR [rax-88], xmm10
+	vmovaps	XMMWORD PTR [rax-104], xmm11
+	vmovaps	XMMWORD PTR [rax-120], xmm12
+	vmovaps	XMMWORD PTR [rsp], xmm13
+	vmovaps	xmm2, xmm1
+	jbe	SHORT $LN2@mergeSortF
+	vmovss	DWORD PTR [rcx], xmm0
+	vmovaps	xmm2, xmm0
+	vmovaps	xmm0, xmm1
+	vmovss	DWORD PTR [rcx+4], xmm1
+$LN2@mergeSortF:
+
+; 187  : 	PIXEL_COMPARE_AND_SWAP(2, 3);
+
+	vmovss	xmm3, DWORD PTR [rcx+8]
+	vmovss	xmm4, DWORD PTR [rcx+12]
+	vcomiss	xmm3, xmm4
+	vmovaps	xmm1, xmm3
+	jbe	SHORT $LN3@mergeSortF
+	vmovss	DWORD PTR [rcx+8], xmm4
+	vmovaps	xmm1, xmm4
+	vmovaps	xmm4, xmm3
+	vmovss	DWORD PTR [rcx+12], xmm3
+$LN3@mergeSortF:
+
+; 188  : 	PIXEL_COMPARE_AND_SWAP(0, 2);
+
+	vcomiss	xmm2, xmm1
+	vmovaps	xmm3, xmm1
+	jbe	SHORT $LN4@mergeSortF
+	vmovss	DWORD PTR [rcx+8], xmm2
+	vmovaps	xmm3, xmm2
+	vmovaps	xmm2, xmm1
+	vmovss	DWORD PTR [rcx], xmm1
+$LN4@mergeSortF:
+
+; 189  : 	PIXEL_COMPARE_AND_SWAP(1, 3);
+
+	vcomiss	xmm0, xmm4
+	jbe	SHORT $LN5@mergeSortF
+	vmovss	DWORD PTR [rcx+12], xmm0
+	vmovaps	xmm0, xmm4
+	vmovss	DWORD PTR [rcx+4], xmm4
+$LN5@mergeSortF:
+
+; 190  : 	PIXEL_COMPARE_AND_SWAP(1, 2);
+
+	vcomiss	xmm0, xmm3
+	vmovaps	xmm6, xmm0
+	jbe	SHORT $LN6@mergeSortF
+	vmovss	DWORD PTR [rcx+4], xmm3
+	vmovaps	xmm6, xmm3
+	vmovaps	xmm3, xmm0
+	vmovss	DWORD PTR [rcx+8], xmm0
+$LN6@mergeSortF:
+
+; 191  : 	//printf("Hello");
+; 192  : 	PIXEL_COMPARE_AND_SWAP(4, 5);
+
+	vmovss	xmm1, DWORD PTR [rcx+16]
+	vmovss	xmm5, DWORD PTR [rcx+20]
+	vcomiss	xmm1, xmm5
+	vmovaps	xmm0, xmm1
+	jbe	SHORT $LN7@mergeSortF
+	vmovss	DWORD PTR [rcx+16], xmm5
+	vmovaps	xmm0, xmm5
+	vmovaps	xmm5, xmm1
+	vmovss	DWORD PTR [rcx+20], xmm1
+$LN7@mergeSortF:
+
+; 193  : 	PIXEL_COMPARE_AND_SWAP(6, 7);
+
+	vmovss	xmm1, DWORD PTR [rcx+24]
+	vmovss	xmm4, DWORD PTR [rcx+28]
+	vcomiss	xmm1, xmm4
+	vmovaps	xmm7, xmm1
+	jbe	SHORT $LN8@mergeSortF
+	vmovss	DWORD PTR [rcx+24], xmm4
+	vmovaps	xmm7, xmm4
+	vmovaps	xmm4, xmm1
+	vmovss	DWORD PTR [rcx+28], xmm1
+$LN8@mergeSortF:
+
+; 194  : 	PIXEL_COMPARE_AND_SWAP(4, 6);
+
+	vcomiss	xmm0, xmm7
+	vmovaps	xmm1, xmm7
+	jbe	SHORT $LN9@mergeSortF
+	vmovss	DWORD PTR [rcx+24], xmm0
+	vmovaps	xmm1, xmm0
+	vmovaps	xmm0, xmm7
+	vmovss	DWORD PTR [rcx+16], xmm7
+$LN9@mergeSortF:
+
+; 195  : 	PIXEL_COMPARE_AND_SWAP(5, 7);
+
+	vcomiss	xmm5, xmm4
+	vmovaps	xmm7, xmm5
+	jbe	SHORT $LN10@mergeSortF
+	vmovss	DWORD PTR [rcx+20], xmm4
+	vmovaps	xmm7, xmm4
+	vmovaps	xmm4, xmm5
+	vmovss	DWORD PTR [rcx+28], xmm5
+$LN10@mergeSortF:
+
+; 196  : 	PIXEL_COMPARE_AND_SWAP(5, 6);
+
+	vcomiss	xmm7, xmm1
+	vmovaps	xmm8, xmm7
+	jbe	SHORT $LN11@mergeSortF
+	vmovss	DWORD PTR [rcx+20], xmm1
+	vmovaps	xmm8, xmm1
+	vmovaps	xmm1, xmm7
+	vmovss	DWORD PTR [rcx+24], xmm7
+$LN11@mergeSortF:
+
+; 197  : 
+; 198  : 	PIXEL_COMPARE_AND_SWAP(0, 4);
+
+	vcomiss	xmm2, xmm0
+	jbe	SHORT $LN12@mergeSortF
+	vmovss	DWORD PTR [rcx], xmm0
+	vmovaps	xmm0, xmm2
+	vmovss	DWORD PTR [rcx+16], xmm2
+$LN12@mergeSortF:
+
+; 199  : 	PIXEL_COMPARE_AND_SWAP(1, 5);
+
+	vcomiss	xmm6, xmm8
+	vmovaps	xmm5, xmm8
+	jbe	SHORT $LN13@mergeSortF
+	vmovss	DWORD PTR [rcx+20], xmm6
+	vmovaps	xmm5, xmm6
+	vmovaps	xmm6, xmm8
+	vmovss	DWORD PTR [rcx+4], xmm8
+$LN13@mergeSortF:
+
+; 200  : 	PIXEL_COMPARE_AND_SWAP(2, 6);
+
+	vcomiss	xmm3, xmm1
+	vmovaps	xmm7, xmm3
+	jbe	SHORT $LN14@mergeSortF
+	vmovss	DWORD PTR [rcx+8], xmm1
+	vmovaps	xmm7, xmm1
+	vmovaps	xmm1, xmm3
+	vmovss	DWORD PTR [rcx+24], xmm3
+$LN14@mergeSortF:
+
+; 201  : 	PIXEL_COMPARE_AND_SWAP(3, 7);
+
+	vmovss	xmm2, DWORD PTR [rcx+12]
+	vcomiss	xmm2, xmm4
+	jbe	SHORT $LN15@mergeSortF
+	vmovss	DWORD PTR [rcx+28], xmm2
+	vmovaps	xmm2, xmm4
+	vmovss	DWORD PTR [rcx+12], xmm4
+$LN15@mergeSortF:
+
+; 202  : 
+; 203  : 	PIXEL_COMPARE_AND_SWAP(2, 4);
+
+	vcomiss	xmm7, xmm0
+	vmovaps	xmm4, xmm7
+	jbe	SHORT $LN16@mergeSortF
+	vmovss	DWORD PTR [rcx+8], xmm0
+	vmovaps	xmm4, xmm0
+	vmovaps	xmm0, xmm7
+	vmovss	DWORD PTR [rcx+16], xmm7
+$LN16@mergeSortF:
+
+; 204  : 	PIXEL_COMPARE_AND_SWAP(3, 5);
+
+	vcomiss	xmm2, xmm5
+	vmovaps	xmm3, xmm2
+	jbe	SHORT $LN17@mergeSortF
+	vmovss	DWORD PTR [rcx+12], xmm5
+	vmovaps	xmm3, xmm5
+	vmovaps	xmm5, xmm2
+	vmovss	DWORD PTR [rcx+20], xmm2
+$LN17@mergeSortF:
+
+; 205  : 
+; 206  : 	PIXEL_COMPARE_AND_SWAP(1, 2);
+
+	vcomiss	xmm6, xmm4
+	jbe	SHORT $LN18@mergeSortF
+	vmovss	DWORD PTR [rcx+8], xmm6
+	vmovss	DWORD PTR [rcx+4], xmm4
+$LN18@mergeSortF:
+
+; 207  : 	PIXEL_COMPARE_AND_SWAP(3, 4);
+
+	vcomiss	xmm3, xmm0
+	jbe	SHORT $LN19@mergeSortF
+	vmovss	DWORD PTR [rcx+16], xmm3
+	vmovss	DWORD PTR [rcx+12], xmm0
+$LN19@mergeSortF:
+
+; 208  : 	PIXEL_COMPARE_AND_SWAP(5, 6);
+
+	vcomiss	xmm5, xmm1
+	jbe	SHORT $LN20@mergeSortF
+	vmovss	DWORD PTR [rcx+24], xmm5
+	vmovss	DWORD PTR [rcx+20], xmm1
+$LN20@mergeSortF:
+
+; 209  : 
+; 210  : 	// 4x4	
+; 211  : 	PIXEL_COMPARE_AND_SWAP(8, 9);
+
+	vmovss	xmm2, DWORD PTR [rcx+32]
+	vmovss	xmm0, DWORD PTR [rcx+36]
+	vcomiss	xmm2, xmm0
+	vmovaps	xmm1, xmm2
+	jbe	SHORT $LN21@mergeSortF
+	vmovss	DWORD PTR [rcx+32], xmm0
+	vmovaps	xmm1, xmm0
+	vmovaps	xmm0, xmm2
+	vmovss	DWORD PTR [rcx+36], xmm2
+$LN21@mergeSortF:
+
+; 212  : 	PIXEL_COMPARE_AND_SWAP(10, 11);
+
+	vmovss	xmm3, DWORD PTR [rcx+40]
+	vmovss	xmm4, DWORD PTR [rcx+44]
+	vcomiss	xmm3, xmm4
+	vmovaps	xmm2, xmm3
+	jbe	SHORT $LN22@mergeSortF
+	vmovss	DWORD PTR [rcx+40], xmm4
+	vmovaps	xmm2, xmm4
+	vmovaps	xmm4, xmm3
+	vmovss	DWORD PTR [rcx+44], xmm3
+$LN22@mergeSortF:
+
+; 213  : 	PIXEL_COMPARE_AND_SWAP(8, 10);
+
+	vcomiss	xmm1, xmm2
+	vmovaps	xmm3, xmm2
+	jbe	SHORT $LN23@mergeSortF
+	vmovss	DWORD PTR [rcx+40], xmm1
+	vmovaps	xmm3, xmm1
+	vmovaps	xmm1, xmm2
+	vmovss	DWORD PTR [rcx+32], xmm2
+$LN23@mergeSortF:
+
+; 214  : 	PIXEL_COMPARE_AND_SWAP(9, 11);
+
+	vcomiss	xmm0, xmm4
+	jbe	SHORT $LN24@mergeSortF
+	vmovss	DWORD PTR [rcx+44], xmm0
+	vmovaps	xmm0, xmm4
+	vmovss	DWORD PTR [rcx+36], xmm4
+$LN24@mergeSortF:
+
+; 215  : 	PIXEL_COMPARE_AND_SWAP(9, 10);
+
+	vcomiss	xmm0, xmm3
+	vmovaps	xmm7, xmm0
+	jbe	SHORT $LN25@mergeSortF
+	vmovss	DWORD PTR [rcx+36], xmm3
+	vmovaps	xmm7, xmm3
+	vmovaps	xmm3, xmm0
+	vmovss	DWORD PTR [rcx+40], xmm0
+$LN25@mergeSortF:
+
+; 216  : 
+; 217  : 	PIXEL_COMPARE_AND_SWAP(12, 13);
+
+	vmovss	xmm0, DWORD PTR [rcx+48]
+	vmovss	xmm4, DWORD PTR [rcx+52]
+	vcomiss	xmm0, xmm4
+	vmovaps	xmm2, xmm0
+	jbe	SHORT $LN26@mergeSortF
+	vmovss	DWORD PTR [rcx+48], xmm4
+	vmovaps	xmm2, xmm4
+	vmovaps	xmm4, xmm0
+	vmovss	DWORD PTR [rcx+52], xmm0
+$LN26@mergeSortF:
+
+; 218  : 	PIXEL_COMPARE_AND_SWAP(14, 15);
+
+	vmovss	xmm0, DWORD PTR [rcx+56]
+	vmovss	xmm5, DWORD PTR [rcx+60]
+	vcomiss	xmm0, xmm5
+	vmovaps	xmm6, xmm0
+	jbe	SHORT $LN27@mergeSortF
+	vmovss	DWORD PTR [rcx+56], xmm5
+	vmovaps	xmm6, xmm5
+	vmovaps	xmm5, xmm0
+	vmovss	DWORD PTR [rcx+60], xmm0
+$LN27@mergeSortF:
+
+; 219  : 	PIXEL_COMPARE_AND_SWAP(12, 14);
+
+	vcomiss	xmm2, xmm6
+	vmovaps	xmm0, xmm6
+	jbe	SHORT $LN28@mergeSortF
+	vmovss	DWORD PTR [rcx+56], xmm2
+	vmovaps	xmm0, xmm2
+	vmovaps	xmm2, xmm6
+	vmovss	DWORD PTR [rcx+48], xmm6
+$LN28@mergeSortF:
+
+; 220  : 	PIXEL_COMPARE_AND_SWAP(13, 15);
+
+	vcomiss	xmm4, xmm5
+	vmovaps	xmm6, xmm4
+	jbe	SHORT $LN29@mergeSortF
+	vmovss	DWORD PTR [rcx+52], xmm5
+	vmovaps	xmm6, xmm5
+	vmovaps	xmm5, xmm4
+	vmovss	DWORD PTR [rcx+60], xmm4
+$LN29@mergeSortF:
+
+; 221  : 	PIXEL_COMPARE_AND_SWAP(13, 14);
+
+	vcomiss	xmm6, xmm0
+	vmovaps	xmm8, xmm6
+	jbe	SHORT $LN30@mergeSortF
+	vmovss	DWORD PTR [rcx+52], xmm0
+	vmovaps	xmm8, xmm0
+	vmovaps	xmm0, xmm6
+	vmovss	DWORD PTR [rcx+56], xmm6
+$LN30@mergeSortF:
+
+; 222  : 
+; 223  : 	PIXEL_COMPARE_AND_SWAP(8, 12);
+
+	vcomiss	xmm1, xmm2
+	vmovaps	xmm4, xmm2
+	jbe	SHORT $LN31@mergeSortF
+	vmovss	DWORD PTR [rcx+48], xmm1
+	vmovaps	xmm4, xmm1
+	vmovaps	xmm1, xmm2
+	vmovss	DWORD PTR [rcx+32], xmm2
+$LN31@mergeSortF:
+
+; 224  : 	PIXEL_COMPARE_AND_SWAP(9, 13);
+
+	vcomiss	xmm7, xmm8
+	vmovaps	xmm6, xmm8
+	jbe	SHORT $LN32@mergeSortF
+	vmovss	DWORD PTR [rcx+52], xmm7
+	vmovaps	xmm6, xmm7
+	vmovaps	xmm7, xmm8
+	vmovss	DWORD PTR [rcx+36], xmm8
+$LN32@mergeSortF:
+
+; 225  : 	PIXEL_COMPARE_AND_SWAP(10, 14);
+
+	vcomiss	xmm3, xmm0
+	vmovaps	xmm8, xmm3
+	jbe	SHORT $LN33@mergeSortF
+	vmovss	DWORD PTR [rcx+40], xmm0
+	vmovaps	xmm8, xmm0
+	vmovaps	xmm0, xmm3
+	vmovss	DWORD PTR [rcx+56], xmm3
+$LN33@mergeSortF:
+
+; 226  : 	PIXEL_COMPARE_AND_SWAP(11, 15);
+
+	vmovss	xmm3, DWORD PTR [rcx+44]
+	vcomiss	xmm3, xmm5
+	jbe	SHORT $LN34@mergeSortF
+	vmovss	DWORD PTR [rcx+60], xmm3
+	vmovaps	xmm3, xmm5
+	vmovss	DWORD PTR [rcx+44], xmm5
+$LN34@mergeSortF:
+
+; 227  : 
+; 228  : 	PIXEL_COMPARE_AND_SWAP(10, 12);
+
+	vcomiss	xmm8, xmm4
+	vmovaps	xmm2, xmm8
+	jbe	SHORT $LN35@mergeSortF
+	vmovss	DWORD PTR [rcx+40], xmm4
+	vmovaps	xmm2, xmm4
+	vmovaps	xmm4, xmm8
+	vmovss	DWORD PTR [rcx+48], xmm8
+$LN35@mergeSortF:
+
+; 229  : 	PIXEL_COMPARE_AND_SWAP(11, 13);
+
+	vcomiss	xmm3, xmm6
+	vmovaps	xmm5, xmm3
+	jbe	SHORT $LN36@mergeSortF
+	vmovss	DWORD PTR [rcx+44], xmm6
+	vmovaps	xmm5, xmm6
+	vmovaps	xmm6, xmm3
+	vmovss	DWORD PTR [rcx+52], xmm3
+$LN36@mergeSortF:
+
+; 230  : 
+; 231  : 	PIXEL_COMPARE_AND_SWAP(9, 10);
+
+	vcomiss	xmm7, xmm2
+	vmovaps	xmm8, xmm7
+	jbe	SHORT $LN37@mergeSortF
+	vmovss	DWORD PTR [rcx+36], xmm2
+	vmovaps	xmm8, xmm2
+	vmovaps	xmm2, xmm7
+	vmovss	DWORD PTR [rcx+40], xmm7
+$LN37@mergeSortF:
+
+; 232  : 	PIXEL_COMPARE_AND_SWAP(11, 12);
+
+	vcomiss	xmm5, xmm4
+	vmovaps	xmm7, xmm5
+	jbe	SHORT $LN38@mergeSortF
+	vmovss	DWORD PTR [rcx+44], xmm4
+	vmovaps	xmm7, xmm4
+	vmovaps	xmm4, xmm5
+	vmovss	DWORD PTR [rcx+48], xmm5
+$LN38@mergeSortF:
+
+; 233  : 	PIXEL_COMPARE_AND_SWAP(13, 14);
+
+	vcomiss	xmm6, xmm0
+	vmovaps	xmm5, xmm6
+	jbe	SHORT $LN39@mergeSortF
+	vmovss	DWORD PTR [rcx+52], xmm0
+	vmovaps	xmm5, xmm0
+	vmovaps	xmm0, xmm6
+	vmovss	DWORD PTR [rcx+56], xmm6
+$LN39@mergeSortF:
+
+; 234  : 
+; 235  : 
+; 236  : 	PIXEL_COMPARE_AND_SWAP(0, 8);
+
+	vmovss	xmm3, DWORD PTR [rcx]
+	vcomiss	xmm3, xmm1
+	jbe	SHORT $LN40@mergeSortF
+	vmovss	DWORD PTR [rcx], xmm1
+	vmovaps	xmm1, xmm3
+	vmovss	DWORD PTR [rcx+32], xmm3
+$LN40@mergeSortF:
+
+; 237  : 	PIXEL_COMPARE_AND_SWAP(1, 9);
+
+	vmovss	xmm3, DWORD PTR [rcx+4]
+	vcomiss	xmm3, xmm8
+	jbe	SHORT $LN41@mergeSortF
+	vmovss	DWORD PTR [rcx+4], xmm8
+	vmovaps	xmm8, xmm3
+	vmovss	DWORD PTR [rcx+36], xmm3
+$LN41@mergeSortF:
+
+; 238  : 	PIXEL_COMPARE_AND_SWAP(2, 10);
+
+	vmovss	xmm3, DWORD PTR [rcx+8]
+	vcomiss	xmm3, xmm2
+	jbe	SHORT $LN42@mergeSortF
+	vmovss	DWORD PTR [rcx+8], xmm2
+	vmovaps	xmm2, xmm3
+	vmovss	DWORD PTR [rcx+40], xmm3
+$LN42@mergeSortF:
+
+; 239  : 	PIXEL_COMPARE_AND_SWAP(3, 11);
+
+	vmovss	xmm3, DWORD PTR [rcx+12]
+	vcomiss	xmm3, xmm7
+	jbe	SHORT $LN43@mergeSortF
+	vmovss	DWORD PTR [rcx+12], xmm7
+	vmovaps	xmm7, xmm3
+	vmovss	DWORD PTR [rcx+44], xmm3
+$LN43@mergeSortF:
+
+; 240  : 	PIXEL_COMPARE_AND_SWAP(4, 12);
+
+	vmovss	xmm3, DWORD PTR [rcx+16]
+	vcomiss	xmm3, xmm4
+	jbe	SHORT $LN44@mergeSortF
+	vmovss	DWORD PTR [rcx+48], xmm3
+	vmovaps	xmm3, xmm4
+	vmovss	DWORD PTR [rcx+16], xmm4
+$LN44@mergeSortF:
+
+; 241  : 	PIXEL_COMPARE_AND_SWAP(5, 13);
+
+	vmovss	xmm4, DWORD PTR [rcx+20]
+	vcomiss	xmm4, xmm5
+	jbe	SHORT $LN45@mergeSortF
+	vmovss	DWORD PTR [rcx+52], xmm4
+	vmovaps	xmm4, xmm5
+	vmovss	DWORD PTR [rcx+20], xmm5
+$LN45@mergeSortF:
+
+; 242  : 	PIXEL_COMPARE_AND_SWAP(6, 14);
+
+	vmovss	xmm5, DWORD PTR [rcx+24]
+	vcomiss	xmm5, xmm0
+	jbe	SHORT $LN46@mergeSortF
+	vmovss	DWORD PTR [rcx+56], xmm5
+	vmovaps	xmm5, xmm0
+	vmovss	DWORD PTR [rcx+24], xmm0
+$LN46@mergeSortF:
+
+; 243  : 	PIXEL_COMPARE_AND_SWAP(7, 15);
+
+	vmovss	xmm0, DWORD PTR [rcx+28]
+	vmovss	xmm6, DWORD PTR [rcx+60]
+	vcomiss	xmm0, xmm6
+	jbe	SHORT $LN47@mergeSortF
+	vmovss	DWORD PTR [rcx+60], xmm0
+	vmovaps	xmm0, xmm6
+	vmovss	DWORD PTR [rcx+28], xmm6
+$LN47@mergeSortF:
+
+; 244  : 
+; 245  : 
+; 246  : 	PIXEL_COMPARE_AND_SWAP(4, 8);
+
+	vcomiss	xmm3, xmm1
+	vmovaps	xmm6, xmm3
+	jbe	SHORT $LN48@mergeSortF
+	vmovss	DWORD PTR [rcx+16], xmm1
+	vmovaps	xmm6, xmm1
+	vmovaps	xmm1, xmm3
+	vmovss	DWORD PTR [rcx+32], xmm3
+$LN48@mergeSortF:
+
+; 247  : 	PIXEL_COMPARE_AND_SWAP(5, 9);
+
+	vcomiss	xmm4, xmm8
+	vmovaps	xmm9, xmm4
+	jbe	SHORT $LN49@mergeSortF
+	vmovss	DWORD PTR [rcx+20], xmm8
+	vmovaps	xmm9, xmm8
+	vmovaps	xmm8, xmm4
+	vmovss	DWORD PTR [rcx+36], xmm4
+$LN49@mergeSortF:
+
+; 248  : 	PIXEL_COMPARE_AND_SWAP(6, 10);
+
+	vcomiss	xmm5, xmm2
+	vmovaps	xmm3, xmm5
+	jbe	SHORT $LN50@mergeSortF
+	vmovss	DWORD PTR [rcx+24], xmm2
+	vmovaps	xmm3, xmm2
+	vmovaps	xmm2, xmm5
+	vmovss	DWORD PTR [rcx+40], xmm5
+$LN50@mergeSortF:
+
+; 249  : 	PIXEL_COMPARE_AND_SWAP(7, 11);
+
+	vcomiss	xmm0, xmm7
+	vmovaps	xmm4, xmm0
+	jbe	SHORT $LN51@mergeSortF
+	vmovss	DWORD PTR [rcx+28], xmm7
+	vmovaps	xmm4, xmm7
+	vmovaps	xmm7, xmm0
+	vmovss	DWORD PTR [rcx+44], xmm0
+$LN51@mergeSortF:
+
+; 250  : 
+; 251  : 	PIXEL_COMPARE_AND_SWAP(2, 4);
+
+	vmovss	xmm0, DWORD PTR [rcx+8]
+	vcomiss	xmm0, xmm6
+	vmovaps	xmm13, xmm0
+	jbe	SHORT $LN52@mergeSortF
+	vmovss	DWORD PTR [rcx+8], xmm6
+	vmovaps	xmm13, xmm6
+	vmovaps	xmm6, xmm0
+	vmovss	DWORD PTR [rcx+16], xmm0
+$LN52@mergeSortF:
+
+; 252  : 	PIXEL_COMPARE_AND_SWAP(3, 5);
+
+	vmovss	xmm0, DWORD PTR [rcx+12]
+	vcomiss	xmm0, xmm9
+	vmovaps	xmm12, xmm0
+	jbe	SHORT $LN53@mergeSortF
+	vmovss	DWORD PTR [rcx+12], xmm9
+	vmovaps	xmm12, xmm9
+	vmovaps	xmm9, xmm0
+	vmovss	DWORD PTR [rcx+20], xmm0
+$LN53@mergeSortF:
+
+; 253  : 	PIXEL_COMPARE_AND_SWAP(6, 8);
+
+	vcomiss	xmm3, xmm1
+	vmovaps	xmm11, xmm3
+	jbe	SHORT $LN54@mergeSortF
+	vmovss	DWORD PTR [rcx+24], xmm1
+	vmovaps	xmm11, xmm1
+	vmovaps	xmm1, xmm3
+	vmovss	DWORD PTR [rcx+32], xmm3
+$LN54@mergeSortF:
+
+; 254  : 	PIXEL_COMPARE_AND_SWAP(7, 9);
+
+	vcomiss	xmm4, xmm8
+	vmovaps	xmm10, xmm4
+	jbe	SHORT $LN55@mergeSortF
+	vmovss	DWORD PTR [rcx+28], xmm8
+	vmovaps	xmm10, xmm8
+	vmovaps	xmm8, xmm4
+	vmovss	DWORD PTR [rcx+36], xmm4
+$LN55@mergeSortF:
+
+; 255  : 	PIXEL_COMPARE_AND_SWAP(10, 12);
+
+	vmovss	xmm0, DWORD PTR [rcx+48]
+	vcomiss	xmm2, xmm0
+	vmovaps	xmm4, xmm2
+	jbe	SHORT $LN56@mergeSortF
+	vmovss	DWORD PTR [rcx+40], xmm0
+	vmovaps	xmm4, xmm0
+	vmovaps	xmm0, xmm2
+	vmovss	DWORD PTR [rcx+48], xmm2
+$LN56@mergeSortF:
+
+; 256  : 	PIXEL_COMPARE_AND_SWAP(11, 13);
+
+	vmovss	xmm2, DWORD PTR [rcx+52]
+	vcomiss	xmm7, xmm2
+	vmovaps	xmm3, xmm7
+	jbe	SHORT $LN57@mergeSortF
+	vmovss	DWORD PTR [rcx+44], xmm2
+	vmovaps	xmm3, xmm2
+	vmovaps	xmm2, xmm7
+	vmovss	DWORD PTR [rcx+52], xmm7
+$LN57@mergeSortF:
+
+; 257  : 
+; 258  : 	PIXEL_COMPARE_AND_SWAP(1, 2);
+
+	vmovss	xmm5, DWORD PTR [rcx+4]
+	vcomiss	xmm5, xmm13
+	jbe	SHORT $LN58@mergeSortF
+	vmovss	DWORD PTR [rcx+8], xmm5
+	vmovss	DWORD PTR [rcx+4], xmm13
+$LN58@mergeSortF:
+
+; 259  : 	PIXEL_COMPARE_AND_SWAP(3, 4);
+
+	vcomiss	xmm12, xmm6
+	jbe	SHORT $LN59@mergeSortF
+	vmovss	DWORD PTR [rcx+16], xmm12
+	vmovss	DWORD PTR [rcx+12], xmm6
+$LN59@mergeSortF:
+
+; 260  : 	PIXEL_COMPARE_AND_SWAP(5, 6);
+
+	vcomiss	xmm9, xmm11
+	jbe	SHORT $LN60@mergeSortF
+	vmovss	DWORD PTR [rcx+24], xmm9
+	vmovss	DWORD PTR [rcx+20], xmm11
+$LN60@mergeSortF:
+
+; 261  : 	PIXEL_COMPARE_AND_SWAP(7, 8);
+
+	vcomiss	xmm10, xmm1
+	jbe	SHORT $LN61@mergeSortF
+	vmovss	DWORD PTR [rcx+32], xmm10
+	vmovss	DWORD PTR [rcx+28], xmm1
+$LN61@mergeSortF:
+
+; 262  : 	PIXEL_COMPARE_AND_SWAP(9, 10);
+
+	vcomiss	xmm8, xmm4
+	jbe	SHORT $LN62@mergeSortF
+	vmovss	DWORD PTR [rcx+40], xmm8
+	vmovss	DWORD PTR [rcx+36], xmm4
+$LN62@mergeSortF:
+
+; 263  : 	PIXEL_COMPARE_AND_SWAP(11, 12);
+
+	vcomiss	xmm3, xmm0
+	jbe	SHORT $LN63@mergeSortF
+	vmovss	DWORD PTR [rcx+48], xmm3
+	vmovss	DWORD PTR [rcx+44], xmm0
+$LN63@mergeSortF:
+
+; 264  : 	PIXEL_COMPARE_AND_SWAP(13, 14);
+
+	vmovss	xmm0, DWORD PTR [rcx+56]
+	vcomiss	xmm2, xmm0
+	jbe	SHORT $LN64@mergeSortF
+	vmovss	DWORD PTR [rcx+56], xmm2
+	vmovss	DWORD PTR [rcx+52], xmm0
+$LN64@mergeSortF:
+
+; 265  : 
+; 266  : 	// Eddig 8x8-as (16 bemenet)
+; 267  : 
+; 268  : 	//4x4
+; 269  : 	PIXEL_COMPARE_AND_SWAP(16, 17);
+
+	vmovss	xmm0, DWORD PTR [rcx+64]
+	vmovss	xmm1, DWORD PTR [rcx+68]
+	vcomiss	xmm0, xmm1
+	vmovaps	xmm10, xmm0
+	jbe	SHORT $LN65@mergeSortF
+	vmovss	DWORD PTR [rcx+64], xmm1
+	vmovaps	xmm10, xmm1
+	vmovaps	xmm1, xmm0
+	vmovss	DWORD PTR [rcx+68], xmm0
+$LN65@mergeSortF:
+
+; 270  : 	PIXEL_COMPARE_AND_SWAP(18, 19);
+
+	vmovss	xmm0, DWORD PTR [rcx+72]
+	vmovss	xmm3, DWORD PTR [rcx+76]
+	vcomiss	xmm0, xmm3
+	vmovaps	xmm2, xmm0
+	jbe	SHORT $LN66@mergeSortF
+	vmovss	DWORD PTR [rcx+72], xmm3
+	vmovaps	xmm2, xmm3
+	vmovaps	xmm3, xmm0
+	vmovss	DWORD PTR [rcx+76], xmm0
+$LN66@mergeSortF:
+
+; 271  : 	PIXEL_COMPARE_AND_SWAP(20, 21);
+
+	vmovss	xmm0, DWORD PTR [rcx+80]
+	vmovss	xmm6, DWORD PTR [rcx+84]
+	vcomiss	xmm0, xmm6
+	vmovaps	xmm5, xmm0
+	jbe	SHORT $LN67@mergeSortF
+	vmovss	DWORD PTR [rcx+80], xmm6
+	vmovaps	xmm5, xmm6
+	vmovaps	xmm6, xmm0
+	vmovss	DWORD PTR [rcx+84], xmm0
+$LN67@mergeSortF:
+
+; 272  : 	PIXEL_COMPARE_AND_SWAP(22, 23);
+
+	vmovss	xmm4, DWORD PTR [rcx+88]
+	vmovss	xmm9, DWORD PTR [rcx+92]
+	vcomiss	xmm4, xmm9
+	vmovaps	xmm0, xmm4
+	jbe	SHORT $LN68@mergeSortF
+	vmovaps	xmm0, xmm9
+	vmovss	DWORD PTR [rcx+88], xmm0
+	vmovss	DWORD PTR [rcx+92], xmm4
+	vmovaps	xmm9, xmm4
+$LN68@mergeSortF:
+
+; 273  : 
+; 274  : 	PIXEL_COMPARE_AND_SWAP(16, 18);
+
+	vcomiss	xmm10, xmm2
+	vmovaps	xmm7, xmm2
+	jbe	SHORT $LN69@mergeSortF
+	vmovss	DWORD PTR [rcx+72], xmm10
+	vmovaps	xmm7, xmm10
+	vmovaps	xmm10, xmm2
+	vmovss	DWORD PTR [rcx+64], xmm2
+$LN69@mergeSortF:
+
+; 275  : 	PIXEL_COMPARE_AND_SWAP(20, 22);
+
+	vcomiss	xmm5, xmm0
+	vmovaps	xmm8, xmm0
+	jbe	SHORT $LN70@mergeSortF
+	vmovss	DWORD PTR [rcx+88], xmm5
+	vmovaps	xmm8, xmm5
+	vmovaps	xmm5, xmm0
+	vmovss	DWORD PTR [rcx+80], xmm0
+$LN70@mergeSortF:
+
+; 276  : 	PIXEL_COMPARE_AND_SWAP(17, 19);
+
+	vcomiss	xmm1, xmm3
+	vmovaps	xmm0, xmm1
+	jbe	SHORT $LN71@mergeSortF
+	vmovss	DWORD PTR [rcx+68], xmm3
+	vmovaps	xmm0, xmm3
+	vmovaps	xmm3, xmm1
+	vmovss	DWORD PTR [rcx+76], xmm1
+$LN71@mergeSortF:
+
+; 277  : 	PIXEL_COMPARE_AND_SWAP(21, 23);
+
+	vcomiss	xmm6, xmm9
+	vmovaps	xmm1, xmm6
+	jbe	SHORT $LN72@mergeSortF
+	vmovss	DWORD PTR [rcx+84], xmm9
+	vmovaps	xmm1, xmm9
+	vmovaps	xmm9, xmm6
+	vmovss	DWORD PTR [rcx+92], xmm6
+$LN72@mergeSortF:
+
+; 278  : 
+; 279  : 	PIXEL_COMPARE_AND_SWAP(17, 18);
+
+	vcomiss	xmm0, xmm7
+	vmovaps	xmm6, xmm0
+	jbe	SHORT $LN73@mergeSortF
+	vmovss	DWORD PTR [rcx+68], xmm7
+	vmovaps	xmm6, xmm7
+	vmovaps	xmm7, xmm0
+	vmovss	DWORD PTR [rcx+72], xmm0
+$LN73@mergeSortF:
+
+; 280  : 	PIXEL_COMPARE_AND_SWAP(21, 22);
+
+	vcomiss	xmm1, xmm8
+	vmovaps	xmm0, xmm1
+	jbe	SHORT $LN74@mergeSortF
+	vmovss	DWORD PTR [rcx+84], xmm8
+	vmovaps	xmm0, xmm8
+	vmovaps	xmm8, xmm1
+	vmovss	DWORD PTR [rcx+88], xmm1
+$LN74@mergeSortF:
+
+; 281  : 
+; 282  : 
+; 283  : 	PIXEL_COMPARE_AND_SWAP(16, 20);
+
+	vcomiss	xmm10, xmm5
+	vmovaps	xmm4, xmm5
+	jbe	SHORT $LN75@mergeSortF
+	vmovss	DWORD PTR [rcx+80], xmm10
+	vmovaps	xmm4, xmm10
+	vmovaps	xmm10, xmm5
+	vmovss	DWORD PTR [rcx+64], xmm5
+$LN75@mergeSortF:
+
+; 284  : 	PIXEL_COMPARE_AND_SWAP(17, 21);
+
+	vcomiss	xmm6, xmm0
+	vmovaps	xmm2, xmm0
+	jbe	SHORT $LN76@mergeSortF
+	vmovss	DWORD PTR [rcx+84], xmm6
+	vmovaps	xmm2, xmm6
+	vmovaps	xmm6, xmm0
+	vmovss	DWORD PTR [rcx+68], xmm0
+$LN76@mergeSortF:
+
+; 285  : 	PIXEL_COMPARE_AND_SWAP(18, 22);
+
+	vcomiss	xmm7, xmm8
+	vmovaps	xmm1, xmm7
+	jbe	SHORT $LN77@mergeSortF
+	vmovss	DWORD PTR [rcx+72], xmm8
+	vmovaps	xmm1, xmm8
+	vmovaps	xmm8, xmm7
+	vmovss	DWORD PTR [rcx+88], xmm7
+$LN77@mergeSortF:
+
+; 286  : 	PIXEL_COMPARE_AND_SWAP(19, 23);
+
+	vcomiss	xmm3, xmm9
+	jbe	SHORT $LN78@mergeSortF
+	vmovss	DWORD PTR [rcx+92], xmm3
+	vmovaps	xmm3, xmm9
+	vmovss	DWORD PTR [rcx+76], xmm9
+$LN78@mergeSortF:
+
+; 287  : 
+; 288  : 	PIXEL_COMPARE_AND_SWAP(18, 20);
+
+	vcomiss	xmm1, xmm4
+	vmovaps	xmm0, xmm1
+	jbe	SHORT $LN79@mergeSortF
+	vmovss	DWORD PTR [rcx+72], xmm4
+	vmovaps	xmm0, xmm4
+	vmovaps	xmm4, xmm1
+	vmovss	DWORD PTR [rcx+80], xmm1
+$LN79@mergeSortF:
+
+; 289  : 	PIXEL_COMPARE_AND_SWAP(19, 21);
+
+	vcomiss	xmm3, xmm2
+	vmovaps	xmm1, xmm3
+	jbe	SHORT $LN80@mergeSortF
+	vmovss	DWORD PTR [rcx+76], xmm2
+	vmovaps	xmm1, xmm2
+	vmovaps	xmm2, xmm3
+	vmovss	DWORD PTR [rcx+84], xmm3
+$LN80@mergeSortF:
+
+; 290  : 
+; 291  : 	PIXEL_COMPARE_AND_SWAP(17, 18);
+
+	vcomiss	xmm6, xmm0
+	vmovaps	xmm5, xmm0
+	jbe	SHORT $LN81@mergeSortF
+	vmovss	DWORD PTR [rcx+72], xmm6
+	vmovaps	xmm5, xmm6
+	vmovaps	xmm6, xmm0
+	vmovss	DWORD PTR [rcx+68], xmm0
+$LN81@mergeSortF:
+
+; 292  : 	PIXEL_COMPARE_AND_SWAP(19, 20);
+
+	vcomiss	xmm1, xmm4
+	vmovaps	xmm3, xmm4
+	jbe	SHORT $LN82@mergeSortF
+	vmovss	DWORD PTR [rcx+80], xmm1
+	vmovaps	xmm3, xmm1
+	vmovaps	xmm1, xmm4
+	vmovss	DWORD PTR [rcx+76], xmm4
+$LN82@mergeSortF:
+
+; 293  : 	PIXEL_COMPARE_AND_SWAP(21, 22);
+
+	vcomiss	xmm2, xmm8
+	vmovaps	xmm4, xmm2
+	jbe	SHORT $LN83@mergeSortF
+	vmovss	DWORD PTR [rcx+84], xmm8
+	vmovaps	xmm4, xmm8
+	vmovaps	xmm8, xmm2
+	vmovss	DWORD PTR [rcx+88], xmm2
+$LN83@mergeSortF:
+
+; 294  : 
+; 295  : 	PIXEL_COMPARE_AND_SWAP(16, 24);
+
+	vmovss	xmm2, DWORD PTR [rcx+96]
+	vcomiss	xmm10, xmm2
+	jbe	SHORT $LN84@mergeSortF
+	vmovaps	xmm0, xmm2
+	vmovss	DWORD PTR [rcx+64], xmm2
+	vmovaps	xmm2, xmm10
+	vmovss	DWORD PTR [rcx+96], xmm10
+	vmovaps	xmm10, xmm0
+$LN84@mergeSortF:
+
+; 296  : 
+; 297  : 	PIXEL_COMPARE_AND_SWAP(20, 24);
+
+	vcomiss	xmm3, xmm2
+	vmovaps	xmm7, xmm3
+	jbe	SHORT $LN85@mergeSortF
+	vmovss	DWORD PTR [rcx+80], xmm2
+	vmovaps	xmm7, xmm2
+	vmovaps	xmm2, xmm3
+	vmovss	DWORD PTR [rcx+96], xmm3
+$LN85@mergeSortF:
+
+; 298  : 
+; 299  : 	PIXEL_COMPARE_AND_SWAP(18, 20);
+
+	vcomiss	xmm5, xmm7
+	vmovaps	xmm9, xmm5
+	jbe	SHORT $LN86@mergeSortF
+	vmovss	DWORD PTR [rcx+72], xmm7
+	vmovaps	xmm9, xmm7
+	vmovaps	xmm7, xmm5
+	vmovss	DWORD PTR [rcx+80], xmm5
+$LN86@mergeSortF:
+
+; 300  : 	PIXEL_COMPARE_AND_SWAP(19, 21);
+
+	vcomiss	xmm1, xmm4
+	vmovaps	xmm0, xmm1
+	jbe	SHORT $LN87@mergeSortF
+	vmovss	DWORD PTR [rcx+76], xmm4
+	vmovaps	xmm0, xmm4
+	vmovaps	xmm4, xmm1
+	vmovss	DWORD PTR [rcx+84], xmm1
+$LN87@mergeSortF:
+
+; 301  : 	PIXEL_COMPARE_AND_SWAP(22, 24);
+
+	vcomiss	xmm8, xmm2
+	vmovaps	xmm11, xmm8
+	jbe	SHORT $LN88@mergeSortF
+	vmovss	DWORD PTR [rcx+88], xmm2
+	vmovaps	xmm11, xmm2
+	vmovaps	xmm2, xmm8
+	vmovss	DWORD PTR [rcx+96], xmm8
+$LN88@mergeSortF:
+
+; 302  : 
+; 303  : 	PIXEL_COMPARE_AND_SWAP(17, 18);
+
+	vcomiss	xmm6, xmm9
+	vmovaps	xmm3, xmm6
+	jbe	SHORT $LN89@mergeSortF
+	vmovss	DWORD PTR [rcx+68], xmm9
+	vmovaps	xmm3, xmm9
+	vmovaps	xmm9, xmm6
+	vmovss	DWORD PTR [rcx+72], xmm6
+$LN89@mergeSortF:
+
+; 304  : 	PIXEL_COMPARE_AND_SWAP(19, 20);
+
+	vcomiss	xmm0, xmm7
+	vmovaps	xmm5, xmm0
+	jbe	SHORT $LN90@mergeSortF
+	vmovss	DWORD PTR [rcx+76], xmm7
+	vmovaps	xmm5, xmm7
+	vmovaps	xmm7, xmm0
+	vmovss	DWORD PTR [rcx+80], xmm0
+$LN90@mergeSortF:
+
+; 305  : 	PIXEL_COMPARE_AND_SWAP(21, 22);
+
+	vcomiss	xmm4, xmm11
+	vmovaps	xmm6, xmm4
+	jbe	SHORT $LN91@mergeSortF
+	vmovss	DWORD PTR [rcx+84], xmm11
+	vmovaps	xmm6, xmm11
+	vmovaps	xmm11, xmm4
+	vmovss	DWORD PTR [rcx+88], xmm4
+$LN91@mergeSortF:
+
+; 306  : 	PIXEL_COMPARE_AND_SWAP(23, 24);
+
+	vmovss	xmm0, DWORD PTR [rcx+92]
+	vcomiss	xmm0, xmm2
+	vmovaps	xmm4, xmm0
+	jbe	SHORT $LN92@mergeSortF
+	vmovss	DWORD PTR [rcx+92], xmm2
+	vmovaps	xmm4, xmm2
+	vmovaps	xmm2, xmm0
+	vmovss	DWORD PTR [rcx+96], xmm0
+$LN92@mergeSortF:
+
+; 307  : 	//Eddig egy 8x8-as (De ez csak 9 bemenet)
+; 308  : 
+; 309  : 	// 16x16 
+; 310  : 	PIXEL_COMPARE_AND_SWAP(0, 16);
+
+	vmovss	xmm0, DWORD PTR [rcx]
+	vcomiss	xmm0, xmm10
+	jbe	SHORT $LN93@mergeSortF
+	vmovss	DWORD PTR [rcx], xmm10
+	vmovaps	xmm10, xmm0
+	vmovss	DWORD PTR [rcx+64], xmm0
+$LN93@mergeSortF:
+
+; 311  : 	PIXEL_COMPARE_AND_SWAP(1, 17);
+
+	vmovss	xmm0, DWORD PTR [rcx+4]
+	vcomiss	xmm0, xmm3
+	jbe	SHORT $LN94@mergeSortF
+	vmovss	DWORD PTR [rcx+4], xmm3
+	vmovaps	xmm3, xmm0
+	vmovss	DWORD PTR [rcx+68], xmm0
+$LN94@mergeSortF:
+
+; 312  : 	PIXEL_COMPARE_AND_SWAP(2, 18);
+
+	vmovss	xmm0, DWORD PTR [rcx+8]
+	vcomiss	xmm0, xmm9
+	jbe	SHORT $LN95@mergeSortF
+	vmovss	DWORD PTR [rcx+8], xmm9
+	vmovaps	xmm9, xmm0
+	vmovss	DWORD PTR [rcx+72], xmm0
+$LN95@mergeSortF:
+
+; 313  : 	PIXEL_COMPARE_AND_SWAP(3, 19);
+
+	vmovss	xmm0, DWORD PTR [rcx+12]
+	vcomiss	xmm0, xmm5
+	jbe	SHORT $LN96@mergeSortF
+	vmovss	DWORD PTR [rcx+12], xmm5
+	vmovaps	xmm5, xmm0
+	vmovss	DWORD PTR [rcx+76], xmm0
+$LN96@mergeSortF:
+
+; 314  : 	PIXEL_COMPARE_AND_SWAP(4, 20);
+
+	vmovss	xmm0, DWORD PTR [rcx+16]
+	vcomiss	xmm0, xmm7
+	jbe	SHORT $LN97@mergeSortF
+	vmovss	DWORD PTR [rcx+16], xmm7
+	vmovaps	xmm7, xmm0
+	vmovss	DWORD PTR [rcx+80], xmm0
+$LN97@mergeSortF:
+
+; 315  : 	PIXEL_COMPARE_AND_SWAP(5, 21);
+
+	vmovss	xmm0, DWORD PTR [rcx+20]
+	vcomiss	xmm0, xmm6
+	jbe	SHORT $LN98@mergeSortF
+	vmovss	DWORD PTR [rcx+20], xmm6
+	vmovaps	xmm6, xmm0
+	vmovss	DWORD PTR [rcx+84], xmm0
+$LN98@mergeSortF:
+
+; 316  : 	PIXEL_COMPARE_AND_SWAP(6, 22);
+
+	vmovss	xmm0, DWORD PTR [rcx+24]
+	vcomiss	xmm0, xmm11
+	jbe	SHORT $LN99@mergeSortF
+	vmovss	DWORD PTR [rcx+24], xmm11
+	vmovaps	xmm11, xmm0
+	vmovss	DWORD PTR [rcx+88], xmm0
+$LN99@mergeSortF:
+
+; 317  : 	PIXEL_COMPARE_AND_SWAP(7, 23);
+
+	vmovss	xmm0, DWORD PTR [rcx+28]
+	vcomiss	xmm0, xmm4
+	jbe	SHORT $LN100@mergeSortF
+	vmovss	DWORD PTR [rcx+28], xmm4
+	vmovaps	xmm4, xmm0
+	vmovss	DWORD PTR [rcx+92], xmm0
+$LN100@mergeSortF:
+
+; 318  : 	PIXEL_COMPARE_AND_SWAP(8, 24);
+
+	vmovss	xmm0, DWORD PTR [rcx+32]
+	vcomiss	xmm0, xmm2
+	jbe	SHORT $LN101@mergeSortF
+	vmovss	DWORD PTR [rcx+96], xmm0
+	vmovaps	xmm0, xmm2
+	vmovss	DWORD PTR [rcx+32], xmm2
+$LN101@mergeSortF:
+
+; 319  : 
+; 320  : 
+; 321  : 	PIXEL_COMPARE_AND_SWAP(8, 16);
+
+	vcomiss	xmm0, xmm10
+	jbe	SHORT $LN102@mergeSortF
+	vmovss	DWORD PTR [rcx+64], xmm0
+	vmovaps	xmm0, xmm10
+	vmovss	DWORD PTR [rcx+32], xmm10
+$LN102@mergeSortF:
+
+; 322  : 	PIXEL_COMPARE_AND_SWAP(9, 17);
+
+	vmovss	xmm1, DWORD PTR [rcx+36]
+	vcomiss	xmm1, xmm3
+	jbe	SHORT $LN103@mergeSortF
+	vmovss	DWORD PTR [rcx+68], xmm1
+	vmovaps	xmm1, xmm3
+	vmovss	DWORD PTR [rcx+36], xmm3
+$LN103@mergeSortF:
+
+; 323  : 	PIXEL_COMPARE_AND_SWAP(10, 18);
+
+	vmovss	xmm2, DWORD PTR [rcx+40]
+	vcomiss	xmm2, xmm9
+	jbe	SHORT $LN104@mergeSortF
+	vmovss	DWORD PTR [rcx+72], xmm2
+	vmovaps	xmm2, xmm9
+	vmovss	DWORD PTR [rcx+40], xmm9
+$LN104@mergeSortF:
+
+; 324  : 	PIXEL_COMPARE_AND_SWAP(11, 19);
+
+	vmovss	xmm3, DWORD PTR [rcx+44]
+	vcomiss	xmm3, xmm5
+	jbe	SHORT $LN105@mergeSortF
+	vmovss	DWORD PTR [rcx+76], xmm3
+	vmovaps	xmm3, xmm5
+	vmovss	DWORD PTR [rcx+44], xmm5
+$LN105@mergeSortF:
+
+; 325  : 	PIXEL_COMPARE_AND_SWAP(12, 20);
+
+	vmovss	xmm10, DWORD PTR [rcx+48]
+	vcomiss	xmm10, xmm7
+	jbe	SHORT $LN106@mergeSortF
+	vmovss	DWORD PTR [rcx+80], xmm10
+	vmovaps	xmm10, xmm7
+	vmovss	DWORD PTR [rcx+48], xmm7
+$LN106@mergeSortF:
+
+; 326  : 	PIXEL_COMPARE_AND_SWAP(13, 21);
+
+	vmovss	xmm9, DWORD PTR [rcx+52]
+	vcomiss	xmm9, xmm6
+	jbe	SHORT $LN107@mergeSortF
+	vmovss	DWORD PTR [rcx+84], xmm9
+	vmovaps	xmm9, xmm6
+	vmovss	DWORD PTR [rcx+52], xmm6
+$LN107@mergeSortF:
+
+; 327  : 	PIXEL_COMPARE_AND_SWAP(14, 22);
+
+	vmovss	xmm8, DWORD PTR [rcx+56]
+	vcomiss	xmm8, xmm11
+	jbe	SHORT $LN108@mergeSortF
+	vmovss	DWORD PTR [rcx+88], xmm8
+	vmovaps	xmm8, xmm11
+	vmovss	DWORD PTR [rcx+56], xmm11
+$LN108@mergeSortF:
+
+; 328  : 	PIXEL_COMPARE_AND_SWAP(15, 23);
+
+	vmovss	xmm7, DWORD PTR [rcx+60]
+	vcomiss	xmm7, xmm4
+	jbe	SHORT $LN109@mergeSortF
+	vmovss	DWORD PTR [rcx+92], xmm7
+	vmovaps	xmm7, xmm4
+	vmovss	DWORD PTR [rcx+60], xmm4
+$LN109@mergeSortF:
+
+; 329  : 
+; 330  : 
+; 331  : 	PIXEL_COMPARE_AND_SWAP(4, 8);
+
+	vmovss	xmm6, DWORD PTR [rcx+16]
+	vcomiss	xmm6, xmm0
+	jbe	SHORT $LN110@mergeSortF
+	vmovss	DWORD PTR [rcx+32], xmm6
+	vmovaps	xmm6, xmm0
+	vmovss	DWORD PTR [rcx+16], xmm0
+$LN110@mergeSortF:
+
+; 332  : 	PIXEL_COMPARE_AND_SWAP(5, 9);
+
+	vmovss	xmm5, DWORD PTR [rcx+20]
+	vcomiss	xmm5, xmm1
+	jbe	SHORT $LN111@mergeSortF
+	vmovss	DWORD PTR [rcx+36], xmm5
+	vmovaps	xmm5, xmm1
+	vmovss	DWORD PTR [rcx+20], xmm1
+$LN111@mergeSortF:
+
+; 333  : 	PIXEL_COMPARE_AND_SWAP(6, 10);
+
+	vmovss	xmm4, DWORD PTR [rcx+24]
+	vcomiss	xmm4, xmm2
+	jbe	SHORT $LN112@mergeSortF
+	vmovss	DWORD PTR [rcx+40], xmm4
+	vmovaps	xmm4, xmm2
+	vmovss	DWORD PTR [rcx+24], xmm2
+$LN112@mergeSortF:
+
+; 334  : 	PIXEL_COMPARE_AND_SWAP(7, 11);
+
+	vmovss	xmm2, DWORD PTR [rcx+28]
+	vcomiss	xmm2, xmm3
+	jbe	SHORT $LN113@mergeSortF
+	vmovss	DWORD PTR [rcx+44], xmm2
+	vmovaps	xmm2, xmm3
+	vmovss	DWORD PTR [rcx+28], xmm3
+$LN113@mergeSortF:
+
+; 335  : 
+; 336  : 	PIXEL_COMPARE_AND_SWAP(12, 16);
+
+	vmovss	xmm0, DWORD PTR [rcx+64]
+	vcomiss	xmm10, xmm0
+	jbe	SHORT $LN114@mergeSortF
+	vmovss	DWORD PTR [rcx+64], xmm10
+	vmovaps	xmm10, xmm0
+	vmovss	DWORD PTR [rcx+48], xmm0
+$LN114@mergeSortF:
+
+; 337  : 	PIXEL_COMPARE_AND_SWAP(13, 17);
+
+	vmovss	xmm0, DWORD PTR [rcx+68]
+	vcomiss	xmm9, xmm0
+	jbe	SHORT $LN115@mergeSortF
+	vmovss	DWORD PTR [rcx+68], xmm9
+	vmovaps	xmm9, xmm0
+	vmovss	DWORD PTR [rcx+52], xmm0
+$LN115@mergeSortF:
+
+; 338  : 	PIXEL_COMPARE_AND_SWAP(14, 18);
+
+	vmovss	xmm0, DWORD PTR [rcx+72]
+	vcomiss	xmm8, xmm0
+	jbe	SHORT $LN116@mergeSortF
+	vmovss	DWORD PTR [rcx+72], xmm8
+	vmovaps	xmm8, xmm0
+	vmovss	DWORD PTR [rcx+56], xmm0
+$LN116@mergeSortF:
+
+; 339  : 	PIXEL_COMPARE_AND_SWAP(15, 19);
+
+	vmovss	xmm0, DWORD PTR [rcx+76]
+	vcomiss	xmm7, xmm0
+	jbe	SHORT $LN117@mergeSortF
+	vmovss	DWORD PTR [rcx+76], xmm7
+	vmovaps	xmm7, xmm0
+	vmovss	DWORD PTR [rcx+60], xmm0
+$LN117@mergeSortF:
+
+; 340  : 
+; 341  : 	//PIXEL_COMPARE_AND_SWAP(20, 21);
+; 342  : 	PIXEL_COMPARE_AND_SWAP(20, 24);
+
+	vmovss	xmm1, DWORD PTR [rcx+80]
+	vmovss	xmm0, DWORD PTR [rcx+96]
+	vcomiss	xmm1, xmm0
+	jbe	SHORT $LN118@mergeSortF
+	vmovss	DWORD PTR [rcx+96], xmm1
+	vmovaps	xmm1, xmm0
+	vmovss	DWORD PTR [rcx+80], xmm0
+$LN118@mergeSortF:
+
+; 343  : 
+; 344  : 
+; 345  : 	PIXEL_COMPARE_AND_SWAP(2, 4);
+
+	vmovss	xmm0, DWORD PTR [rcx+8]
+	vcomiss	xmm0, xmm6
+	jbe	SHORT $LN119@mergeSortF
+	vmovss	DWORD PTR [rcx+16], xmm0
+	vmovss	DWORD PTR [rcx+8], xmm6
+$LN119@mergeSortF:
+
+; 346  : 	PIXEL_COMPARE_AND_SWAP(3, 5);
+
+	vmovss	xmm0, DWORD PTR [rcx+12]
+	vcomiss	xmm0, xmm5
+	jbe	SHORT $LN120@mergeSortF
+	vmovss	DWORD PTR [rcx+20], xmm0
+	vmovss	DWORD PTR [rcx+12], xmm5
+$LN120@mergeSortF:
+
+; 347  : 
+; 348  : 	PIXEL_COMPARE_AND_SWAP(6, 8);
+
+	vmovss	xmm0, DWORD PTR [rcx+32]
+	vcomiss	xmm4, xmm0
+	jbe	SHORT $LN121@mergeSortF
+	vmovss	DWORD PTR [rcx+32], xmm4
+	vmovss	DWORD PTR [rcx+24], xmm0
+$LN121@mergeSortF:
+
+; 349  : 	PIXEL_COMPARE_AND_SWAP(7, 9);
+
+	vmovss	xmm0, DWORD PTR [rcx+36]
+	vcomiss	xmm2, xmm0
+	jbe	SHORT $LN122@mergeSortF
+	vmovss	DWORD PTR [rcx+36], xmm2
+	vmovss	DWORD PTR [rcx+28], xmm0
+$LN122@mergeSortF:
+
+; 350  : 
+; 351  : 	PIXEL_COMPARE_AND_SWAP(10, 12);
+
+	vmovss	xmm0, DWORD PTR [rcx+40]
+	vcomiss	xmm0, xmm10
+	jbe	SHORT $LN123@mergeSortF
+	vmovss	DWORD PTR [rcx+48], xmm0
+	vmovss	DWORD PTR [rcx+40], xmm10
+$LN123@mergeSortF:
+
+; 352  : 	PIXEL_COMPARE_AND_SWAP(11, 13);
+
+	vmovss	xmm0, DWORD PTR [rcx+44]
+	vcomiss	xmm0, xmm9
+	jbe	SHORT $LN124@mergeSortF
+	vmovss	DWORD PTR [rcx+52], xmm0
+	vmovss	DWORD PTR [rcx+44], xmm9
+$LN124@mergeSortF:
+
+; 353  : 
+; 354  : 	PIXEL_COMPARE_AND_SWAP(14, 16);
+
+	vmovss	xmm0, DWORD PTR [rcx+64]
+	vcomiss	xmm8, xmm0
+	jbe	SHORT $LN125@mergeSortF
+	vmovss	DWORD PTR [rcx+64], xmm8
+	vmovss	DWORD PTR [rcx+56], xmm0
+$LN125@mergeSortF:
+
+; 355  : 	PIXEL_COMPARE_AND_SWAP(15, 17);
+
+	vmovss	xmm0, DWORD PTR [rcx+68]
+	vcomiss	xmm7, xmm0
+	jbe	SHORT $LN126@mergeSortF
+	vmovss	DWORD PTR [rcx+68], xmm7
+	vmovss	DWORD PTR [rcx+60], xmm0
+$LN126@mergeSortF:
+
+; 356  : 
+; 357  : 	PIXEL_COMPARE_AND_SWAP(18, 20);
+
+	vmovss	xmm0, DWORD PTR [rcx+72]
+	vcomiss	xmm0, xmm1
+	jbe	SHORT $LN127@mergeSortF
+	vmovss	DWORD PTR [rcx+80], xmm0
+	vmovss	DWORD PTR [rcx+72], xmm1
+$LN127@mergeSortF:
+
+; 358  : 	PIXEL_COMPARE_AND_SWAP(19, 21);
+
+	vmovss	xmm0, DWORD PTR [rcx+76]
+	vmovss	xmm1, DWORD PTR [rcx+84]
+	vcomiss	xmm0, xmm1
+	jbe	SHORT $LN128@mergeSortF
+	vmovss	DWORD PTR [rcx+84], xmm0
+	vmovss	DWORD PTR [rcx+76], xmm1
+$LN128@mergeSortF:
+
+; 359  : 
+; 360  : 	PIXEL_COMPARE_AND_SWAP(22, 24);
+
+	vmovss	xmm0, DWORD PTR [rcx+88]
+	vmovss	xmm1, DWORD PTR [rcx+96]
+	vcomiss	xmm0, xmm1
+	jbe	SHORT $LN129@mergeSortF
+	vmovss	DWORD PTR [rcx+96], xmm0
+	vmovss	DWORD PTR [rcx+88], xmm1
+$LN129@mergeSortF:
+
+; 361  : 
+; 362  : 
+; 363  : 	PIXEL_COMPARE_AND_SWAP(1, 2);
+
+	vmovss	xmm0, DWORD PTR [rcx+4]
+	vmovss	xmm1, DWORD PTR [rcx+8]
+	vcomiss	xmm0, xmm1
+	jbe	SHORT $LN130@mergeSortF
+	vmovss	DWORD PTR [rcx+8], xmm0
+	vmovss	DWORD PTR [rcx+4], xmm1
+$LN130@mergeSortF:
+
+; 364  : 	PIXEL_COMPARE_AND_SWAP(3, 4);
+
+	vmovss	xmm0, DWORD PTR [rcx+12]
+	vmovss	xmm1, DWORD PTR [rcx+16]
+	vcomiss	xmm0, xmm1
+	jbe	SHORT $LN131@mergeSortF
+	vmovss	DWORD PTR [rcx+16], xmm0
+	vmovss	DWORD PTR [rcx+12], xmm1
+$LN131@mergeSortF:
+
+; 365  : 	PIXEL_COMPARE_AND_SWAP(5, 6);
+
+	vmovss	xmm0, DWORD PTR [rcx+20]
+	vmovss	xmm1, DWORD PTR [rcx+24]
+	vcomiss	xmm0, xmm1
+	jbe	SHORT $LN132@mergeSortF
+	vmovss	DWORD PTR [rcx+24], xmm0
+	vmovss	DWORD PTR [rcx+20], xmm1
+$LN132@mergeSortF:
+
+; 366  : 	PIXEL_COMPARE_AND_SWAP(7, 8);
+
+	vmovss	xmm0, DWORD PTR [rcx+28]
+	vmovss	xmm1, DWORD PTR [rcx+32]
+	vcomiss	xmm0, xmm1
+	jbe	SHORT $LN133@mergeSortF
+	vmovss	DWORD PTR [rcx+32], xmm0
+	vmovss	DWORD PTR [rcx+28], xmm1
+$LN133@mergeSortF:
+
+; 367  : 	PIXEL_COMPARE_AND_SWAP(9, 10);
+
+	vmovss	xmm0, DWORD PTR [rcx+36]
+	vmovss	xmm1, DWORD PTR [rcx+40]
+	vcomiss	xmm0, xmm1
+	jbe	SHORT $LN134@mergeSortF
+	vmovss	DWORD PTR [rcx+40], xmm0
+	vmovss	DWORD PTR [rcx+36], xmm1
+$LN134@mergeSortF:
+
+; 368  : 	PIXEL_COMPARE_AND_SWAP(11, 12);
+
+	vmovss	xmm0, DWORD PTR [rcx+44]
+	vmovss	xmm1, DWORD PTR [rcx+48]
+	vcomiss	xmm0, xmm1
+	jbe	SHORT $LN135@mergeSortF
+	vmovss	DWORD PTR [rcx+48], xmm0
+	vmovss	DWORD PTR [rcx+44], xmm1
+$LN135@mergeSortF:
+
+; 369  : 	PIXEL_COMPARE_AND_SWAP(13, 14);
+
+	vmovss	xmm0, DWORD PTR [rcx+52]
+	vmovss	xmm1, DWORD PTR [rcx+56]
+	vcomiss	xmm0, xmm1
+	jbe	SHORT $LN136@mergeSortF
+	vmovss	DWORD PTR [rcx+56], xmm0
+	vmovss	DWORD PTR [rcx+52], xmm1
+$LN136@mergeSortF:
+
+; 370  : 	PIXEL_COMPARE_AND_SWAP(15, 16);
+
+	vmovss	xmm0, DWORD PTR [rcx+60]
+	vmovss	xmm1, DWORD PTR [rcx+64]
+	vcomiss	xmm0, xmm1
+	jbe	SHORT $LN137@mergeSortF
+	vmovss	DWORD PTR [rcx+64], xmm0
+	vmovss	DWORD PTR [rcx+60], xmm1
+$LN137@mergeSortF:
+
+; 371  : 	PIXEL_COMPARE_AND_SWAP(17, 18);
+
+	vmovss	xmm0, DWORD PTR [rcx+68]
+	vmovss	xmm1, DWORD PTR [rcx+72]
+	vcomiss	xmm0, xmm1
+	jbe	SHORT $LN138@mergeSortF
+	vmovss	DWORD PTR [rcx+72], xmm0
+	vmovss	DWORD PTR [rcx+68], xmm1
+$LN138@mergeSortF:
+
+; 372  : 	PIXEL_COMPARE_AND_SWAP(19, 20);
+
+	vmovss	xmm0, DWORD PTR [rcx+76]
+	vmovss	xmm1, DWORD PTR [rcx+80]
+	vcomiss	xmm0, xmm1
+	jbe	SHORT $LN139@mergeSortF
+	vmovss	DWORD PTR [rcx+80], xmm0
+	vmovss	DWORD PTR [rcx+76], xmm1
+$LN139@mergeSortF:
+
+; 373  : 	PIXEL_COMPARE_AND_SWAP(21, 22);
+
+	vmovss	xmm0, DWORD PTR [rcx+84]
+	vmovss	xmm1, DWORD PTR [rcx+88]
+	vcomiss	xmm0, xmm1
+	jbe	SHORT $LN140@mergeSortF
+	vmovss	DWORD PTR [rcx+88], xmm0
+	vmovss	DWORD PTR [rcx+84], xmm1
+$LN140@mergeSortF:
+
+; 374  : 	PIXEL_COMPARE_AND_SWAP(23, 24);
+
+	vmovss	xmm0, DWORD PTR [rcx+92]
+	vmovss	xmm1, DWORD PTR [rcx+96]
+	vcomiss	xmm0, xmm1
+	jbe	SHORT $LN141@mergeSortF
+	vmovss	DWORD PTR [rcx+96], xmm0
+	vmovss	DWORD PTR [rcx+92], xmm1
+$LN141@mergeSortF:
+
+; 375  : }
+
+	vmovaps	xmm6, XMMWORD PTR [rsp+112]
+	vmovaps	xmm7, XMMWORD PTR [rsp+96]
+	vmovaps	xmm8, XMMWORD PTR [rsp+80]
+	vmovaps	xmm9, XMMWORD PTR [rsp+64]
+	vmovaps	xmm10, XMMWORD PTR [rsp+48]
+	vmovaps	xmm11, XMMWORD PTR [rsp+32]
+	vmovaps	xmm12, XMMWORD PTR [rsp+16]
+	vmovaps	xmm13, XMMWORD PTR [rsp]
+	add	rsp, 136				; 00000088H
+	ret	0
+?mergeSortFull@@YAXPEAM@Z ENDP				; mergeSortFull
+_TEXT	ENDS
+; Function compile flags: /Ogtpy
+; File d:\d_strabi\d dokumentumai\bme\heterogén számítási rendszerek\hf\kismacska\hetero_hf_3\heterogen_hf_cpu_batchers\heterogen_hf_szp\_src\conv_filter.cpp
+;	COMDAT ?medianFilter@@YAXHHHHHPEAM0@Z
+_TEXT	SEGMENT
+tv1697 = 32
+medianArray$1 = 48
+__$ArrayPad$ = 160
+imgHeight$ = 224
+imgWidth$ = 232
+imgWidthF$ = 240
+imgFOffsetH$dead$ = 248
+imgFOffsetW$dead$ = 256
+imgFloatSrc$ = 264
+imgFloatDst$ = 272
+?medianFilter@@YAXHHHHHPEAM0@Z PROC			; medianFilter, COMDAT
+
+; 381  : {
+
+$LN43:
+	mov	r11, rsp
+	sub	rsp, 216				; 000000d8H
+	mov	rax, QWORD PTR __security_cookie
+	xor	rax, rsp
+	mov	QWORD PTR __$ArrayPad$[rsp], rax
+	mov	r10, QWORD PTR imgFloatDst$[rsp]
+
+; 382  : 	// KÃ©p sorai
+; 383  : 	for (int y=imgFOffsetH; y<(imgHeight + imgFOffsetH); y++)
+
+	lea	r9d, DWORD PTR [rcx+2]
+	cmp	r9d, 2
+	jle	$LN3@medianFilt
+
+; 381  : {
+
+	mov	QWORD PTR [r11+8], rbx
+	lea	eax, DWORD PTR [rdx*4]
+	mov	QWORD PTR [r11+24], rbp
+	mov	QWORD PTR [r11+32], rsi
+	mov	QWORD PTR [r11-8], rdi
+	lea	edi, DWORD PTR [r8*4]
+	mov	QWORD PTR [r11-16], r12
+	lea	r12d, DWORD PTR [r9-2]
+	mov	r9, QWORD PTR imgFloatSrc$[rsp]
+	cdqe
+	shl	rax, 2
+	mov	QWORD PTR [r11-24], r13
+	lea	r13d, DWORD PTR [rdx+2]
+	mov	QWORD PTR tv1697[rsp], rax
+	lea	eax, DWORD PTR [rdx*8+8]
+	movsxd	rcx, eax
+	mov	rax, QWORD PTR tv1697[rsp]
+	mov	QWORD PTR [r11-32], r14
+	mov	r14d, 8
+	mov	QWORD PTR [r11-40], r15
+	lea	r15, QWORD PTR [r10+rcx*4]
+$LL4@medianFilt:
+
+; 384  : 		// KÃ©p oszlopai
+; 385  : 		for (int x=imgFOffsetW; x<(imgWidth + imgFOffsetW); x++)
+
+	cmp	r13d, 2
+	jle	$LN2@medianFilt
+	mov	esi, r14d
+	lea	ebp, DWORD PTR [r13-2]
+	mov	rbx, r15
+	npad	7
+$LL7@medianFilt:
+
+; 386  : 			// SzÃ­n komponensek
+; 387  : 			for (int rgb = 0; rgb < 4; rgb++)
+
+	xor	r11d, r11d
+	npad	13
+$LL10@medianFilt:
+
+; 388  : 			{			
+; 389  : 				float medianArray[25];
+; 390  : 
+; 391  : 				for (int medianY = 0; medianY < 5; medianY++) 
+
+	lea	rdx, QWORD PTR medianArray$1[rsp+4]
+	mov	r10d, 5
+	lea	r8d, DWORD PTR [rsi+r11]
+	npad	1
+$LL13@medianFilt:
+
+; 392  : 					for (int medianX = 0; medianX < 5; medianX++) 
+; 393  : 						medianArray[5*medianY  + medianX] = imgFloatSrc[((y+(medianY-2))*imgWidthF + x + (medianX-2))*4 + rgb];
+
+	movsxd	rax, r8d
+	lea	rdx, QWORD PTR [rdx+20]
+	mov	ecx, DWORD PTR [r9+rax*4-32]
+	mov	DWORD PTR [rdx-24], ecx
+	movsxd	rcx, r8d
+	mov	eax, DWORD PTR [r9+rcx*4-16]
+	mov	DWORD PTR [rdx-20], eax
+	mov	eax, DWORD PTR [r9+rcx*4]
+	mov	DWORD PTR [rdx-16], eax
+	mov	eax, DWORD PTR [r9+rcx*4+16]
+	mov	DWORD PTR [rdx-12], eax
+	movsxd	rax, r8d
+	add	r8d, edi
+	mov	ecx, DWORD PTR [r9+rax*4+32]
+	mov	DWORD PTR [rdx-8], ecx
+	sub	r10, 1
+	jne	SHORT $LL13@medianFilt
+
+; 394  : 
+; 395  : 				//mergeSort(medianArray);
+; 396  : 				mergeSortFull(medianArray);
+
+	lea	rcx, QWORD PTR medianArray$1[rsp]
+	call	?mergeSortFull@@YAXPEAM@Z		; mergeSortFull
+
+; 397  : 				imgFloatDst[(y*imgWidth + x) * 4 + rgb] = medianArray[MEDIAN];
+
+	vmovss	xmm0, DWORD PTR medianArray$1[rsp+48]
+	vmovss	DWORD PTR [rbx], xmm0
+	add	rbx, 4
+	inc	r11d
+	cmp	r11d, 4
+	jl	SHORT $LL10@medianFilt
+
+; 384  : 		// KÃ©p oszlopai
+; 385  : 		for (int x=imgFOffsetW; x<(imgWidth + imgFOffsetW); x++)
+
+	add	esi, 4
+	sub	rbp, 1
+	jne	$LL7@medianFilt
+	mov	rax, QWORD PTR tv1697[rsp]
+$LN2@medianFilt:
+
+; 382  : 	// KÃ©p sorai
+; 383  : 	for (int y=imgFOffsetH; y<(imgHeight + imgFOffsetH); y++)
+
+	add	r14d, edi
+	add	r15, rax
+	sub	r12, 1
+	jne	$LL4@medianFilt
+	mov	r15, QWORD PTR [rsp+176]
+	mov	r14, QWORD PTR [rsp+184]
+	mov	r13, QWORD PTR [rsp+192]
+	mov	r12, QWORD PTR [rsp+200]
+	mov	rdi, QWORD PTR [rsp+208]
+	mov	rsi, QWORD PTR [rsp+248]
+	mov	rbp, QWORD PTR [rsp+240]
+	mov	rbx, QWORD PTR [rsp+224]
+$LN3@medianFilt:
+
+; 398  : 			}
+; 399  : }
+
+	mov	rcx, QWORD PTR __$ArrayPad$[rsp]
+	xor	rcx, rsp
+	call	__security_check_cookie
+	add	rsp, 216				; 000000d8H
+	ret	0
+?medianFilter@@YAXHHHHHPEAM0@Z ENDP			; medianFilter
+_TEXT	ENDS
 END

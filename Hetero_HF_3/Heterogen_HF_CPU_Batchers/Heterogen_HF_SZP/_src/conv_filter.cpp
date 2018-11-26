@@ -113,6 +113,7 @@ void mergeSort(float * arr)
 	//4x4
 	PIXEL_COMPARE_AND_SWAP(16, 17);
 
+
 	PIXEL_COMPARE_AND_SWAP(16, 18);
 	PIXEL_COMPARE_AND_SWAP(17, 19);
 
@@ -157,7 +158,8 @@ void mergeSort(float * arr)
 	PIXEL_COMPARE_AND_SWAP(12, 16);
 	PIXEL_COMPARE_AND_SWAP(13, 17);
 
-	PIXEL_COMPARE_AND_SWAP(20, 21);
+	//PIXEL_COMPARE_AND_SWAP(20, 21);
+	PIXEL_COMPARE_AND_SWAP(20, 24);
 
 
 	PIXEL_COMPARE_AND_SWAP(2, 4);
@@ -290,7 +292,6 @@ void mergeSortFull(float * arr)
 	PIXEL_COMPARE_AND_SWAP(19, 20);
 	PIXEL_COMPARE_AND_SWAP(21, 22);
 
-
 	PIXEL_COMPARE_AND_SWAP(16, 24);
 
 	PIXEL_COMPARE_AND_SWAP(20, 24);
@@ -299,7 +300,6 @@ void mergeSortFull(float * arr)
 	PIXEL_COMPARE_AND_SWAP(19, 21);
 	PIXEL_COMPARE_AND_SWAP(22, 24);
 
-	//cmpswap(19, 21);
 	PIXEL_COMPARE_AND_SWAP(17, 18);
 	PIXEL_COMPARE_AND_SWAP(19, 20);
 	PIXEL_COMPARE_AND_SWAP(21, 22);
@@ -338,19 +338,25 @@ void mergeSortFull(float * arr)
 	PIXEL_COMPARE_AND_SWAP(14, 18);
 	PIXEL_COMPARE_AND_SWAP(15, 19);
 
-	PIXEL_COMPARE_AND_SWAP(20, 21);
+	//PIXEL_COMPARE_AND_SWAP(20, 21);
+	PIXEL_COMPARE_AND_SWAP(20, 24);
 
 
 	PIXEL_COMPARE_AND_SWAP(2, 4);
 	PIXEL_COMPARE_AND_SWAP(3, 5);
+
 	PIXEL_COMPARE_AND_SWAP(6, 8);
 	PIXEL_COMPARE_AND_SWAP(7, 9);
+
 	PIXEL_COMPARE_AND_SWAP(10, 12);
 	PIXEL_COMPARE_AND_SWAP(11, 13);
+
 	PIXEL_COMPARE_AND_SWAP(14, 16);
 	PIXEL_COMPARE_AND_SWAP(15, 17);
+
 	PIXEL_COMPARE_AND_SWAP(18, 20);
 	PIXEL_COMPARE_AND_SWAP(19, 21);
+
 	PIXEL_COMPARE_AND_SWAP(22, 24);
 
 
@@ -386,7 +392,8 @@ void medianFilter(int imgHeight, int imgWidth, int imgWidthF, int imgFOffsetH, i
 					for (int medianX = 0; medianX < 5; medianX++) 
 						medianArray[5*medianY  + medianX] = imgFloatSrc[((y+(medianY-2))*imgWidthF + x + (medianX-2))*4 + rgb];
 
-				mergeSort(medianArray);
+				//mergeSort(medianArray);
+				mergeSortFull(medianArray);
 				imgFloatDst[(y*imgWidth + x) * 4 + rgb] = medianArray[MEDIAN];
 			}
 }
