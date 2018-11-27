@@ -382,48 +382,24 @@ void mergeSortFullAVX(__m128 * arr)
 
 //void medianFilterAVX(int imgHeight, int imgWidth,  int imgWidthF, float *imgFloatSrc, float *imgFloatDst)
 void medianFilterAVX(int imgHeight, int imgWidth, int imgWidthF, int imgFOffsetH, int imgFOffsetW, float *imgFloatSrc, float *imgFloatDst)
-{/*
-	// Kép sorai
-#pragma omp parallel for
-	for (int y = 0; y<imgHeight; y++)
-		// Az adott sor pixelei
-		for (int x = 0; x<imgWidth; x++)
+{
+// Kép sorai
+//#pragma omp parallel for
+	for (int y = imgFOffsetH; y < (imgHeight + imgFOffsetH); y++)
+	{
+		// Kép oszlopai
+		for (int x = imgFOffsetW; x < (imgWidth + imgFOffsetW); x++)
 		{
 			__m128 medianArray[25];
 			for (int medianY = 0; medianY < 5; medianY++)
 				for (int medianX = 0; medianX < 5; medianX++)
-					medianArray[5*medianY + medianX] = _mm_load_ps(imgFloatSrc + ((y+medianY)*imgWidthF + x + medianX) * 4);
+					medianArray[5 * medianY + medianX] = _mm_load_ps(imgFloatSrc + ((y + (medianY - 2))*imgWidthF + x + (medianX - 2)) * 4);
 
 			//mergeSortAVX(medianArray);
 			mergeSortFullAVX(medianArray);
+			//printf("b++");
 			_mm_stream_ps(imgFloatDst + (y*imgWidth + x) * 4, medianArray[MEDIAN]);
 		}
-		*/
-
-		// Kép sorai
-	printf("anyád");
-//#pragma omp parallel for
-	for (int y = imgFOffsetH; y < (imgHeight + imgFOffsetH); y++)
-	{
-	
-	
-	// Kép oszlopai
-	for (int x = imgFOffsetW; x < (imgWidth + imgFOffsetW); x++)
-	{
-		__m128 medianArray[25];
-		for (int medianY = 0; medianY < 5; medianY++)
-			for (int medianX = 0; medianX < 5; medianX++)
-				medianArray[5 * medianY + medianX] = _mm_load_ps(imgFloatSrc + ((y + (medianY - 2))*imgWidthF + x + (medianX - 2)) * 4);
-
-		//mergeSortAVX(medianArray);
-		mergeSortFullAVX(medianArray);
-		//printf("b++");
-		_mm_stream_ps(imgFloatDst + (y*imgWidth + x) * 4, medianArray[MEDIAN]);
-		//printf("b+++");
 	}
-	//printf("heeee %d\n", y);
-	}
-
-printf("b+");
 }
 
