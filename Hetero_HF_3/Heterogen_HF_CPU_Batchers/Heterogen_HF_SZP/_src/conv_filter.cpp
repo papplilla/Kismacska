@@ -392,8 +392,8 @@ void medianFilter(int imgHeight, int imgWidth, int imgWidthF, int imgFOffsetH, i
 					for (int medianX = 0; medianX < 5; medianX++) 
 						medianArray[5*medianY  + medianX] = imgFloatSrc[((y+(medianY-2))*imgWidthF + x + (medianX-2))*4 + rgb];
 
-				//mergeSort(medianArray);
-				mergeSortFull(medianArray);
+				mergeSort(medianArray);
+				//mergeSortFull(medianArray);
 				imgFloatDst[(y*imgWidth + x) * 4 + rgb] = medianArray[MEDIAN];
 			}
 }
