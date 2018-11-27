@@ -93,7 +93,7 @@ int verifyImage()
 	ilDeleteImages(1, &ilImg);
 	ilDeleteImages(1, &ilImgRef);
 
-	printf("Minden oké\n");
+	printf("Minden ok\n");
 	return 0;
 }
 
@@ -166,9 +166,8 @@ void main()
 	s0 = clock();
 for (int r=0; r<RUNS; r++)
 {
-//	medianFilter(imgHeight, imgWidth, imgWidthF, imgFOffsetH, imgFOffsetW, imgFloat, imgFloatRes);
+	//medianFilter(imgHeight, imgWidth, imgWidthF, imgFOffsetH, imgFOffsetW, imgFloat, imgFloatRes);
 	medianFilterAVX(imgHeight, imgWidth, imgWidthF, imgFOffsetH, imgFOffsetW, imgFloat, imgFloatRes);
-
 }
 
     e0 = clock();
