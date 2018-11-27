@@ -183,8 +183,9 @@ void mergeSortAVX(__m128 * arr)
 
 void mergeSortFullAVX(__m128 * arr)
 {
+	//printf("f u");
 	__m128 tmpMin;
-	__m128 tmpMax;
+	//__m128 tmpMax;
 	// 4x4
 	PIXEL_COMPARE_AND_SWAP(0, 1);
 	PIXEL_COMPARE_AND_SWAP(2, 3);
@@ -295,7 +296,6 @@ void mergeSortFullAVX(__m128 * arr)
 	PIXEL_COMPARE_AND_SWAP(19, 20);
 	PIXEL_COMPARE_AND_SWAP(21, 22);
 
-
 	PIXEL_COMPARE_AND_SWAP(16, 24);
 
 	PIXEL_COMPARE_AND_SWAP(20, 24);
@@ -304,7 +304,6 @@ void mergeSortFullAVX(__m128 * arr)
 	PIXEL_COMPARE_AND_SWAP(19, 21);
 	PIXEL_COMPARE_AND_SWAP(22, 24);
 
-	//cmpswap(19, 21);
 	PIXEL_COMPARE_AND_SWAP(17, 18);
 	PIXEL_COMPARE_AND_SWAP(19, 20);
 	PIXEL_COMPARE_AND_SWAP(21, 22);
@@ -343,19 +342,25 @@ void mergeSortFullAVX(__m128 * arr)
 	PIXEL_COMPARE_AND_SWAP(14, 18);
 	PIXEL_COMPARE_AND_SWAP(15, 19);
 
-	PIXEL_COMPARE_AND_SWAP(20, 21);
+	//PIXEL_COMPARE_AND_SWAP(20, 21);
+	PIXEL_COMPARE_AND_SWAP(20, 24);
 
 
 	PIXEL_COMPARE_AND_SWAP(2, 4);
 	PIXEL_COMPARE_AND_SWAP(3, 5);
+
 	PIXEL_COMPARE_AND_SWAP(6, 8);
 	PIXEL_COMPARE_AND_SWAP(7, 9);
+
 	PIXEL_COMPARE_AND_SWAP(10, 12);
 	PIXEL_COMPARE_AND_SWAP(11, 13);
+
 	PIXEL_COMPARE_AND_SWAP(14, 16);
 	PIXEL_COMPARE_AND_SWAP(15, 17);
+
 	PIXEL_COMPARE_AND_SWAP(18, 20);
 	PIXEL_COMPARE_AND_SWAP(19, 21);
+
 	PIXEL_COMPARE_AND_SWAP(22, 24);
 
 
@@ -377,7 +382,7 @@ void mergeSortFullAVX(__m128 * arr)
 
 //void medianFilterAVX(int imgHeight, int imgWidth,  int imgWidthF, float *imgFloatSrc, float *imgFloatDst)
 void medianFilterAVX(int imgHeight, int imgWidth, int imgWidthF, int imgFOffsetH, int imgFOffsetW, float *imgFloatSrc, float *imgFloatDst)
-{
+{/*
 	// Kép sorai
 #pragma omp parallel for
 	for (int y = 0; y<imgHeight; y++)
@@ -385,12 +390,40 @@ void medianFilterAVX(int imgHeight, int imgWidth, int imgWidthF, int imgFOffsetH
 		for (int x = 0; x<imgWidth; x++)
 		{
 			__m128 medianArray[25];
-			for (int medianY = 0; medianY < 5; medianY++) 
-				for (int medianX = 0; medianX < 5; medianX++) 
+			for (int medianY = 0; medianY < 5; medianY++)
+				for (int medianX = 0; medianX < 5; medianX++)
 					medianArray[5*medianY + medianX] = _mm_load_ps(imgFloatSrc + ((y+medianY)*imgWidthF + x + medianX) * 4);
-				
-			mergeSortAVX(medianArray);
+
+			//mergeSortAVX(medianArray);
+			mergeSortFullAVX(medianArray);
 			_mm_stream_ps(imgFloatDst + (y*imgWidth + x) * 4, medianArray[MEDIAN]);
 		}
+		*/
+
+		// Kép sorai
+	printf("anyád");
+//#pragma omp parallel for
+	for (int y = imgFOffsetH; y < (imgHeight + imgFOffsetH); y++)
+	{
+	
+	
+	// Kép oszlopai
+	for (int x = imgFOffsetW; x < (imgWidth + imgFOffsetW); x++)
+	{
+		__m128 medianArray[25];
+		for (int medianY = 0; medianY < 5; medianY++)
+			for (int medianX = 0; medianX < 5; medianX++)
+				medianArray[5 * medianY + medianX] = _mm_load_ps(imgFloatSrc + ((y + (medianY - 2))*imgWidthF + x + (medianX - 2)) * 4);
+
+		//mergeSortAVX(medianArray);
+		mergeSortFullAVX(medianArray);
+		//printf("b++");
+		_mm_stream_ps(imgFloatDst + (y*imgWidth + x) * 4, medianArray[MEDIAN]);
+		//printf("b+++");
+	}
+	//printf("heeee %d\n", y);
+	}
+
+printf("b+");
 }
 
