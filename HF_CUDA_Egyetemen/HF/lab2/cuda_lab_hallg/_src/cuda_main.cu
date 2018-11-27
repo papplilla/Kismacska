@@ -412,8 +412,8 @@ __global__ void kernel_conv_sh_uchar_int(unsigned char* gInput, unsigned char* g
 		{
 			//#pragma unroll 5
 			for (int medianX = 0; medianX<5; medianX++)
-				arr[medianY * 5 + medianX] = in_shmem[threadIdx.y + medianY][(threadIdx.x + medianX) * 3 + rgb];
-		
+				//arr[5*medianY + medianX] = in_shmem[threadIdx.y + medianY][(threadIdx.x + medianX) * 3 + rgb];
+				arr[5 * medianY + medianX] = in_shmem[threadIdx.y + (medianY - 2)][(threadIdx.x + (medianX - 2)) * 3 + rgb];
 		}
 		mergeSort(arr);
 		*(gOutput + (row*imgWidth + col)*3 + rgb) = arr[MEDIAN];
@@ -463,7 +463,8 @@ __global__ void kernel_conv_sh_float_float(unsigned char* gInput, unsigned char*
 		{
 			#pragma unroll 5
 			for (int medianX = 0; medianX < 5; medianX++)
-				arr[medianY * 5 + medianX] = in_shmem[threadIdx.y + medianY][(threadIdx.x + medianX) * 3 + rgb];
+				//arr[medianY * 5 + medianX] = in_shmem[threadIdx.y + medianY][(threadIdx.x + medianX) * 3 + rgb];
+				arr[5 * medianY + medianX] = in_shmem[threadIdx.y + (medianY - 2)][(threadIdx.x + (medianX - 2)) * 3 + rgb];
 		}
 		mergeSort(arr);
 		*(gOutput + (row*imgWidth + col) * 3 + rgb) = (unsigned char)arr[MEDIAN];
@@ -519,7 +520,7 @@ void cudaMain(int imgHeight, int imgWidth, int imgHeightF, int imgWidthF,
 	cudaThreadSynchronize();
 	e0 = time_measure(2);
 
-	// Kimenet másolás: GPU-ból hostra
+	// Kimenet másolás: GPU --> hostra
     cudaMemcpy(imgDst, gOutput, size_out, cudaMemcpyDeviceToHost);
 	
 	// GPU memóriák felszabadítása
