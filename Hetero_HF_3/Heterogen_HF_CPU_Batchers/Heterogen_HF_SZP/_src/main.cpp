@@ -137,8 +137,9 @@ void main()
 	{
 		for (col=0; col<imgWidth;col++)
 		{
-			int pixel_dst = ((row+imgFOffsetH)*imgWidthF + (col+imgFOffsetW))*4;
 			int pixel_src = (row*imgWidth + col)*3;
+			int pixel_dst = ((row + imgFOffsetH)*imgWidthF + (col + imgFOffsetW)) * 4;
+
 			*(imgFloat+pixel_dst+0) = (float)(*(imgData+pixel_src+0));
 			*(imgFloat+pixel_dst+1) = (float)(*(imgData+pixel_src+1));
 			*(imgFloat+pixel_dst+2) = (float)(*(imgData+pixel_src+2));
@@ -200,14 +201,15 @@ for (int r=0; r<RUNS; r++)
 	ilEnable(IL_FILE_OVERWRITE);
     ilSaveImage((const char*)("output.jpg"));
 
-#ifdef VERIFY_AND_RUN
-	ilSaveImage((const char*)("output.bmp"));				// teszteléshez
-#endif // VERIFY_AND_RUN
+	#ifdef VERIFY_AND_RUN
+		ilSaveImage((const char*)("output.bmp"));				// teszteléshez
+	#endif // VERIFY_AND_RUN
+
 	ilDeleteImages(1, &ilImg);
 
-#ifdef VERIFY_AND_RUN
-	verifyImage();
-#endif // VERIFY_AND_RUN
+	#ifdef VERIFY_AND_RUN
+		verifyImage();
+	#endif // VERIFY_AND_RUN
 	
 #endif	// ONLY_VERIFY
 }

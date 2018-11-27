@@ -11,31 +11,7 @@
 #include <cuda_runtime.h>
 
 
-
-/*
-inline void cmpswap2(int a, int b, float * arr)
-{
-float buf1 = arr[a];
-float buf2 = arr[b];
-arr[a] = std::max(buf1, buf2);
-arr[b] = std::min(buf1, buf2);
-}
-__inline__ __device__  void cmpswap(int a, int b, unsigned char * arr) {
-unsigned char buf;
-if (arr[a] > arr[b])
-{
-buf = arr[b];
-arr[b] = arr[a];
-arr[a] = buf;
-}
-}
-
-
-*/
-
-
 #define PIXEL_COMPARE_AND_SWAP(x, y) if(arr[(x)] > arr[(y)]) { tmp = arr[(y)];arr[(y)] = arr[(x)];arr[(x)] = tmp;	}	
-
 
 
 __inline__ __device__ void mergeSort(float * arr)
@@ -47,7 +23,7 @@ __inline__ __device__ void mergeSort(float * arr)
 	PIXEL_COMPARE_AND_SWAP(0, 2);
 	PIXEL_COMPARE_AND_SWAP(1, 3);
 	PIXEL_COMPARE_AND_SWAP(1, 2);
-	//printf("Hello");
+
 	PIXEL_COMPARE_AND_SWAP(4, 5);
 	PIXEL_COMPARE_AND_SWAP(6, 7);
 	PIXEL_COMPARE_AND_SWAP(4, 6);
@@ -126,45 +102,43 @@ __inline__ __device__ void mergeSort(float * arr)
 
 	//4x4
 	PIXEL_COMPARE_AND_SWAP(16, 17);
-	//PIXEL_COMPARE_AND_SWAP(18, 19);
-	//PIXEL_COMPARE_AND_SWAP(20, 21);
-	//PIXEL_COMPARE_AND_SWAP(22, 23);
+	PIXEL_COMPARE_AND_SWAP(18, 19);
+	PIXEL_COMPARE_AND_SWAP(20, 21);
+	PIXEL_COMPARE_AND_SWAP(22, 23);
 
 	PIXEL_COMPARE_AND_SWAP(16, 18);
-	//PIXEL_COMPARE_AND_SWAP(20, 22);
+	PIXEL_COMPARE_AND_SWAP(20, 22);
 	PIXEL_COMPARE_AND_SWAP(17, 19);
-	//PIXEL_COMPARE_AND_SWAP(21, 23);
+	PIXEL_COMPARE_AND_SWAP(21, 23);
 
 	PIXEL_COMPARE_AND_SWAP(17, 18);
-	//PIXEL_COMPARE_AND_SWAP(21, 22);
+	PIXEL_COMPARE_AND_SWAP(21, 22);
 
 
 	PIXEL_COMPARE_AND_SWAP(16, 20);
 	PIXEL_COMPARE_AND_SWAP(17, 21);
-	//PIXEL_COMPARE_AND_SWAP(18, 22);
-	//PIXEL_COMPARE_AND_SWAP(19, 23);
+	PIXEL_COMPARE_AND_SWAP(18, 22);
+	PIXEL_COMPARE_AND_SWAP(19, 23);
 
-	//PIXEL_COMPARE_AND_SWAP(18, 20);
-	//PIXEL_COMPARE_AND_SWAP(19, 21);
+	PIXEL_COMPARE_AND_SWAP(18, 20);
+	PIXEL_COMPARE_AND_SWAP(19, 21);
 
 	PIXEL_COMPARE_AND_SWAP(17, 18);
-	//PIXEL_COMPARE_AND_SWAP(19, 20);
-	//PIXEL_COMPARE_AND_SWAP(21, 22);
-
+	PIXEL_COMPARE_AND_SWAP(19, 20);
+	PIXEL_COMPARE_AND_SWAP(21, 22);
 
 	PIXEL_COMPARE_AND_SWAP(16, 24);
 
-	//PIXEL_COMPARE_AND_SWAP(20, 24);
+	PIXEL_COMPARE_AND_SWAP(20, 24);
 
-	//PIXEL_COMPARE_AND_SWAP(18, 20);
-	//PIXEL_COMPARE_AND_SWAP(19, 21);
-	//PIXEL_COMPARE_AND_SWAP(22, 24);
+	PIXEL_COMPARE_AND_SWAP(18, 20);
+	PIXEL_COMPARE_AND_SWAP(19, 21);
+	PIXEL_COMPARE_AND_SWAP(22, 24);
 
-	//cmpswap(19, 21);
 	PIXEL_COMPARE_AND_SWAP(17, 18);
-	//PIXEL_COMPARE_AND_SWAP(19, 20);
-	//PIXEL_COMPARE_AND_SWAP(21, 22);
-	//PIXEL_COMPARE_AND_SWAP(23, 24);
+	PIXEL_COMPARE_AND_SWAP(19, 20);
+	PIXEL_COMPARE_AND_SWAP(21, 22);
+	PIXEL_COMPARE_AND_SWAP(23, 24);
 	//Eddig egy 8x8-as (De ez csak 9 bemenet)
 
 	// 16x16 
@@ -185,8 +159,8 @@ __inline__ __device__ void mergeSort(float * arr)
 	PIXEL_COMPARE_AND_SWAP(11, 19);
 	PIXEL_COMPARE_AND_SWAP(12, 20);
 	PIXEL_COMPARE_AND_SWAP(13, 21);
-	//PIXEL_COMPARE_AND_SWAP(14, 22);
-	//PIXEL_COMPARE_AND_SWAP(15, 23);
+	PIXEL_COMPARE_AND_SWAP(14, 22);
+	PIXEL_COMPARE_AND_SWAP(15, 23);
 
 
 	PIXEL_COMPARE_AND_SWAP(4, 8);
@@ -196,19 +170,16 @@ __inline__ __device__ void mergeSort(float * arr)
 
 	PIXEL_COMPARE_AND_SWAP(12, 16);
 	PIXEL_COMPARE_AND_SWAP(13, 17);
-	//PIXEL_COMPARE_AND_SWAP(14, 18);
-	//PIXEL_COMPARE_AND_SWAP(15, 19);
-
-	PIXEL_COMPARE_AND_SWAP(20, 21);
 
 
 	PIXEL_COMPARE_AND_SWAP(2, 4);
 	PIXEL_COMPARE_AND_SWAP(3, 5);
+
 	PIXEL_COMPARE_AND_SWAP(6, 8);
 	PIXEL_COMPARE_AND_SWAP(7, 9);
+
 	PIXEL_COMPARE_AND_SWAP(10, 12);
 	PIXEL_COMPARE_AND_SWAP(11, 13);
-
 
 
 	PIXEL_COMPARE_AND_SWAP(1, 2);
@@ -228,7 +199,7 @@ __inline__ __device__ void mergeSort(unsigned char * arr)
 	PIXEL_COMPARE_AND_SWAP(0, 2);
 	PIXEL_COMPARE_AND_SWAP(1, 3);
 	PIXEL_COMPARE_AND_SWAP(1, 2);
-	//printf("Hello");
+
 	PIXEL_COMPARE_AND_SWAP(4, 5);
 	PIXEL_COMPARE_AND_SWAP(6, 7);
 	PIXEL_COMPARE_AND_SWAP(4, 6);
@@ -307,45 +278,43 @@ __inline__ __device__ void mergeSort(unsigned char * arr)
 
 	//4x4
 	PIXEL_COMPARE_AND_SWAP(16, 17);
-	//PIXEL_COMPARE_AND_SWAP(18, 19);
-	//PIXEL_COMPARE_AND_SWAP(20, 21);
-	//PIXEL_COMPARE_AND_SWAP(22, 23);
+	PIXEL_COMPARE_AND_SWAP(18, 19);
+	PIXEL_COMPARE_AND_SWAP(20, 21);
+	PIXEL_COMPARE_AND_SWAP(22, 23);
 
 	PIXEL_COMPARE_AND_SWAP(16, 18);
-	//PIXEL_COMPARE_AND_SWAP(20, 22);
+	PIXEL_COMPARE_AND_SWAP(20, 22);
 	PIXEL_COMPARE_AND_SWAP(17, 19);
-	//PIXEL_COMPARE_AND_SWAP(21, 23);
+	PIXEL_COMPARE_AND_SWAP(21, 23);
 
 	PIXEL_COMPARE_AND_SWAP(17, 18);
-	//PIXEL_COMPARE_AND_SWAP(21, 22);
+	PIXEL_COMPARE_AND_SWAP(21, 22);
 
 
 	PIXEL_COMPARE_AND_SWAP(16, 20);
 	PIXEL_COMPARE_AND_SWAP(17, 21);
-	//PIXEL_COMPARE_AND_SWAP(18, 22);
-	//PIXEL_COMPARE_AND_SWAP(19, 23);
+	PIXEL_COMPARE_AND_SWAP(18, 22);
+	PIXEL_COMPARE_AND_SWAP(19, 23);
 
-	//PIXEL_COMPARE_AND_SWAP(18, 20);
-	//PIXEL_COMPARE_AND_SWAP(19, 21);
+	PIXEL_COMPARE_AND_SWAP(18, 20);
+	PIXEL_COMPARE_AND_SWAP(19, 21);
 
 	PIXEL_COMPARE_AND_SWAP(17, 18);
-	//PIXEL_COMPARE_AND_SWAP(19, 20);
-	//PIXEL_COMPARE_AND_SWAP(21, 22);
-
+	PIXEL_COMPARE_AND_SWAP(19, 20);
+	PIXEL_COMPARE_AND_SWAP(21, 22);
 
 	PIXEL_COMPARE_AND_SWAP(16, 24);
 
-	//PIXEL_COMPARE_AND_SWAP(20, 24);
+	PIXEL_COMPARE_AND_SWAP(20, 24);
 
-	//PIXEL_COMPARE_AND_SWAP(18, 20);
-	//PIXEL_COMPARE_AND_SWAP(19, 21);
-	//PIXEL_COMPARE_AND_SWAP(22, 24);
+	PIXEL_COMPARE_AND_SWAP(18, 20);
+	PIXEL_COMPARE_AND_SWAP(19, 21);
+	PIXEL_COMPARE_AND_SWAP(22, 24);
 
-	//cmpswap(19, 21);
 	PIXEL_COMPARE_AND_SWAP(17, 18);
-	//PIXEL_COMPARE_AND_SWAP(19, 20);
-	//PIXEL_COMPARE_AND_SWAP(21, 22);
-	//PIXEL_COMPARE_AND_SWAP(23, 24);
+	PIXEL_COMPARE_AND_SWAP(19, 20);
+	PIXEL_COMPARE_AND_SWAP(21, 22);
+	PIXEL_COMPARE_AND_SWAP(23, 24);
 	//Eddig egy 8x8-as (De ez csak 9 bemenet)
 
 	// 16x16 
@@ -366,8 +335,8 @@ __inline__ __device__ void mergeSort(unsigned char * arr)
 	PIXEL_COMPARE_AND_SWAP(11, 19);
 	PIXEL_COMPARE_AND_SWAP(12, 20);
 	PIXEL_COMPARE_AND_SWAP(13, 21);
-	//PIXEL_COMPARE_AND_SWAP(14, 22);
-	//PIXEL_COMPARE_AND_SWAP(15, 23);
+	PIXEL_COMPARE_AND_SWAP(14, 22);
+	PIXEL_COMPARE_AND_SWAP(15, 23);
 
 
 	PIXEL_COMPARE_AND_SWAP(4, 8);
@@ -377,19 +346,16 @@ __inline__ __device__ void mergeSort(unsigned char * arr)
 
 	PIXEL_COMPARE_AND_SWAP(12, 16);
 	PIXEL_COMPARE_AND_SWAP(13, 17);
-	//PIXEL_COMPARE_AND_SWAP(14, 18);
-	//PIXEL_COMPARE_AND_SWAP(15, 19);
-
-	PIXEL_COMPARE_AND_SWAP(20, 21);
 
 
 	PIXEL_COMPARE_AND_SWAP(2, 4);
 	PIXEL_COMPARE_AND_SWAP(3, 5);
+
 	PIXEL_COMPARE_AND_SWAP(6, 8);
 	PIXEL_COMPARE_AND_SWAP(7, 9);
+
 	PIXEL_COMPARE_AND_SWAP(10, 12);
 	PIXEL_COMPARE_AND_SWAP(11, 13);
-
 
 
 	PIXEL_COMPARE_AND_SWAP(1, 2);
@@ -401,169 +367,17 @@ __inline__ __device__ void mergeSort(unsigned char * arr)
 }
 
 
-
-// Globális memóriát használó (triviális) megoldás
-__global__ void kernel_conv_global(unsigned char* gInput, unsigned char* gOutput, int imgWidth, int imgWidthF)
-{
-	int row = blockIdx.y * blockDim.y + threadIdx.y;
-	int col = blockIdx.x * blockDim.x + threadIdx.x;
-
-	int out_pix = (row*imgWidth + col) * 3;
-	unsigned char arr[25];
-
-	int in_pix = (row*imgWidthF + col) * 3;
-
-
-	for (int rgb = 0; rgb < 3; rgb++)
-	{
-#pragma unroll 5
-		for (int medianY = 0; medianY < 5; medianY++)
-		{
-#pragma unroll 5
-			for (int medianX = 0; medianX < 5; medianX++)
-			{
-
-				arr[medianY * 5 + medianX] = gInput[in_pix + medianY*imgWidthF * 3 + medianX * 3 + rgb];
-
-				//in_pix = in_pix + 3;
-			}
-			//in_pix = in_pix + 3 * imgWidthF - 5 * 1 * 3;
-		}
-
-
-		//mergeSort(arr);
-		
-
-		gOutput[out_pix + rgb] = arr[12];
-	}
-}
-
-
-
 #define MEDIAN 12
 
-#if 0
 
 // Shared memóriát használó megoldás (1.)
 // Shared memória adattípus: unsigned char
-// Számítás adattípusa: unsignde char, NEM integer
+// Számítás adattípusa: unsignde char
 __global__ void kernel_conv_sh_uchar_int(unsigned char* gInput, unsigned char* gOutput, int imgWidth, int imgWidthF)
 {
 	int row = blockIdx.y * blockDim.y + threadIdx.y;
 	int col = blockIdx.x * blockDim.x + threadIdx.x;
 
-	int out_pix = (row*imgWidth + col) * 3;
-	//unsigned char arr[31]; 
-	unsigned char arr[25];
-
-	__shared__ unsigned char in_shmem[20][20][3];
-
-	int th1D = threadIdx.y*blockDim.x + threadIdx.x;						// thread ID
-	int ld_rgba = th1D % 3;
-	int ld_col = (th1D / 3) % 20;
-	int ld_row = th1D / 60;
-	//int ld_base = (blockIdx.y * blockDim.y) * 3 * imgWidthF + (blockIdx.x * blockDim.x) * 3 + (ld_row * 3 * imgWidthF);
-	int ld_base = ((blockIdx.y * blockDim.y) * imgWidthF + (blockIdx.x * blockDim.x) + (ld_row  * imgWidthF)) * 3;
-
-	if (th1D < 240)
-	{
-#pragma unroll
-		for (int ld = 0; ld<5; ld++)
-		{
-			in_shmem[ld_row + ld * 4][ld_col][ld_rgba] =
-				gInput[ld_base + (th1D % 60)];
-			ld_base = ld_base + imgWidthF * 12;						// 
-		}
-	}
-	__syncthreads();
-
-	for (int rgb = 0; rgb<3; rgb++)
-	{
-		//#pragma unroll 5
-		for (int medianY = 0; medianY<5; medianY++)
-		{
-			//#pragma unroll 5
-			for (int medianX = 0; medianX<5; medianX++)
-			{
-				//#pragma unroll 3
-				arr[medianY * 5 + medianX] = in_shmem[threadIdx.y + medianY][threadIdx.x + medianX][rgb];
-			}
-		}
-
-		//mergeSort(arr);
-		gOutput[out_pix + rgb] = arr[MEDIAN];
-	}
-}
-
-// Shared memóriát használó megoldás (3.)
-// Shared memória adattípus: float
-// Számítás adattípusa: float
-__global__ void kernel_conv_sh_float_float(unsigned char* gInput, unsigned char* gOutput, int imgWidth, int imgWidthF)
-{
-	int row = blockIdx.y * blockDim.y + threadIdx.y;
-	int col = blockIdx.x * blockDim.x + threadIdx.x;
-
-	int out_pix = (row*imgWidth + col) * 3;
-	//unsigned char arr[31]; 
-	//unsigned char arr[25];
-	float arr[25];
-
-
-	//__shared__ unsigned char in_shmem[20][20][3];
-	__shared__ float in_shmem[20][20][3];
-
-	int th1D = threadIdx.y*blockDim.x + threadIdx.x;						// thread ID
-	int ld_rgba = th1D % 3;
-	int ld_col = (th1D / 3) % 20;
-	int ld_row = th1D / 60;
-	//int ld_base = (blockIdx.y * blockDim.y) * 3 * imgWidthF + (blockIdx.x * blockDim.x) * 3 + (ld_row * 3 * imgWidthF);
-	int ld_base = ((blockIdx.y * blockDim.y) * imgWidthF + (blockIdx.x * blockDim.x) + (ld_row  * imgWidthF)) * 3;
-
-	if (th1D < 240)
-	{
-#pragma unroll
-		for (int ld = 0; ld<5; ld++)
-		{
-			in_shmem[ld_row + ld * 4][ld_col][ld_rgba] = (float)gInput[ld_base + (th1D % 60)];
-			ld_base = ld_base + imgWidthF * 12;
-		}
-	}
-	__syncthreads();
-
-	for (int rgb = 0; rgb<3; rgb++)
-	{
-		//#pragma unroll 5
-		for (int medianY = 0; medianY<5; medianY++)
-		{
-			//#pragma unroll 5
-			for (int medianX = 0; medianX<5; medianX++)
-			{
-				//#pragma unroll 3
-				arr[medianY * 5 + medianX] = in_shmem[threadIdx.y + medianY][threadIdx.x + medianX][rgb];
-			}
-		}
-
-		//mergeSort(arr);
-		gOutput[out_pix + rgb] = (unsigned char)(arr[MEDIAN]);			// ??? tipuskonverrzio 
-	}
-}
-
-
-
-#endif
-
-// ----- úJ
-// Shared memóriát használó megoldás (1.)
-// Shared memória adattípus: unsigned char
-// Számítás adattípusa: unsignde char, NEM integer
-
-__global__ void kernel_conv_sh_uchar_int(unsigned char* gInput, unsigned char* gOutput, int imgWidth, int imgWidthF)
-{
-	int row = blockIdx.y * blockDim.y + threadIdx.y;
-	int col = blockIdx.x * blockDim.x + threadIdx.x;
-
-	//int out_pix = (row*imgWidth + col) * 3;
-	//unsigned char arr[31]; 
 	unsigned char arr[25];
 
 	__shared__ unsigned char in_shmem[20][60];
@@ -576,13 +390,6 @@ __global__ void kernel_conv_sh_uchar_int(unsigned char* gInput, unsigned char* g
 	int wr_x;
 	int wr_y;
 
-
-	//int ld_rgba = th1D % 3;
-	//int ld_col = (th1D / 3) % 20;
-	//int ld_row = th1D / 60;
-	//int ld_base = (blockIdx.y * blockDim.y) * 3 * imgWidthF + (blockIdx.x * blockDim.x) * 3 + (ld_row * 3 * imgWidthF);
-	//int ld_base = ((blockIdx.y * blockDim.y) * imgWidthF + (blockIdx.x * blockDim.x) + (ld_row  * imgWidthF)) * 3;
-
 	if (th1D < 240)
 	{
 #pragma unroll
@@ -593,7 +400,6 @@ __global__ void kernel_conv_sh_uchar_int(unsigned char* gInput, unsigned char* g
 
 			in_shmem[wr_y][wr_x] = gInput[base + wr_y * imgWidthF * 3 + wr_x];
 			//base += imgWidthF * 12;				// ???
-			//ld_base = ld_base + imgWidthF * 12;						// 
 		}
 	}
 	__syncthreads();
@@ -615,7 +421,6 @@ __global__ void kernel_conv_sh_uchar_int(unsigned char* gInput, unsigned char* g
 }
 
 
-// Új
 // Shared memóriát használó megoldás (3.)
 // Shared memória adattípus: float
 // Számítás adattípusa: float
@@ -624,8 +429,6 @@ __global__ void kernel_conv_sh_float_float(unsigned char* gInput, unsigned char*
 	int row = blockIdx.y * blockDim.y + threadIdx.y;
 	int col = blockIdx.x * blockDim.x + threadIdx.x;
 
-	//int out_pix = (row*imgWidth + col) * 3;
-	//unsigned char arr[31]; 
 	float arr[25];
 
 	__shared__ unsigned char in_shmem[20][60];
@@ -638,13 +441,6 @@ __global__ void kernel_conv_sh_float_float(unsigned char* gInput, unsigned char*
 	int wr_x;
 	int wr_y;
 
-
-	//int ld_rgba = th1D % 3;
-	//int ld_col = (th1D / 3) % 20;
-	//int ld_row = th1D / 60;
-	//int ld_base = (blockIdx.y * blockDim.y) * 3 * imgWidthF + (blockIdx.x * blockDim.x) * 3 + (ld_row * 3 * imgWidthF);
-	//int ld_base = ((blockIdx.y * blockDim.y) * imgWidthF + (blockIdx.x * blockDim.x) + (ld_row  * imgWidthF)) * 3;
-
 	if (th1D < 240)
 	{
 #pragma unroll
@@ -654,8 +450,7 @@ __global__ void kernel_conv_sh_float_float(unsigned char* gInput, unsigned char*
 			wr_x = th1D % 60;
 
 			in_shmem[wr_y][wr_x] = (float)gInput[base + wr_y * imgWidthF * 3 + wr_x];
-			//base += imgWidthF * 12;				// ???
-			//ld_base = ld_base + imgWidthF * 12;						// 
+			//base += imgWidthF * 12;				// 
 		}
 	}
 	__syncthreads();
@@ -685,9 +480,11 @@ void cudaMain(int imgHeight, int imgWidth, int imgHeightF, int imgWidthF,
     double d0;
 
 	unsigned char *gInput, *gOutput;
+
 	// GPU global memory foglalás a bemeneti (kiterjesztett) képnek
     int size_in  = imgWidthF*imgHeightF*sizeof(unsigned char) * 3;
 	cudaMalloc((void**)&gInput, size_in);
+
 	// GPU global memory foglalás a kimeneti (nem kiterjesztett) képnek
 	int size_out = imgWidth*imgHeight*sizeof(unsigned char) * 3;
 	cudaMalloc((void**)&gOutput, size_out);
@@ -722,11 +519,12 @@ void cudaMain(int imgHeight, int imgWidth, int imgHeightF, int imgWidthF,
 	cudaThreadSynchronize();
 	e0 = time_measure(2);
 
-	// Kimenet másolás: GPU --> host
+	// Kimenet másolás: GPU-ból hostra
     cudaMemcpy(imgDst, gOutput, size_out, cudaMemcpyDeviceToHost);
 	
 	// GPU memóriák felszabadítása
-    cudaFree(gInput); cudaFree(gOutput);
+    cudaFree(gInput);
+	cudaFree(gOutput);
 
 	// Reset (profiler miatt)
 	cudaDeviceReset();

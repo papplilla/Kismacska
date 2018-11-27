@@ -1,7 +1,4 @@
-// lab1.cpp : Defines the entry point for the console application.
-//
 
-//#include "stdafx.h"
 #include "memory.h"
 #include "time.h"
 
@@ -17,8 +14,94 @@
 #include "func.h"
 
 
+int verifyImage();
+int verifyImage()
+{
+
+	// Általunk számolt kimeneti kép
+	ilInit(); iluInit();
+	ILboolean ret;
+	ILuint ilImg = 0;
+	ilGenImages(1, &ilImg);
+	ilBindImage(ilImg);
+	//ret = ilLoadImage((const char*)("output.jpg"));
+	ret = ilLoadImage((const char*)("output.bmp"));
+	ILubyte* imgData = ilGetData();
+
+	int imgWidth = ilGetInteger(IL_IMAGE_WIDTH);
+	int imgHeight = ilGetInteger(IL_IMAGE_HEIGHT);
+	ILint imgOrigin = ilGetInteger(IL_ORIGIN_MODE);
+
+	printf("Teszt started\n");
+	printf("Output resolution: %4dx%4d\n", imgWidth, imgHeight);
+
+	// Teszt kép
+	ILboolean retRef;
+	ILuint ilImgRef = 0;
+	ilGenImages(1, &ilImgRef);
+	ilBindImage(ilImgRef);
+	//retRef = ilLoadImage((const char*)("hf_output_ref.jpg"));
+	retRef = ilLoadImage((const char*)("hf_output_ref.bmp"));
+	ILubyte* imgDataRef = ilGetData();
+
+	int imgWidthRef = ilGetInteger(IL_IMAGE_WIDTH);
+	int imgHeighReft = ilGetInteger(IL_IMAGE_HEIGHT);
+	ILint imgOriginRef = ilGetInteger(IL_ORIGIN_MODE);
+
+
+	printf("Ref picture resolution: %4dx%4d\n", imgWidth, imgHeight);
+
+
+	if (imgWidth != imgWidthRef)
+	{
+		printf("Nem egyeznek a szélességek\n");
+		return -1;
+	}
+
+	if (imgHeight != imgHeighReft)
+	{
+		printf("Nem egyeznek a hosszúságok\n");
+		return -2;
+	}
+
+	int row, col;
+	for (row = 0; row<imgHeight; row++)
+	{
+		for (col = 0; col<imgWidth;col++)
+		{
+			int pixel_offset = (row *imgWidth + col) * 3;
+
+			if ((const char)(*(imgData + pixel_offset)) != (const char)(*(imgDataRef + pixel_offset)))
+			{
+
+				printf("Baj van!\n");
+
+				printf("Erdeti\n");
+				printf("%d. Sor, :%d. oszlop: %d \n ", row, col, *(imgDataRef + pixel_offset));
+
+				printf("Sajat\n");
+				printf("%d. Sor, :%d. oszlop: %d \n\n ", row, col, *(imgData + pixel_offset));
+				//return -3;
+			}
+
+		}
+	}
+
+	ilDeleteImages(1, &ilImg);
+	ilDeleteImages(1, &ilImgRef);
+
+	printf("Minden ok\n");
+	return 0;
+}
+
+//#define ONLY_VERIFY
+//#define VERIFY_AND_RUN
+
 void main()
 {
+#ifdef  ONLY_VERIFY
+	verifyImage();
+#else 
 	ilInit(); iluInit();
 	ILboolean ret;
 	ILuint ilImg=0;
@@ -73,11 +156,7 @@ void main()
 	clock_t s0, e0;
     double d0;
 
-	short filter_laplace[] = {-1.0, -1.0, -1.0, -1.0, -1.0,
-		                      -1.0, -1.0, -1.0, -1.0, -1.0,
-		                      -1.0, -1.0, 24.0, -1.0, -1.0,
-		                      -1.0, -1.0, -1.0, -1.0, -1.0,
-		                      -1.0, -1.0, -1.0, -1.0, -1.0};
+
 	double mpixel;
 
 #if 0
@@ -108,7 +187,9 @@ for (int r=0; r<RUNS; r++)
 		for (col=0; col<imgWidth;col++)
 		{
 			int pixel_src = (row*imgWidth + col) * 3;
-			int pixel_dst = (row*imgWidth + col) * 3;
+			//int pixel_dst = (row*imgWidth + col) * 3;
+			int pixel_dst = ((row + imgFOffsetH)*imgWidthF + (col + imgFOffsetW)) * 4;
+
 			*(imgData + pixel_dst + 0) = (ILubyte)(*(imgRes + pixel_src + 0));
 			*(imgData + pixel_dst + 1) = (ILubyte)(*(imgRes + pixel_src + 1));
 			*(imgData + pixel_dst + 2) = (ILubyte)(*(imgRes + pixel_src + 2));
@@ -124,6 +205,17 @@ for (int r=0; r<RUNS; r++)
 	ret = ilSetData(imgData);
 	ilEnable(IL_FILE_OVERWRITE);
     ilSaveImage((const char*)("output.jpg"));
-	ilDeleteImages(1, &ilImg);
+	
+	#ifdef VERIFY_AND_RUN
+		ilSaveImage((const char*)("output.bmp"));				// teszteléshez
+	#endif // VERIFY_AND_RUN
+
+		ilDeleteImages(1, &ilImg);
+
+	#ifdef VERIFY_AND_RUN
+		verifyImage();
+	#endif // VERIFY_AND_RUN
+
+#endif	// ONLY_VERIFY
 }
 
