@@ -6,12 +6,10 @@
 #include "defs.h"
 
 #include <stdlib.h>
-
 #include <algorithm>
 
 void mergeSortAVX(__m128 * arr);
 void mergeSortFullAVX(__m128 * arr);
-
 
 
 /*
@@ -399,11 +397,10 @@ void mergeSortAVX(__m128 * arr)
 
 #define MEDIAN 12
 
-//void medianFilterAVX(int imgHeight, int imgWidth,  int imgWidthF, float *imgFloatSrc, float *imgFloatDst)
 void medianFilterAVX(int imgHeight, int imgWidth, int imgWidthF, int imgFOffsetH, int imgFOffsetW, float *imgFloatSrc, float *imgFloatDst)
 {
 // Kép sorai
-//#pragma omp parallel for
+#pragma omp parallel for
 	for (int y = imgFOffsetH; y < (imgHeight + imgFOffsetH); y++)
 	{
 		// Kép oszlopai
@@ -415,7 +412,6 @@ void medianFilterAVX(int imgHeight, int imgWidth, int imgWidthF, int imgFOffsetH
 					medianArray[5 * medianY + medianX] = _mm_load_ps(imgFloatSrc + ((y + (medianY - 2))*imgWidthF + x + (medianX - 2)) * 4);
 
 			mergeSortAVX(medianArray);
-			//mergeSortFullAVX(medianArray);
 			_mm_stream_ps(imgFloatDst + (y*imgWidth + x) * 4, medianArray[MEDIAN]);
 		}
 	}
