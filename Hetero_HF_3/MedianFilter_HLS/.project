@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>MedianFilter_HLS</name>
+	<name>HET_gyak4</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -29,52 +29,52 @@
 		<link>
 			<name>source</name>
 			<type>2</type>
-			<location>D:/Vivado_Workspace/MedianFilter_HLS/.apc/.src</location>
+			<location>D:/D_Strabi/D_Dokumentumai/BME/Heterogén_számítási_rendszerek/HF/Kismacska/Hetero_HF_3/MedianFilter_HLS/.apc/.src</location>
 		</link>
 		<link>
 			<name>testbench</name>
 			<type>2</type>
-			<location>D:/Vivado_Workspace/MedianFilter_HLS/.apc/.tb</location>
+			<location>D:/D_Strabi/D_Dokumentumai/BME/Heterogén_számítási_rendszerek/HF/Kismacska/Hetero_HF_3/MedianFilter_HLS/.apc/.tb</location>
 		</link>
 		<link>
-			<name>MedianFilter/constraints</name>
+			<name>solution1/constraints</name>
 			<type>2</type>
-			<location>D:/Vivado_Workspace/MedianFilter_HLS/MedianFilter/.tcls</location>
+			<location>D:/D_Strabi/D_Dokumentumai/BME/Heterogén_számítási_rendszerek/HF/Kismacska/Hetero_HF_3/MedianFilter_HLS/solution1/.tcls</location>
 		</link>
 		<link>
 			<name>source/fir_hw.cpp</name>
 			<type>1</type>
-			<location>D:/Google Drive/Dokumentumok/My eBooks/Egyetem/9. félév/Heterogén számítási rendszerek/Laborok/Labor_05/Starter/_src/fir_hw.cpp</location>
+			<location>D:/D_Strabi/D_Dokumentumai/BME/Heterogén_számítási_rendszerek/HF/Kismacska/Hetero_HF_3/MedianFilter_HLS/_src/fir_hw.cpp</location>
 		</link>
 		<link>
 			<name>source/types.h</name>
 			<type>1</type>
-			<location>D:/Google Drive/Dokumentumok/My eBooks/Egyetem/9. félév/Heterogén számítási rendszerek/Laborok/Labor_05/Starter/_src/types.h</location>
+			<location>D:/D_Strabi/D_Dokumentumai/BME/Heterogén_számítási_rendszerek/HF/Kismacska/Hetero_HF_3/MedianFilter_HLS/_src/types.h</location>
 		</link>
 		<link>
 			<name>testbench/fir_sw.cpp</name>
 			<type>1</type>
-			<location>D:/Google Drive/Dokumentumok/My eBooks/Egyetem/9. félév/Heterogén számítási rendszerek/Laborok/Labor_05/Starter/_src/fir_sw.cpp</location>
+			<location>D:/D_Strabi/D_Dokumentumai/BME/Heterogén_számítási_rendszerek/HF/Kismacska/Hetero_HF_3/MedianFilter_HLS/_src/fir_sw.cpp</location>
 		</link>
 		<link>
 			<name>testbench/main.cpp</name>
 			<type>1</type>
-			<location>D:/Google Drive/Dokumentumok/My eBooks/Egyetem/9. félév/Heterogén számítási rendszerek/Laborok/Labor_05/Starter/_src/main.cpp</location>
+			<location>D:/D_Strabi/D_Dokumentumai/BME/Heterogén_számítási_rendszerek/HF/Kismacska/Hetero_HF_3/MedianFilter_HLS/_src/main.cpp</location>
 		</link>
 		<link>
-			<name>MedianFilter/constraints/.xml.directive</name>
+			<name>solution1/constraints/.xml.directive</name>
 			<type>1</type>
-			<location>D:/Vivado_Workspace/MedianFilter_HLS/MedianFilter/MedianFilter.directive</location>
+			<location>D:/D_Strabi/D_Dokumentumai/BME/Heterogén_számítási_rendszerek/HF/Kismacska/Hetero_HF_3/MedianFilter_HLS/solution1/solution1.directive</location>
 		</link>
 		<link>
-			<name>MedianFilter/constraints/directives.tcl</name>
+			<name>solution1/constraints/directives.tcl</name>
 			<type>1</type>
-			<location>D:/Vivado_Workspace/MedianFilter_HLS/MedianFilter/directives.tcl</location>
+			<location>D:/D_Strabi/D_Dokumentumai/BME/Heterogén_számítási_rendszerek/HF/Kismacska/Hetero_HF_3/MedianFilter_HLS/solution1/directives.tcl</location>
 		</link>
 		<link>
-			<name>MedianFilter/constraints/script.tcl</name>
+			<name>solution1/constraints/script.tcl</name>
 			<type>1</type>
-			<location>D:/Vivado_Workspace/MedianFilter_HLS/MedianFilter/script.tcl</location>
+			<location>D:/D_Strabi/D_Dokumentumai/BME/Heterogén_számítási_rendszerek/HF/Kismacska/Hetero_HF_3/MedianFilter_HLS/solution1/script.tcl</location>
 		</link>
 	</linkedResources>
 </projectDescription>

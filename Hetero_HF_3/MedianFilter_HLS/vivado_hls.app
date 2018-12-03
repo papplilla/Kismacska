@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="com.autoesl.autopilot.project" top="fir_hw">
+<project xmlns="com.autoesl.autopilot.project" name="HET_gyak4" top="fir_hw">
   <files>
-    <file name="../Google Drive/Dokumentumok/My eBooks/Egyetem/9. félév/Heterogén számítási rendszerek/Laborok/Labor_05/Starter/_src/fir_hw.cpp" sc="0" tb="false" cflags=""/>
-    <file name="../Google Drive/Dokumentumok/My eBooks/Egyetem/9. félév/Heterogén számítási rendszerek/Laborok/Labor_05/Starter/_src/types.h" sc="0" tb="false" cflags=""/>
-    <file name="../../../Google Drive/Dokumentumok/My eBooks/Egyetem/9. félév/Heterogén számítási rendszerek/Laborok/Labor_05/Starter/_src/fir_sw.cpp" sc="0" tb="1" cflags=""/>
-    <file name="../../../Google Drive/Dokumentumok/My eBooks/Egyetem/9. félév/Heterogén számítási rendszerek/Laborok/Labor_05/Starter/_src/main.cpp" sc="0" tb="1" cflags=""/>
-    <file name="../Google Drive/Dokumentumok/My eBooks/Egyetem/9. félév/Heterogén számítási rendszerek/Laborok/Labor_05/Starter/_src/fir_hw.cpp" sc="0" tb="false" cflags=""/>
-    <file name="../Google Drive/Dokumentumok/My eBooks/Egyetem/9. félév/Heterogén számítási rendszerek/Laborok/Labor_05/Starter/_src/types.h" sc="0" tb="false" cflags=""/>
-    <file name="../../../Google Drive/Dokumentumok/My eBooks/Egyetem/9. félév/Heterogén számítási rendszerek/Laborok/Labor_05/Starter/_src/fir_sw.cpp" sc="0" tb="1" cflags=""/>
-    <file name="../../../Google Drive/Dokumentumok/My eBooks/Egyetem/9. félév/Heterogén számítási rendszerek/Laborok/Labor_05/Starter/_src/main.cpp" sc="0" tb="1" cflags=""/>
+    <file name="fir_hw.cpp" sc="0" tb="false" cflags=""/>
+    <file name="MedianFilter_HLS/_src/types.h" sc="0" tb="false" cflags=""/>
+    <file name="../_src/fir_sw.cpp" sc="0" tb="1" cflags=""/>
+    <file name="../_src/main.cpp" sc="0" tb="1" cflags=""/>
   </files>
   <solutions>
-    <solution name="MedianFilter" status="active"/>
+    <solution name="solution1" status="active"/>
   </solutions>
   <includePaths/>
   <libraryPaths/>
   <Simulation>
-    <SimFlow name="csim"/>
+    <SimFlow name="csim" csimMode="0" lastCsimMode="0"/>
   </Simulation>
 </project>
