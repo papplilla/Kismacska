@@ -553,7 +553,7 @@ int main( int argc, char** argv )
 {
 
     Mat image;
-    image = imread("c:\\heterogen_hls\\input.jpg", CV_LOAD_IMAGE_COLOR);   // Read the file
+    image = imread("input.jpg", CV_LOAD_IMAGE_COLOR);   // Read the file
 
     if(! image.data )
     {
@@ -589,7 +589,7 @@ int main( int argc, char** argv )
     namedWindow( "Display window", WINDOW_AUTOSIZE );// Create a window for display.
     imshow( "Display window", outimg );                   // Show our image inside it.
 
-    imwrite( "c:\\heterogen_hls\\Out_Image.jpg", outimg );
+    imwrite( "Out_Image.jpg", outimg );
 
     waitKey(0);                                          // Wait for a keystroke in the window
     return 0;
