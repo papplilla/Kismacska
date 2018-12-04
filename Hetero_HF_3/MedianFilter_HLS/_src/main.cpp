@@ -188,7 +188,7 @@ void mergeSort(unsigned char * arr)
 }
 
 
-
+// =========== TT ==============
 
 void medfilter(uint8_t r, uint8_t g, uint8_t b, uint8_t* r_out, uint8_t* g_out, uint8_t* b_out, bool endline);
 
@@ -272,7 +272,7 @@ void medfilter(uint8_t r, uint8_t g, uint8_t b, uint8_t* r_out, uint8_t* g_out, 
 }
 
 
-// =========== TT ==============
+// =========== P ==============
 
 #if 0
 

@@ -42,19 +42,9 @@
 			<location>D:/D_Strabi/D_Dokumentumai/BME/Heterogén_számítási_rendszerek/HF/Kismacska/Hetero_HF_3/MedianFilter_HLS/solution1/.tcls</location>
 		</link>
 		<link>
-			<name>source/fir_hw.cpp</name>
-			<type>1</type>
-			<location>D:/D_Strabi/D_Dokumentumai/BME/Heterogén_számítási_rendszerek/HF/Kismacska/Hetero_HF_3/MedianFilter_HLS/_src/fir_hw.cpp</location>
-		</link>
-		<link>
 			<name>source/types.h</name>
 			<type>1</type>
 			<location>D:/D_Strabi/D_Dokumentumai/BME/Heterogén_számítási_rendszerek/HF/Kismacska/Hetero_HF_3/MedianFilter_HLS/_src/types.h</location>
-		</link>
-		<link>
-			<name>testbench/fir_sw.cpp</name>
-			<type>1</type>
-			<location>D:/D_Strabi/D_Dokumentumai/BME/Heterogén_számítási_rendszerek/HF/Kismacska/Hetero_HF_3/MedianFilter_HLS/_src/fir_sw.cpp</location>
 		</link>
 		<link>
 			<name>testbench/main.cpp</name>
