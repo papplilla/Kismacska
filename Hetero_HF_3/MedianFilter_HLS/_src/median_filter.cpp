@@ -338,106 +338,99 @@ void mergeSort(unsigned char * arr)
 }
 
 typedef enum {RED, GREEN, BLUE}Colors;
-void median_filter_hls(pix_t in_pix[3], int n_line, pix_t out_pix[3])
+
+#define MEDIAN 2
+
+void medianFilter(pix_t pixelIn[3], int newLine, pix_t pixelOut[3])
 {
-//TT
-//void medfilter(uint8_t r, uint8_t g, uint8_t b, uint8_t* r_out, uint8_t* g_out, uint8_t* b_out, bool endline) {
 #pragma HLS PIPELINE II=1
 
-	static uint8_t sorbuf[3][1280][5];
-	#pragma HLS ARRAY_PARTITION variable=sorbuf complete dim=3
-	#pragma HLS ARRAY_PARTITION variable=sorbuf complete dim=1
+	static uint8_t fiveLine[3][1280][5];
+	#pragma HLS ARRAY_PARTITION variable=fiveLine complete dim=3
+	#pragma HLS ARRAY_PARTITION variable=fiveLine complete dim=1
 
-	static uint8_t buf5 [3][5][5];
-	#pragma HLS ARRAY_PARTITION variable=buf5 complete dim=0
 
-	static uint8_t buf5_ordered [3][5][5];
-	#pragma HLS ARRAY_PARTITION variable=buf5_ordered complete dim=0
-	static int sorbuf_x = 0;
-	static uint8_t sorbuf_y = 0;
+	static uint8_t bufferOrig_Red[5][5];
+	static uint8_t bufferOrig_Green[5][5];
+	static uint8_t bufferOrig_Blue[5][5];
+	#pragma HLS ARRAY_PARTITION variable=bufferOrig_Red complete dim=0
+	#pragma HLS ARRAY_PARTITION variable=bufferOrig_Green complete dim=0
+	#pragma HLS ARRAY_PARTITION variable=bufferOrig_Blue complete dim=0
+	// Minden dimenzió mentén partícionáljon
 
-	// Új sor
-	if (n_line)
+	static uint8_t buffer_Red[5][5];
+	static uint8_t buffer_Green[5][5];
+	static uint8_t buffer_Blue[5][5];
+	#pragma HLS ARRAY_PARTITION variable=buffer_Red complete dim=0
+	#pragma HLS ARRAY_PARTITION variable=buffer_Green complete dim=0
+	#pragma HLS ARRAY_PARTITION variable=buffer_Blue complete dim=0
+	// Minden dimenzió mentén partícionáljon
+	
+	static int fiveLineX = 0;
+	static uint8_t fiveLineY = 0;
+
+	// Új sor jel
+	if (newLine)
 	{
-		sorbuf_x = 0;
-		if (sorbuf_y == 4) 
-			sorbuf_y = 0;
+		fiveLineX = 0;
+		if (fiveLineY == 4) 
+			fiveLineY = 0;
 		else
-			sorbuf_y++;
+			fiveLineY++;
 	}
 	else
-		sorbuf_x++;
+		fiveLineX++;
 	
-	
-	sorbuf[RED][sorbuf_x][sorbuf_y] = in_pix[RED];
-	sorbuf[GREEN][sorbuf_x][sorbuf_y] = in_pix[GREEN];
-	sorbuf[BLUE][sorbuf_x][sorbuf_y] = in_pix[BLUE];
+	fiveLine[RED][fiveLineX][fiveLineY] = pixelIn[RED];
+	fiveLine[GREEN][fiveLineX][fiveLineY] = pixelIn[GREEN];
+	fiveLine[BLUE][fiveLineX][fiveLineY] = pixelIn[BLUE];
 
-	buffer_shift: 
-	for (uint8_t color = 0; color < 3; color++)
-	{
-		// A szûrõablaka tartalmának balra shiftelése
-	#pragma HLS UNROLL
-			buffer_shift_y:
-			for (uint8_t dy = 0; dy < 5; dy++)
-			{
+	// A szûrõablaka tartalmának balra shiftelése		
+shiftY: for (uint8_t dy = 0; dy < 5; dy++)
+		{
 			#pragma HLS UNROLL
-				buffer_shift_x:
-				for (uint8_t dx = 1; dx < 5; dx++)
-				{
+			buffer_shift_x:
+			for (uint8_t dx = 1; dx < 5; dx++)
+			{
 				#pragma HLS PIPELINE II=1
 				#pragma HLS UNROLL
-					buf5[color][dx-1][dy] = buf5[color][dx][dy];
+				bufferOrig_Red[dx-1][dy] = bufferOrig_Red[dx][dy] ;
+				bufferOrig_Green[dx-1][dy] = bufferOrig_Green[dx][dy] ;
+				bufferOrig_Blue[dx-1][dy] = bufferOrig_Blue[dx][dy] ;
+			}
+		}
+
+// Új elem behelyezése
+newPixel:	for (uint8_t dy = 0; dy < 5; dy++)
+			{
+				#pragma HLS UNROLL
+				bufferOrig_Red[4][dy] = fiveLine[RED][fiveLineX][dy];;
+				bufferOrig_Green[4][dy] = fiveLine[GREEN][fiveLineX][dy];;
+				bufferOrig_Blue[4][dy] = fiveLine[BLUE][fiveLineX][dy];;
+			}
+	
+// Buffer tartalmának a lemásolása
+bufferCopyY:	for (uint8_t dy = 0; dy < 5; dy++)
+				{
+					#pragma HLS UNROLL
+					bufferCopyX:			
+					for (uint8_t dx = 0; dx < 5; dx++)
+					{
+						#pragma HLS UNROLL
+						buffer_Red[dx][dy] = bufferOrig_Red[dx][dy];
+						buffer_Green[dx][dy] = bufferOrig_Green[dx][dy];
+						buffer_Blue[dx][dy] = bufferOrig_Blue[dx][dy];
+					}
 				}
-			}
-	}
- 
-	buffer_last_line: 
-	for (uint8_t color = 0; color < 3; color++)
-	{
-	// Új elem behelyezése
-	#pragma HLS UNROLL
-		buffer_last_line_y:
-		for (uint8_t dy = 0; dy < 5; dy++)
-		{
-		#pragma HLS UNROLL
-			buf5[color][4][dy] = sorbuf[color][sorbuf_x][dy];
-		}
-	}
+	
+		mergeSort(buffer_Red);
+		mergeSort(buffer_Green);
+		mergeSort(buffer_Blue);
 
-	buffer_ordered_copy: // a buffer mentése
-	for (uint8_t color = 0; color < 3; color++){
-	#pragma HLS UNROLL
-		buffer_ordered_copy_y:
-		for (uint8_t dy = 0; dy < 5; dy++){
-		#pragma HLS UNROLL
-			buffer_ordered_copy_x:
-			for (uint8_t dx = 0; dx < 5; dx++){
-			#pragma HLS UNROLL
-				buf5_ordered[color][dx][dy] = buf5[color][dx][dy];
-			}
-		}
-	}
-
-	oddeven: // rendezés
-	for (uint8_t color = 0; color < 3; color++){
-	#pragma HLS UNROLL
-		oddeven(&buf5_ordered[color][0][0]);
-	}
-
-	/*if (endline) {
-		sorbuf_x = 0;
-		if (sorbuf_y == 4) {
-			sorbuf_y = 0;
-		}
-		else sorbuf_y++;
-	}
-	else sorbuf_x++;
-*/
-	// kimeneti pixel
-	out_pix[RED] = buf5_ordered[RED][2][2];
-	out_pix[GREEN] = buf5_ordered[GREEN][2][2];
-	out_pix[BLUE] = buf5_ordered[BLUE][2][2];
+	// Kimeneti pixel beállítása
+	pixelOut[RED] = buffer_Red[MEDIAN][MEDIAN];
+	pixelOut[GREEN] = buffer_Green[MEDIAN][MEDIAN];
+	pixelOut[BLUE] = buffer_Blue[MEDIAN][MEDIAN];
 }
 
 
