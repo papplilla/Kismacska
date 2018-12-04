@@ -386,40 +386,40 @@ void medianFilter(pix_t pixelIn[3], int newLine, pix_t pixelOut[3])
 	fiveLine[BLUE][fiveLineX][fiveLineY] = pixelIn[BLUE];
 
 	// A szûrõablaka tartalmának balra shiftelése		
-shiftY: for (uint8_t dy = 0; dy < 5; dy++)
+shiftY: for (uint8_t medianY = 0; medianY < 5; medianY++)
 		{
 			#pragma HLS UNROLL
 			buffer_shift_x:
-			for (uint8_t dx = 1; dx < 5; dx++)
+			for (uint8_t medianX = 1; medianX < 5; medianX++)
 			{
 				#pragma HLS PIPELINE II=1
 				#pragma HLS UNROLL
-				bufferOrig_Red[dx-1][dy] = bufferOrig_Red[dx][dy] ;
-				bufferOrig_Green[dx-1][dy] = bufferOrig_Green[dx][dy] ;
-				bufferOrig_Blue[dx-1][dy] = bufferOrig_Blue[dx][dy] ;
+				bufferOrig_Red[medianX-1][medianY] = bufferOrig_Red[medianX][medianY] ;
+				bufferOrig_Green[medianX-1][medianY] = bufferOrig_Green[medianX][medianY] ;
+				bufferOrig_Blue[medianX-1][medianY] = bufferOrig_Blue[medianX][medianY] ;
 			}
 		}
 
 // Új elem behelyezése
-newPixel:	for (uint8_t dy = 0; dy < 5; dy++)
+newPixel:	for (uint8_t medianY = 0; medianY < 5; medianY++)
 			{
 				#pragma HLS UNROLL
-				bufferOrig_Red[4][dy] = fiveLine[RED][fiveLineX][dy];;
-				bufferOrig_Green[4][dy] = fiveLine[GREEN][fiveLineX][dy];;
-				bufferOrig_Blue[4][dy] = fiveLine[BLUE][fiveLineX][dy];;
+				bufferOrig_Red[4][medianY] = fiveLine[RED][fiveLineX][medianY];;
+				bufferOrig_Green[4][medianY] = fiveLine[GREEN][fiveLineX][medianY];;
+				bufferOrig_Blue[4][medianY] = fiveLine[BLUE][fiveLineX][medianY];;
 			}
 	
 // Buffer tartalmának a lemásolása
-bufferCopyY:	for (uint8_t dy = 0; dy < 5; dy++)
+bufferCopyY:	for (uint8_t medianY = 0; medianY < 5; medianY++)
 				{
 					#pragma HLS UNROLL
 					bufferCopyX:			
-					for (uint8_t dx = 0; dx < 5; dx++)
+					for (uint8_t medianX = 0; medianX < 5; medianX++)
 					{
 						#pragma HLS UNROLL
-						buffer_Red[dx][dy] = bufferOrig_Red[dx][dy];
-						buffer_Green[dx][dy] = bufferOrig_Green[dx][dy];
-						buffer_Blue[dx][dy] = bufferOrig_Blue[dx][dy];
+						buffer_Red[medianX][medianY] = bufferOrig_Red[medianX][medianY];
+						buffer_Green[medianX][medianY] = bufferOrig_Green[medianX][medianY];
+						buffer_Blue[medianX][medianY] = bufferOrig_Blue[medianX][medianY];
 					}
 				}
 	
