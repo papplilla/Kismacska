@@ -36,3 +36,5 @@ bld/
 .vscode/
 
 *.html
+
+!Forditott/*
