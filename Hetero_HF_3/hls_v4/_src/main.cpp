@@ -211,7 +211,7 @@ void medfilter(uint8_t r, uint8_t g, uint8_t b, uint8_t* r_out, uint8_t* g_out, 
 	sorbuf[1][sorbuf_x][sorbuf_y] = g;
 	sorbuf[2][sorbuf_x][sorbuf_y] = b;
 
-	buffer_shift: // 5x5-ös buffer oszlopait balra shifteljük
+	buffer_shift: // 5x5-ï¿½s buffer oszlopait balra shifteljï¿½k
 	for (uint8_t color = 0; color < 3; color++){
 	#pragma HLS UNROLL
 		buffer_shift_y:
@@ -226,7 +226,7 @@ void medfilter(uint8_t r, uint8_t g, uint8_t b, uint8_t* r_out, uint8_t* g_out, 
 		}
 	}
 
-	buffer_last_line: // új elemek a shiftelt bufferbe
+	buffer_last_line: // ï¿½j elemek a shiftelt bufferbe
 	for (uint8_t color = 0; color < 3; color++){
 	#pragma HLS UNROLL
 		buffer_last_line_y:
@@ -236,7 +236,7 @@ void medfilter(uint8_t r, uint8_t g, uint8_t b, uint8_t* r_out, uint8_t* g_out, 
 		}
 	}
 
-	buffer_ordered_copy: // a buffer mentése
+	buffer_ordered_copy: // a buffer mentï¿½se
 	for (uint8_t color = 0; color < 3; color++){
 	#pragma HLS UNROLL
 		buffer_ordered_copy_y:
@@ -250,7 +250,7 @@ void medfilter(uint8_t r, uint8_t g, uint8_t b, uint8_t* r_out, uint8_t* g_out, 
 		}
 	}
 
-	mergeSort: // rendezés
+	mergeSort: // rendezï¿½s
 	for (uint8_t color = 0; color < 3; color++){
 	#pragma HLS UNROLL
 		mergeSort(&buf5_ordered[color][0][0]);
@@ -291,13 +291,13 @@ static col_t col = 0; 			//0,1,2,....1280-1
 
 #define MEDIAN 12
 
-//1. mósszer
+//1. mï¿½sszer
 pix_t mergeSort(pix_t arr[25])
-//2. mósszer
+//2. mï¿½sszer
 //pix_t mergeSort(pix_t arrIn[25])
 {
 	pix_t tmp;
-	//2. módszer
+	//2. mï¿½dszer
 	//pix_t arr[N] = { 0 };
 	//for (int i = 0; i < 15; i++)
 	//	arr[i] = arrIn[i]
@@ -482,29 +482,29 @@ pix_t mergeSort(pix_t arr[25])
 
 void median_filter_hls(pix_t in_pix[3], int n_line, pix_t out_pix[3]) {
 
-	//pipeline a függvényre (unroll a benne lévõ loop-okra)
+	//pipeline a fï¿½ggvï¿½nyre (unroll a benne lï¿½vï¿½ loop-okra)
 #pragma HLS PIPELINE II=2
 
-	//kimenetre reshape: párhuzamosan elérjük az elemeit
+	//kimenetre reshape: pï¿½rhuzamosan elï¿½rjï¿½k az elemeit
 #pragma HLS ARRAY_RESHAPE variable=out_pix complete dim=1
 
-	static pix_t win[4][1280 * 3] = { { 0 } }; 	//4 sor tárolása
-#pragma HLS ARRAY_PARTITION variable=win factor=4 dim=1 //sorbuffer soronkénti elérése
+	static pix_t win[4][1280 * 3] = { { 0 } }; 	//4 sor tï¿½rolï¿½sa
+#pragma HLS ARRAY_PARTITION variable=win factor=4 dim=1 //sorbuffer soronkï¿½nti elï¿½rï¿½se
 
 												//komponens ablakok
 	static pix_t in_R[25] = { 0 };
 	static pix_t in_G[25] = { 0 };
 	static pix_t in_B[25] = { 0 };
 
-	//ablakok elemenkénti elérése
+	//ablakok elemenkï¿½nti elï¿½rï¿½se
 #pragma HLS ARRAY_PARTITION variable=in_R complete
 #pragma HLS ARRAY_PARTITION variable=in_G complete
 #pragma HLS ARRAY_PARTITION variable=in_B complete
 
 
-	if (n_line) { //új sor esetén az oszlopszámlálót nullázzuk
+	if (n_line) { //ï¿½j sor esetï¿½n az oszlopszï¿½mlï¿½lï¿½t nullï¿½zzuk
 		col = 0;
-		row++; //sorszámlálót növeljük
+		row++; //sorszï¿½mlï¿½lï¿½t nï¿½veljï¿½k
 		if (row == 4) row = 0;
 	}
 
@@ -512,31 +512,31 @@ void median_filter_hls(pix_t in_pix[3], int n_line, pix_t out_pix[3]) {
 
 	for (i = 0; i < 5; i++) {
 		for (j = 1; j < 5; j++) {
-			//0. 1. 2. 3. oszlop feltöltése
-			//az oszlopokat a 5x5-as mátrixban balra shifteljük
+			//0. 1. 2. 3. oszlop feltï¿½ltï¿½se
+			//az oszlopokat a 5x5-as mï¿½trixban balra shifteljï¿½k
 			in_R[i * 5 + j - 1] = in_R[i * 5 + j];
 			in_G[i * 5 + j - 1] = in_G[i * 5 + j];
 			in_B[i * 5 + j - 1] = in_B[i * 5 + j];
 		}
 
 		if (i == 4) {
-			//ott tartunk, ahová épp írjuk az új pixelt ->
-			//nem win-t olvassuk, hanem közvetlen a pixelt használjuk
+			//ott tartunk, ahovï¿½ ï¿½pp ï¿½rjuk az ï¿½j pixelt ->
+			//nem win-t olvassuk, hanem kï¿½zvetlen a pixelt hasznï¿½ljuk
 			in_R[i * 5 + 4] = in_pix[0];
 			in_G[i * 5 + 4] = in_pix[1];
 			in_B[i * 5 + 4] = in_pix[2];
 		}
 		else {
-			//kiolvassuk a pixeltárolóból az értékeket
+			//kiolvassuk a pixeltï¿½rolï¿½bï¿½l az ï¿½rtï¿½keket
 			in_R[i * 5 + 4] = win[i][col * 3 + 0];
 			in_G[i * 5 + 4] = win[i][col * 3 + 1];
 			in_B[i * 5 + 4] = win[i][col * 3 + 2];
 		}
 	}
-	//buffer frissítése a bejövõ értékekkel
+	//buffer frissï¿½tï¿½se a bejï¿½vï¿½ ï¿½rtï¿½kekkel
 	for (i = 0; i < 3; i++)
 		win[row][col * 3 + i] = in_pix[i];
-	//színkomponensenkénti szûrés
+	//szï¿½nkomponensenkï¿½nti szï¿½rï¿½s
 	out_pix[0] = mergeSort(in_R);
 	out_pix[1] = mergeSort(in_G);
 	out_pix[2] = mergeSort(in_B);
@@ -555,13 +555,13 @@ void median_filter_hls(pix_t in_pix[3], int n_line, pix_t out_pix[3]) {
 typedef ap_uint<8> pixel_t; 	// pixelek
 typedef ap_uint<3> row_t;  	 	// 5 sor
 typedef ap_uint<11> col_t;		// 1280 oszlop
-typedef ap_uint<3> median_t;	// 5 széles, 5 hosszú
+typedef ap_uint<3> median_t;	// 5 szï¿½les, 5 hosszï¿½
 
 int main( int argc, char** argv )
 {
 
     Mat image;
-    image = imread("D:\D_Strabi\D_Dokumentumai\BME\Heterogén_számítási_rendszerek\HF\Kismacska\Hetero_HF_3\MedianFilter_HLS\input.jpg", CV_LOAD_IMAGE_COLOR);   // Read the file
+    image = imread("D:\D_Strabi\D_Dokumentumai\BME\Heterogén_számítási_rendszerek\HF\Kismacska\Hetero_HF_3\hls_v4\_src\input.jpg", CV_LOAD_IMAGE_COLOR);   // Read the file
 
     if(! image.data )
     {
@@ -616,7 +616,7 @@ int main( int argc, char** argv )
     namedWindow( "Display window", WINDOW_AUTOSIZE );// Create a window for display.
     imshow( "Display window", outimg );                   // Show our image inside it.
 
-    imwrite( "D:\D_Strabi\D_Dokumentumai\BME\Heterogén_számítási_rendszerek\HF\Kismacska\Hetero_HF_3\MedianFilter_HLS\Out_Image.jpg", outimg );
+    imwrite( "D:\D_Strabi\D_Dokumentumai\BME\Heterogén_számítási_rendszerek\HF\Kismacska\Hetero_HF_3\hls_v4\_src\Out_Image.jpg", outimg );
 
     waitKey(0);                                          // Wait for a keystroke in the window
     return 0;

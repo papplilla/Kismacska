@@ -6,7 +6,7 @@
 
 using namespace cv;
 using namespace std;
-/*
+
 #define PIXEL_COMPARE_AND_SWAP(x, y) if(arr[(x)] > arr[(y)]) { tmp = arr[(y)];arr[(y)] = arr[(x)];arr[(x)] = tmp;	}
 
 
@@ -547,21 +547,13 @@ void median_filter_hls(pix_t in_pix[3], int n_line, pix_t out_pix[3]) {
 
 #endif
 
-*/
 
-#include "ap_int.h"
-#include "ap_fixed.h"
-
-typedef ap_uint<8> pixel_t; 	// pixelek
-typedef ap_uint<3> row_t;  	 	// 5 sor
-typedef ap_uint<11> col_t;		// 1280 oszlop
-typedef ap_uint<3> median_t;	// 5 széles, 5 hosszú
 
 int main( int argc, char** argv )
 {
 
     Mat image;
-    image = imread("D:\D_Strabi\D_Dokumentumai\BME\Heterogén_számítási_rendszerek\HF\Kismacska\Hetero_HF_3\MedianFilter_HLS\input.jpg", CV_LOAD_IMAGE_COLOR);   // Read the file
+    image = imread("input.jpg", CV_LOAD_IMAGE_COLOR);   // Read the file
 
     if(! image.data )
     {
@@ -569,46 +561,27 @@ int main( int argc, char** argv )
         return -1;
     }
 
-/*	uint8_t r_in, g_in, b_in;
-	uint8_t r_out, g_out, b_out;*/
-
-	pixel_t out[3];
-	pixel_t in[3];
-
-	//bool endline = false;
-	int newLine = 0;
+	uint8_t r_in, g_in, b_in;
+	uint8_t r_out, g_out, b_out;
+	bool endline = false;
     Mat outimg(image.size(),CV_8UC3);
 
 	for (int y = 0; y < image.rows; y++ ){
 		   for (int x = 0; x < image.cols; x++ ){
-    		/*if (x == (image.cols - 1)){
+    		if (x == (image.cols - 1)){
     			endline = true;
     		}
-    		else endline = false;*/
-			   if(!x)
-				   newLine=1;
-			   else
-				   newLine=0;
+    		else endline = false;
 
-    	/*	r_in = image.at<Vec3b>(y,x)[0];
+    		r_in = image.at<Vec3b>(y,x)[0];
     		g_in = image.at<Vec3b>(y,x)[1];
-    		b_in = image.at<Vec3b>(y,x)[2];*/
+    		b_in = image.at<Vec3b>(y,x)[2];
 
-    		in[0] = image.at<Vec3b>(y,x)[0];
-    		in[1] = image.at<Vec3b>(y,x)[1];
-    		in[2] = image.at<Vec3b>(y,x)[2];
+    		medfilter(r_in, g_in, b_in, &r_out, &g_out, &b_out,endline);
 
-    		medianFilter(in, newLine, out);
-    		//medfilter(r_in, g_in, b_in, &r_out, &g_out, &b_out,endline);
-
-    	/*	outimg.at<Vec3b>(y,x)[0] = r_out;
+    		outimg.at<Vec3b>(y,x)[0] = r_out;
     		outimg.at<Vec3b>(y,x)[1] = g_out;
-    		outimg.at<Vec3b>(y,x)[2] = b_out;*/
-
-    		outimg.at<Vec3b>(y,x)[0] = out[0];
-    		outimg.at<Vec3b>(y,x)[1] = out[1];
-    		outimg.at<Vec3b>(y,x)[2] = out[2];
-
+    		outimg.at<Vec3b>(y,x)[2] = b_out;
     	}
     }
 
@@ -616,7 +589,7 @@ int main( int argc, char** argv )
     namedWindow( "Display window", WINDOW_AUTOSIZE );// Create a window for display.
     imshow( "Display window", outimg );                   // Show our image inside it.
 
-    imwrite( "D:\D_Strabi\D_Dokumentumai\BME\Heterogén_számítási_rendszerek\HF\Kismacska\Hetero_HF_3\MedianFilter_HLS\Out_Image.jpg", outimg );
+    imwrite( "Out_Image.jpg", outimg );
 
     waitKey(0);                                          // Wait for a keystroke in the window
     return 0;

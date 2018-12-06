@@ -27,7 +27,6 @@
 								<option id="gnu.cpp.compiler.option.include.paths.351674210" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="G:/Programok/Vivado2018.2/Vivado/2018.2/include/ap_sysc"/>
 									<listOptionValue builtIn="false" value="G:/Programok/Vivado2018.2/Vivado/2018.2/include"/>
-									<listOptionValue builtIn="false" value="D:/D_Strabi/D_Dokumentumai/BME/Heterogén_számítási_rendszerek/HF/Kismacska/Hetero_HF_3"/>
 									<listOptionValue builtIn="false" value="G:/Programok/Vivado2018.2/Vivado/2018.2/win64/tools/auto_cc/include"/>
 									<listOptionValue builtIn="false" value="G:/Programok/Vivado2018.2/Vivado/2018.2/win64/tools/systemc/include"/>
 									<listOptionValue builtIn="false" value="G:/Programok/Vivado2018.2/Vivado/2018.2/include/etc"/>
@@ -46,7 +45,6 @@
 								<option id="gnu.c.compiler.option.include.paths.1220416650" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="G:/Programok/Vivado2018.2/Vivado/2018.2/include/ap_sysc"/>
 									<listOptionValue builtIn="false" value="G:/Programok/Vivado2018.2/Vivado/2018.2/include"/>
-									<listOptionValue builtIn="false" value="D:/D_Strabi/D_Dokumentumai/BME/Heterogén_számítási_rendszerek/HF/Kismacska/Hetero_HF_3"/>
 									<listOptionValue builtIn="false" value="G:/Programok/Vivado2018.2/Vivado/2018.2/win64/tools/auto_cc/include"/>
 									<listOptionValue builtIn="false" value="G:/Programok/Vivado2018.2/Vivado/2018.2/win64/tools/systemc/include"/>
 									<listOptionValue builtIn="false" value="G:/Programok/Vivado2018.2/Vivado/2018.2/include/etc"/>
@@ -115,7 +113,6 @@
 								<option id="gnu.cpp.compiler.option.include.paths.1904271105" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="G:/Programok/Vivado2018.2/Vivado/2018.2/include/ap_sysc"/>
 									<listOptionValue builtIn="false" value="G:/Programok/Vivado2018.2/Vivado/2018.2/include"/>
-									<listOptionValue builtIn="false" value="D:/D_Strabi/D_Dokumentumai/BME/Heterogén_számítási_rendszerek/HF/Kismacska/Hetero_HF_3"/>
 									<listOptionValue builtIn="false" value="G:/Programok/Vivado2018.2/Vivado/2018.2/win64/tools/auto_cc/include"/>
 									<listOptionValue builtIn="false" value="G:/Programok/Vivado2018.2/Vivado/2018.2/win64/tools/systemc/include"/>
 									<listOptionValue builtIn="false" value="G:/Programok/Vivado2018.2/Vivado/2018.2/include/etc"/>
@@ -129,7 +126,6 @@
 								<option id="gnu.c.compiler.option.include.paths.85763933" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="G:/Programok/Vivado2018.2/Vivado/2018.2/include/ap_sysc"/>
 									<listOptionValue builtIn="false" value="G:/Programok/Vivado2018.2/Vivado/2018.2/include"/>
-									<listOptionValue builtIn="false" value="D:/D_Strabi/D_Dokumentumai/BME/Heterogén_számítási_rendszerek/HF/Kismacska/Hetero_HF_3"/>
 									<listOptionValue builtIn="false" value="G:/Programok/Vivado2018.2/Vivado/2018.2/win64/tools/auto_cc/include"/>
 									<listOptionValue builtIn="false" value="G:/Programok/Vivado2018.2/Vivado/2018.2/win64/tools/systemc/include"/>
 									<listOptionValue builtIn="false" value="G:/Programok/Vivado2018.2/Vivado/2018.2/include/etc"/>
@@ -187,4 +183,5 @@
 		</scannerConfigBuildInfo>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+	<storageModule moduleId="refreshScope"/>
 </cproject>

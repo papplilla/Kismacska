@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="median_filter.cpp" path="D:\D_Strabi\D_Dokumentumai\BME\Heterogén_számítási_rendszerek\HF\Kismacska\Hetero_HF_3\hls_v4\_src\median_filter.cpp"/>
+  </source>
+  <testbench>
+    <originFiles name="main.cpp" path="D:\D_Strabi\D_Dokumentumai\BME\Heterogén_számítási_rendszerek\HF\Kismacska\Hetero_HF_3\hls_v4\_src\main.cpp"/>
+  </testbench>
+</autopilotfilemapping:AutoPilotFileMapping>
